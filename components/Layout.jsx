@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
     return (
       <>
         <p>
-          You are logged in as {session.email || "Unknown email"}
+          You are signed in as {session.email || "Unknown email"}
           <button onClick={() => signOut()}>Sign out</button>
         </p>
         {children}

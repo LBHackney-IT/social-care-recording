@@ -9,7 +9,7 @@ describe("Layout", () => {
     useSession.mockReturnValueOnce([false, false])
 
     render(<Layout />)
-    expect(screen.getByText("Log in"))
+    expect(screen.getByText("Sign in"))
   })
 
   it("renders correctly when signed in", () => {
@@ -23,7 +23,7 @@ describe("Layout", () => {
     ])
 
     render(<Layout />)
-    expect(screen.getByText("You are logged in as foo@bar.com"))
-    expect(screen.getByText("Log out"))
+    expect(screen.getByText("You are signed in as foo@bar.com"))
+    expect(screen.getByText("Sign out"))
   })
 })
