@@ -1,8 +1,8 @@
 import Layout from "./Layout"
 import { render, screen } from "@testing-library/react"
-import { useSession } from "next-auth/client"
+import { useSession } from "../lib/auth"
 
-jest.mock("next-auth/client")
+jest.mock("../lib/auth")
 
 describe("Layout", () => {
   it("renders correctly when signed out", () => {
