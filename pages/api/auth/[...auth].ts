@@ -1,7 +1,8 @@
 import cookie from "cookie"
 import { getSession } from "../../../lib/auth"
+import { NextApiRequest, NextApiResponse } from "next"
 
-export default (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { auth, action = auth[0] } = req.query
 
   switch (action) {

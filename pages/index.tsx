@@ -1,4 +1,4 @@
-import { NextPage } from "next"
+import { GetServerSideProps } from "next"
 import StartForm from "../components/StartForm"
 
 const handleSubmit = values => {
@@ -14,7 +14,7 @@ const Start = ({ forms }) => {
   )
 }
 
-export const getServerSideProps = async ({ req }) => {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/forms`, {
     headers: {
       cookie: req.headers.cookie,

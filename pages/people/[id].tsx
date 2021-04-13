@@ -1,3 +1,5 @@
+import { GetServerSideProps } from "next"
+
 const TaskList = props => (
   <>
     {JSON.stringify(props)}
@@ -5,7 +7,7 @@ const TaskList = props => (
   </>
 )
 
-export const getServerSideProps = async ({ req }) => {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/people/1`,
     {

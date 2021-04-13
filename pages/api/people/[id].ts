@@ -1,7 +1,8 @@
 import prisma from "../../../lib/prisma"
 import { getSession } from "../../../lib/auth"
+import { NextApiRequest, NextApiResponse } from "next"
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req })
 
   if (session) {
