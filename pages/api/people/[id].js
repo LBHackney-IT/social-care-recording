@@ -16,7 +16,12 @@ export default async (req, res) => {
       }
     )
     const data = await res2.json()
-    res.json(data.residents.find(resident => resident.mosaicId === id))
+    const resident = data.residents.find(resident => resident.mosaicId === id)
+    if (!resident)
+      res.status(404).json({
+        error: "Resident not found",
+      })
+    res.json(resident)
   } else {
     res.status(401).json({
       error: "Not authenticated",
