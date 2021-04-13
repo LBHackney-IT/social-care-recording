@@ -18,7 +18,7 @@ export const getServerSideProps = async ({ req }) => {
 
   return {
     props: {
-      data,
+      person: data,
     },
   }
 }

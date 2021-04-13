@@ -1,8 +1,11 @@
-import React from "react"
 import Link from "next/link"
 import { signIn, signOut, useSession } from "../lib/auth"
 
-const Layout = ({ children }) => {
+interface Props {
+  children: React.ReactChild | React.ReactChildren
+}
+
+const Layout = ({ children }: Props): React.ReactElement => {
   const [session, loading] = useSession()
 
   if (session) {
