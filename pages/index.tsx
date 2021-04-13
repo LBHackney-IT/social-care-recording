@@ -1,11 +1,22 @@
 import { GetServerSideProps } from "next"
 import StartForm from "../components/StartForm"
-
-const handleSubmit = values => {
-  console.log(values)
-}
+import { useRouter } from "next/router"
 
 const Start = ({ forms }) => {
+  const router = useRouter()
+
+  const handleSubmit = async values => {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions`,
+      {
+        method: "POST",
+        body: JSON.stringify(values),
+      }
+    )
+    const data = await res.json()
+    router.push(`/submissions/${data.id}`)
+  }
+
   return (
     <>
       <h1>Start a new submission</h1>

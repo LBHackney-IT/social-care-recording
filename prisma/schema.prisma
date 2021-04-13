@@ -10,7 +10,7 @@ generator client {
 model Submission {
   id           String    @id @default(cuid())
   socialCareId Int
-  formId       Int
+  formId       String
   data         Json?
   createdBy    String
   createdAt    DateTime  @default(now())

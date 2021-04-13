@@ -9,7 +9,8 @@
     "test": "jest",
     "cypress": "cypress open",
     "db:schema:load": "prisma db push --preview-feature",
-    "db:seed": "prisma db seed --preview-feature"
+    "db:seed": "prisma db seed --preview-feature",
+    "typecheck": "tsc"
   },
   "keywords": [],
   "author": "",

@@ -3,11 +3,21 @@ export interface Choice {
   label: string
 }
 
+enum FieldTypes {
+  Text = "text",
+  Textarea = "textarea",
+  Radio = "radio",
+  Checkbox = "checkbox",
+}
+
 export interface Field {
   id: string
   question: string
-  type: string
+  type: FieldTypes
+  hint?: string
+  error?: string
   choices?: Choice[]
+  classNames?: string
 }
 
 export interface Step {

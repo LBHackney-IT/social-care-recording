@@ -6,12 +6,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const session = await getSession({ req })
     if (session) {
-      let { formId, socialCareId } = req.body
+      let { formId, socialCareId } = JSON.parse(req.body)
 
       const newSubmission = await prisma.submission.create({
         data: {
           formId,
-          socialCareId,
+          socialCareId: Number(socialCareId),
           createdBy: session.email,
         },
       })
