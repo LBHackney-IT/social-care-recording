@@ -1,6 +1,6 @@
 import React from "react"
 import Link from "next/link"
-import { signOut, useSession } from "next-auth/client"
+import { signIn, signOut, useSession } from "../lib/auth"
 
 const Layout = ({ children }) => {
   const [session, loading] = useSession()
@@ -9,8 +9,8 @@ const Layout = ({ children }) => {
     return (
       <>
         <p>
-          You are logged in as {session.user.email || "Unknown email"}
-          <button onClick={() => signOut()}>Log out</button>
+          You are logged in as {session.email || "Unknown email"}
+          <button onClick={() => signOut()}>Sign out</button>
         </p>
         {children}
       </>
@@ -19,11 +19,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <p>
-        <Link href="/api/auth/signin">
-          <a>Log in</a>
-        </Link>
-      </p>
+      <button onClick={signIn}>Sign in</button>
       {children}
     </>
   )

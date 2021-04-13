@@ -1,10 +1,13 @@
-import { Provider } from "next-auth/client"
+import { Provider } from "../lib/auth"
+import Layout from "../components/Layout"
 import "./index.scss"
 
 const App = ({ Component, pageProps }) => {
   return (
-    <Provider session={pageProps.session}>
-      <Component {...pageProps} />
+    <Provider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </Provider>
   )
 }
