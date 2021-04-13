@@ -18,6 +18,7 @@
     "@prisma/client": "^2.19.0",
     "@reach/dialog": "^0.13.2",
     "formik": "^2.2.6",
+    "lbh-frontend": "^3.5.2",
     "next": "^10.0.9",
     "next-auth": "^3.13.2",
     "react": "16.14.0",
