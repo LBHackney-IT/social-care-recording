@@ -1,16 +1,15 @@
 import { NextPage } from "next"
 import StartForm from "../components/StartForm"
 
-const Start = ({ forms }) => {
-  const formOptions = forms.map(form => ({
-    id: form.id,
-    name: form.name,
-  }))
+const handleSubmit = values => {
+  console.log(values)
+}
 
+const Start = ({ forms }) => {
   return (
     <>
-      <h1>Start a thing</h1>
-      <StartForm handleSubmit={() => {}} formOptions={formOptions} />
+      <h1>Start a new submission</h1>
+      <StartForm onSubmit={handleSubmit} formOptions={forms} />
     </>
   )
 }

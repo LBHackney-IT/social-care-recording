@@ -6,5 +6,9 @@ export default async (req, res) => {
 
   if (session) {
     res.json(forms)
+  } else {
+    res.status(401).json({
+      error: "Not authenticated",
+    })
   }
 }

@@ -1,23 +1,20 @@
 import { Formik, Form, Field } from "formik"
+import { startSchema } from "../lib/validators"
+import { Form as FormType } from "../config/forms.types"
 
 interface Props {
-  formOptions: {
-    id: string
-    name: string
-  }[]
-  handleSubmit: (values) => void
+  formOptions: FormType[]
+  onSubmit: (values) => void
 }
 
-const StartForm = ({
-  formOptions,
-  handleSubmit,
-}: Props): React.ReactElement => (
+const StartForm = ({ formOptions, onSubmit }: Props): React.ReactElement => (
   <Formik
     initialValues={{
       socialCareId: "",
       formId: "",
     }}
-    onSubmit={handleSubmit}
+    validationSchema={startSchema}
+    onSubmit={onSubmit}
   >
     {({ isSubmitting }) => (
       <Form>
