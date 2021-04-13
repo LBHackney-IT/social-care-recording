@@ -15,9 +15,7 @@ describe("Layout", () => {
   it("renders correctly when signed in", () => {
     useSession.mockReturnValueOnce([
       {
-        user: {
-          email: "foo@bar.com",
-        },
+        email: "foo@bar.com",
       },
       false,
     ])
