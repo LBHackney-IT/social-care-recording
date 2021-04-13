@@ -82,6 +82,19 @@ const App = ({ Component, pageProps }) => {
             </div>
           </div>
         </header>
+        <div class="govuk-phase-banner lbh-phase-banner lbh-container">
+          <p class="govuk-phase-banner__content">
+            <strong class="govuk-tag govuk-phase-banner__content__tag lbh-tag">
+              Beta
+            </strong>
+            <span class="govuk-phase-banner__text">
+              This is our new website design - it's work in progress.
+              <a href="#feedback" title="Tell us what you think"
+                >Tell us what you think</a
+              >,your feedback will help us to improve it.
+            </span>
+          </p>
+        </div>
         <main class="lbh-main-wrapper " id="main-content" role="main">
           <div class="lbh-container">
           <Provider session={pageProps.session}>

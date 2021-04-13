@@ -10,42 +10,50 @@ export const getServerSideProps = async () => {
 
 const Index = ({ posts }) => {
   const [session, loading] = useSession()
-  console.log(posts.length)
   return (
     <Layout>
-      <h1>New Care Assessments</h1>
-      <table class="govuk-table lbh-table">
-        <tbody class="govuk-table__body">
-          {posts.map(post => (
-          <div>
-           <h2 key={post.id}>{post.id}. {post.title}</h2> 
-            <tr class="govuk-table__row">
-            <td class="govuk-table__cell">{post.content}</td>
-            <td class="govuk-table__cell">{post.published}</td>
-            <td class="govuk-table__cell">
-              <span class="govuk-tag lbh-tag lbh-tag--green" >status test </span>
-            </td>
-            <td class="govuk-table__cell">
-              <Link href={`/posts/${post.id}`}>
-                <a>Show</a>
-              </Link>
-              {session && (
-                <Link href={`/posts/${post.id}/edit`}>
-                  <a>Edit</a>
-                </Link>
-              )}
-            </td>
-            </tr>
-          </div>
-          ))}
-        </tbody>
-      </table>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h2 class="govuk-heading-xl">New Care Assessments</h2>
+          <p class="govuk-body govuk-!-margin-bottom-7">You’ve completed 3 out of 17 sections. Some sections have been prefilled. Your work will be saved automatically.</p>
 
-      {session && (
-        <Link href="/posts/new">
-          <a>New post</a>
-        </Link>
-      )}
+          <ol class="app-task-list">
+            <li>
+              {posts.map(post => (
+              <div>
+              <h2 class="app-task-list__section" key={post.id}> {post.id}. 
+                <span class="app-task-list__section-number"> {' '}  {post.title} </span>
+              </h2> 
+                <ul class="app-task-list__items">
+                  <li class="app-task-list__item">
+                    <span class="app-task-list__task-name">
+                      <a href="#" aria-describedby="eligibility-status">
+                        {post.content}
+                      </a>
+                    </span>
+                    <strong class="govuk-tag govuk-tag--grey app-task-list__tag"  id="eligibility-status">To do</strong>
+                      <Link href={`/posts/${post.id}`}>
+                        <a>Show</a>
+                      </Link>
+                      {session && (
+                        <Link href={`/posts/${post.id}/edit`}>
+                          <a>Edit</a>
+                        </Link>
+                      )}
+                  </li>
+                </ul>
+              </div>
+              ))}
+            </li>
+          </ol>
+
+          {session && (
+            <Link href="/posts/new">
+              <a>New post</a>
+            </Link>
+          )}
+        </div>
+      </div>
     </Layout>
   )
 }
