@@ -36,9 +36,7 @@ const Header = (): React.ReactElement => {
                     </g>
                   </svg>
                   <span className="lbh-header__logo-text"> Hackney </span>
-                  <span className="lbh-header__service-name lbh-header__service-name--short">
-                    SMS
-                  </span>
+                  <span className="lbh-header__service-name">Social care</span>
                 </a>
               </Link>
             </div>

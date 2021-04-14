@@ -5,7 +5,7 @@ import { useSession } from "../lib/auth"
 jest.mock("../lib/auth")
 
 describe("Layout", () => {
-  it("renders correctly when signed out", () => {
+  it("renders correctly", () => {
     ;(useSession as jest.Mock).mockReturnValueOnce([false, false])
 
     render(
@@ -13,24 +13,6 @@ describe("Layout", () => {
         <h1>Test content</h1>
       </Layout>
     )
-    expect(screen.getByText("Sign in"))
     expect(screen.getByText("Test content"))
-  })
-
-  it("renders correctly when signed in", () => {
-    ;(useSession as jest.Mock).mockReturnValueOnce([
-      {
-        email: "foo@bar.com",
-      },
-      false,
-    ])
-
-    render(
-      <Layout>
-        <h1>Test content</h1>
-      </Layout>
-    )
-    expect(screen.getByText("You are signed in as foo@bar.com"))
-    expect(screen.getByText("Sign out"))
   })
 })
