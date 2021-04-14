@@ -2,6 +2,7 @@ import prisma from "../../../lib/prisma"
 import { getSession } from "../../../lib/auth"
 import { NextApiRequest, NextApiResponse } from "next"
 import forms from "../../../config/forms"
+import { getPersonById } from "../../../lib/socialCareApi"
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -17,26 +18,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       })
 
       // 2. grab person
-      const res2 = await fetch(
-        `${process.env.SOCIAL_CARE_API_ENDPOINT}/residents?mosaic_id=${submission.socialCareId}`,
-        {
-          headers: {
-            "x-api-key": process.env.SOCIAL_CARE_API_KEY,
-          },
-        }
-      )
-      const data = await res2.json()
-      const person = data.residents.find(
-        resident => resident.mosaicId === submission.socialCareId
-      )
+      const person = await getPersonById(submission.socialCareId)
 
       // 3. grab form
       const form = forms.find(form => form.id === submission.formId)
 
       res.json({
+        submission,
         person,
         form,
-        submission,
       })
     } else {
       res.status(401).json({
