@@ -4,6 +4,16 @@ export default [
     name: "Social care assessment",
     steps: [
       {
+        id: "foo",
+        name: "Foo",
+        theme: "About you",
+      },
+      {
+        id: "bar",
+        name: "Bar",
+        theme: "More stuff",
+      },
+      {
         id: "your-medication-and-symptoms",
         name: "Your medication and symptoms",
         theme: "About you",

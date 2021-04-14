@@ -9,10 +9,11 @@ describe("Layout", () => {
     ;(useSession as jest.Mock).mockReturnValueOnce([false, false])
 
     render(
-      <Layout>
+      <Layout postheader={<h2>Test postheader content</h2>}>
         <h1>Test content</h1>
       </Layout>
     )
+    expect(screen.getByText("Test postheader content"))
     expect(screen.getByText("Test content"))
   })
 })
