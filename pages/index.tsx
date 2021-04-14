@@ -20,7 +20,7 @@ const Start = ({ forms }) => {
   return (
     <div className="govuk-grid-row">
       <div className="govuk-grid-column-two-thirds">
-        <h1 className="lbh-heading-h1">Start a new submission</h1>
+        <h1 className="lbh-heading-h1">New submission</h1>
         {/* <p className="lbh-body">Explanatory text here</p> */}
         <StartForm onSubmit={handleSubmit} formOptions={forms} />
       </div>

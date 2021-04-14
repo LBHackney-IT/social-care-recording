@@ -13,7 +13,7 @@ const StartForm = ({ formOptions, onSubmit }: Props): React.ReactElement => (
   <Formik
     initialValues={{
       socialCareId: "",
-      formId: "",
+      formId: formOptions[0].id,
     }}
     validationSchema={startSchema}
     onSubmit={onSubmit}

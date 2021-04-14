@@ -1,9 +1,5 @@
 export default [
   {
-    id: "example",
-    name: "Example process",
-  },
-  {
     id: "assessment",
     name: "Social care assessment",
     steps: [
@@ -86,5 +82,9 @@ export default [
         ],
       },
     ],
+  },
+  {
+    id: "example",
+    name: "Example process",
   },
 ]
