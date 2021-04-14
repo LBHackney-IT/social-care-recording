@@ -26,21 +26,20 @@ const App = ({ Component, pageProps }: ExtendedAppProps) => {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       </Head>
 
-      <Layout>
-        <Component
-          postheader={
-            Component.goBackPath && (
-              <Link href={Component.goBackPath}>
-                <div className="lbh-container">
-                  <a href="#" className="govuk-back-link lbh-back-link">
-                    Go back
-                  </a>
-                </div>
-              </Link>
-            )
-          }
-          {...pageProps}
-        />
+      <Layout
+        postheader={
+          Component.goBackPath && (
+            <Link href={Component.goBackPath}>
+              <div className="lbh-container">
+                <a href="#" className="govuk-back-link lbh-back-link">
+                  Go back
+                </a>
+              </div>
+            </Link>
+          )
+        }
+      >
+        <Component {...pageProps} />
       </Layout>
     </Provider>
   )

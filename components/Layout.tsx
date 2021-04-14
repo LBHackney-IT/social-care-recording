@@ -2,7 +2,7 @@ import Link from "next/link"
 import Header from "./Header"
 
 interface Props {
-  postheader: React.ReactChild | React.ReactChildren
+  postheader?: React.ReactChild | React.ReactChildren
   children: React.ReactChild | React.ReactChildren
 }
 
