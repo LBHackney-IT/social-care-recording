@@ -21,6 +21,7 @@
     "formik": "^2.2.6",
     "jsonwebtoken": "^8.5.1",
     "lbh-frontend": "^3.5.2",
+    "luxon": "^1.26.0",
     "next": "^10.0.9",
     "react": "16.14.0",
     "react-dom": "16.14.0",

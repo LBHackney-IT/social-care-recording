@@ -1,9 +1,15 @@
 import { GetServerSideProps } from "next"
+import PersonWidget from "../../components/PersonWidget"
 
-const TaskList = props => (
+const TaskList = ({ submission, person, form }) => (
   <>
-    {/* <h1>Title goes here</h1> */}
-    {JSON.stringify(props)}
+    <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">{form?.name}</h1>
+    <div className="govuk-grid-row">
+      <div className="govuk-grid-column-two-thirds">Task list here...</div>
+      <div className="govuk-grid-column-one-third">
+        <PersonWidget person={person} />
+      </div>
+    </div>
   </>
 )
 

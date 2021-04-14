@@ -1,0 +1,30 @@
+@import "lbh-frontend/lbh/settings/all";
+
+.aside {
+  border: 4px solid lbh-colour("lbh-primary-button");
+  padding: 20px;
+}
+
+.title {
+  margin-bottom: 15px;
+}
+
+.paragraph {
+  margin: 7px 0px;
+}
+
+.important {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+
+  * {
+    margin-top: 0;
+  }
+
+  strong {
+    color: lbh-colour("lbh-error");
+  }
+}
