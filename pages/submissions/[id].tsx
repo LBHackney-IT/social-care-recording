@@ -2,14 +2,17 @@ import { GetServerSideProps } from "next"
 
 const TaskList = props => (
   <>
+    {/* <h1>Title goes here</h1> */}
     {JSON.stringify(props)}
-    <h1>Task list page?</h1>
   </>
 )
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  params,
+  req,
+}) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/people/1`,
+    `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions/${params.id}`,
     {
       headers: {
         cookie: req.headers.cookie,
@@ -20,7 +23,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
   return {
     props: {
-      person: data,
+      ...data,
     },
   }
 }
