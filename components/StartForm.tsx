@@ -18,19 +18,38 @@ const StartForm = ({ formOptions, onSubmit }: Props): React.ReactElement => (
   >
     {({ isSubmitting }) => (
       <Form>
-        <label htmlFor="socialCareId">Social care ID</label>
-        <Field name="socialCareId" id="socialCareId" />
+        <div className="govuk-form-group lbh-form-group">
+          <label htmlFor="socialCareId" className="govuk-label lbh-label">
+            Social care ID
+          </label>
+          <Field
+            name="socialCareId"
+            id="socialCareId"
+            className="govuk-input lbh-input govuk-input--width-10"
+          />
+        </div>
 
-        <label htmlFor="formId">What do you want to start?</label>
-        <Field name="formId" as="select" id="formId">
-          {formOptions.map(option => (
-            <option value={option.id} key={option.id}>
-              {option.name}
-            </option>
-          ))}
-        </Field>
+        <div className="govuk-form-group lbh-form-group">
+          <label htmlFor="formId" className="govuk-label lbh-label">
+            What do you want to start?
+          </label>
+          <Field
+            name="formId"
+            as="select"
+            id="formId"
+            className="govuk-select lbh-select"
+          >
+            {formOptions.map(option => (
+              <option value={option.id} key={option.id}>
+                {option.name}
+              </option>
+            ))}
+          </Field>
+        </div>
 
-        <button disabled={isSubmitting}>Start</button>
+        <button className="govuk-button lbh-button" disabled={isSubmitting}>
+          Start
+        </button>
       </Form>
     )}
   </Formik>
