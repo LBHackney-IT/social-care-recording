@@ -1,7 +1,7 @@
 import StartForm from "./StartForm"
 import { render, screen } from "@testing-library/react"
 
-describe("Layout", () => {
+describe("StartForm", () => {
   it("renders the correct fields", () => {
     render(
       <StartForm
