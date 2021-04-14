@@ -2,25 +2,45 @@ import { useCallback } from "react"
 import s from "../styles/TaskList.module.scss"
 import { groupByTheme } from "../lib/helpers"
 import { Form } from "../config/forms.types"
+import Link from "next/link"
+import { useRouter } from "next/router"
 
 interface Props {
   form: Form
 }
 
-const TaskList = ({ form }: Props) => {
-  const groupByThemeCb = useCallback(groupByTheme, [form])
+const TaskList = ({ form }: Props): React.ReactElement => {
+  const router = useRouter()
+  const { id } = router.query
 
+  const groupByThemeCb = useCallback(groupByTheme, [form])
   const themes = groupByThemeCb(form)
+
   return (
     <ol className={s.taskList}>
-      {themes.map(theme => (
+      {themes.map((theme, i) => (
         <li key={theme.name}>
-          {theme.name}
-          <ol>
+          <h2 className={s.section}>
+            <span className={s.sectionNumber}>{i + 1}.</span> {theme.name}
+          </h2>
+
+          <ul className={s.items}>
             {theme.steps.map(step => (
-              <li key={step.id}>{step.name}</li>
+              <li className={s.item} key={step.id}>
+                <span className={s.taskName}>
+                  <Link href={`/submissions/${id}/steps/${step.id}`}>
+                    <a className="lbh-link">{step.name}</a>
+                  </Link>
+                </span>
+
+                <strong
+                  className={`govuk-tag govuk-tag--grey app-task-list__tag ${s.tag}`}
+                >
+                  To do
+                </strong>
+              </li>
             ))}
-          </ol>
+          </ul>
         </li>
       ))}
     </ol>
