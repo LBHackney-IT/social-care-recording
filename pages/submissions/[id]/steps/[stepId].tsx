@@ -19,7 +19,7 @@ const Step = ({ params, name, fields, person, submission }) => (
         {fields && <StepForm fields={fields} onSubmit={handleSubmit} />}
       </div>
       <div className="govuk-grid-column-one-third">
-        <PersonWidget person={person} />
+        {person && <PersonWidget person={person} />}
       </div>
     </div>
   </>

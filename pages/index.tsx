@@ -32,7 +32,7 @@ const Start = ({ forms, unfinishedSubmissions }: Props) => {
 
       <div className="govuk-grid-column-one-half">
         <h2 className="lbh-heading-h3">Start a new submission</h2>
-        <StartForm onSubmit={handleSubmit} formOptions={forms} />
+        <StartForm onSubmit={handleSubmit} forms={forms} />
       </div>
 
       <div className="govuk-grid-column-one-half">

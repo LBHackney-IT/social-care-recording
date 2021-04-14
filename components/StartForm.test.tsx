@@ -5,7 +5,7 @@ describe("StartForm", () => {
   it("renders the correct fields", () => {
     render(
       <StartForm
-        formOptions={[
+        forms={[
           {
             id: "foo",
             name: "Foo",

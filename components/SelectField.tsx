@@ -8,9 +8,9 @@ interface FieldProps {
   type?: string
   hint?: string
   className?: string
-  options: {
-    id: string
-    name: string
+  choices: {
+    value: string
+    label: string
   }[]
 }
 
@@ -21,7 +21,7 @@ const Field = ({
   label,
   hint,
   className,
-  options,
+  choices,
   ...props
 }: FieldProps): React.ReactElement => (
   <div
@@ -53,9 +53,9 @@ const Field = ({
       className={`govuk-select lbh-select ${className}`}
       {...props}
     >
-      {options.map(option => (
-        <option value={option.id} key={option.id}>
-          {option.name}
+      {choices.map(choice => (
+        <option value={choice.value} key={choice.value}>
+          {choice.label}
         </option>
       ))}
     </RawField>

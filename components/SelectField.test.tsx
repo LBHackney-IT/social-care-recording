@@ -2,14 +2,14 @@ import SelectField from "./SelectField"
 import { Formik, Form } from "formik"
 import { render, screen } from "@testing-library/react"
 
-const options = [
+const choices = [
   {
-    id: "1",
-    name: "Foo option",
+    value: "1",
+    label: "Foo option",
   },
   {
-    id: "2",
-    name: "Bar option",
+    value: "2",
+    label: "Bar option",
   },
 ]
 
@@ -30,7 +30,7 @@ describe("SelectField", () => {
               name="foo"
               label="Label text"
               hint="Hint text"
-              options={options}
+              choices={choices}
             />
           </Form>
         )}
@@ -61,7 +61,7 @@ describe("SelectField", () => {
               name="foo"
               label="Label text"
               hint="Hint text"
-              options={options}
+              choices={choices}
             />
           </Form>
         )}
@@ -89,7 +89,7 @@ describe("SelectField", () => {
             name="foo"
             label="Label text"
             hint="Hint text"
-            options={options}
+            choices={choices}
           />
         </Form>
       </Formik>

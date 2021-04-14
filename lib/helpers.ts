@@ -18,3 +18,14 @@ export const groupByTheme = (form: Form): Theme[] =>
     group.steps.push(step)
     return groups
   }, [])
+
+export const formsToChoices = (
+  forms: Form[]
+): {
+  value: string
+  label: string
+}[] =>
+  forms.map(form => ({
+    value: form.id,
+    label: form.name,
+  }))
