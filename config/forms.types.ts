@@ -23,6 +23,7 @@ export interface Field {
 export interface Step {
   id: string
   name: string
+  theme?: string
   fields: Field[]
 }
 

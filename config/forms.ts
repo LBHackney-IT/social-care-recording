@@ -4,11 +4,12 @@ export default [
     name: "Social care assessment",
     steps: [
       {
-        id: "about-you",
+        id: "your-medication-and-symptoms",
         name: "Your medication and symptoms",
+        theme: "About you",
         fields: [
           {
-            id: "prescribed-medicatons",
+            id: "prescribed-medications",
             question: "Are you taking any prescribed medications?",
             type: "radio",
             choices: [
