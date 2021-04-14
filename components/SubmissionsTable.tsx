@@ -30,8 +30,7 @@ const SubmissionsTable = ({ unfinishedSubmissions }: Props) => {
                 <a className="lbh-link">{submission.socialCareId}</a>
               </Link>
             </td>
-            <td className="govuk-table__cell">
-              {console.log(submission.createdAt)}
+            <td className="govuk-table__cell lbh-body-s">
               {prettyDate((submission.createdAt as unknown) as string)} by{" "}
               {submission.createdBy}
             </td>

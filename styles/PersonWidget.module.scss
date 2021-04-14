@@ -14,17 +14,10 @@
 }
 
 .important {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   margin-top: 15px;
-
-  * {
-    margin-top: 0;
-  }
 
   strong {
     color: lbh-colour("lbh-error");
+    margin-right: 15px;
   }
 }
