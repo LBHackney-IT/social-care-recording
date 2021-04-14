@@ -1,4 +1,6 @@
-export default [
+import { Form } from "./forms.types"
+
+const formData: Form[] = [
   {
     id: "assessment",
     name: "Social care assessment",
@@ -7,11 +9,13 @@ export default [
         id: "foo",
         name: "Foo",
         theme: "About you",
+        fields: [],
       },
       {
         id: "bar",
         name: "Bar",
         theme: "More stuff",
+        fields: [],
       },
       {
         id: "your-medication-and-symptoms",
@@ -24,11 +28,11 @@ export default [
             type: "radio",
             choices: [
               {
-                value: true,
+                value: "true",
                 label: "Yes",
               },
               {
-                value: false,
+                value: "false",
                 label: "No",
               },
             ],
@@ -37,6 +41,10 @@ export default [
             id: "medications",
             question: "Which medications?",
             type: "textarea",
+            condition: {
+              id: "prescribed-medications",
+              value: "true",
+            },
           },
           {
             id: "support-taking-or-using-medicatons",
@@ -50,11 +58,11 @@ export default [
             type: "radio",
             choices: [
               {
-                value: true,
+                value: "true",
                 label: "Yes",
               },
               {
-                value: false,
+                value: "false",
                 label: "No",
               },
             ],
@@ -66,11 +74,11 @@ export default [
             type: "radio",
             choices: [
               {
-                value: true,
+                value: "true",
                 label: "Yes",
               },
               {
-                value: false,
+                value: "false",
                 label: "No",
               },
             ],
@@ -81,11 +89,11 @@ export default [
             type: "radio",
             choices: [
               {
-                value: true,
+                value: "true",
                 label: "Yes",
               },
               {
-                value: false,
+                value: "false",
                 label: "No",
               },
             ],
@@ -97,5 +105,8 @@ export default [
   {
     id: "example",
     name: "Example process",
+    steps: [],
   },
 ]
+
+export default formData

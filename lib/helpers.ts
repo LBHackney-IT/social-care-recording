@@ -5,6 +5,7 @@ export interface Theme {
   steps: Step[]
 }
 
+// take a form's steps and organise them by theme for displaying in a task list
 export const groupByTheme = (form: Form): Theme[] =>
   form.steps.reduce(function (groups, step) {
     const name = step.theme
@@ -19,6 +20,7 @@ export const groupByTheme = (form: Form): Theme[] =>
     return groups
   }, [])
 
+// take form data and turn it into the format SelectField expects
 export const formsToChoices = (
   forms: Form[]
 ): {

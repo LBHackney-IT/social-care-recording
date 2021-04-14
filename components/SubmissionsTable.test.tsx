@@ -12,6 +12,7 @@ describe("SubmissionsTable", () => {
             formId: "A",
             createdBy: "example@email.com",
             data: {},
+            editedBy: [],
             createdAt: ("2021-04-14T10:14:00.87" as unknown) as Date,
             updatedAt: new Date(),
             submittedAt: null,
