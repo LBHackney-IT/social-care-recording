@@ -12,6 +12,7 @@ model Submission {
   socialCareId Int
   formId       String
   data         Json?
+  editedBy     String[]
   createdBy    String
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @default(now())

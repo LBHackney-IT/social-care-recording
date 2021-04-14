@@ -22,8 +22,6 @@ const FlexibleField = ({ field, touched, errors }): React.ReactElement => {
     )
 
   if (field.type === "radio")
-    //    return <>{JSON.stringify(field.choices)}</>
-
     return (
       <RadioField
         name={field.id}
