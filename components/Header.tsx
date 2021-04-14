@@ -42,7 +42,7 @@ const Header = (): React.ReactElement => {
             </div>
             {session && !loading && (
               <div className="lbh-header__links">
-                <p>{session.name}</p>
+                <p>{session?.user?.name}</p>
                 <a href="#" onClick={() => signOut()}>
                   Sign out
                 </a>

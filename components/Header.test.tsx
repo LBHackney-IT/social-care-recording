@@ -5,7 +5,9 @@ jest.mock("../lib/auth", () => {
   return {
     useSession: () => [
       {
-        name: "Foo",
+        user: {
+          name: "Foo",
+        },
       },
       false,
     ],
