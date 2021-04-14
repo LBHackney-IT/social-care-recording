@@ -8,6 +8,8 @@ interface FieldProps {
   type?: string
   hint?: string
   className?: string
+  as?: string
+  rows?: number
 }
 
 const Field = ({
@@ -43,7 +45,11 @@ const Field = ({
     <RawField
       name={name}
       id={name}
-      className={`govuk-input lbh-input ${className}`}
+      className={`${
+        props.as === "textarea"
+          ? "govuk-textarea lbh-textarea"
+          : "govuk-input lbh-input"
+      } ${className}`}
       aria-describedby={hint ? `${name}-hint` : false}
       {...props}
     />

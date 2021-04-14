@@ -24,7 +24,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const form = forms.find(form => form.id === submission.formId)
 
       res.json({
-        submission,
+        ...submission,
         person,
         form,
       })

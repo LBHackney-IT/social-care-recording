@@ -1,1 +1,10 @@
 @import "node_modules/lbh-frontend/lbh/all";
+
+// fix spacing of inline radios
+.govuk-radios--inline {
+  @include govuk-media-query($from: tablet) {
+    .govuk-radios__item {
+      margin-bottom: 0;
+    }
+  }
+}
