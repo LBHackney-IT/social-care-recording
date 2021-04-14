@@ -1,6 +1,8 @@
 import { Formik, Form, Field } from "formik"
 import { startSchema } from "../lib/validators"
 import { Form as FormType } from "../config/forms.types"
+import TextField from "./TextField"
+import SelectField from "./SelectField"
 
 interface Props {
   formOptions: FormType[]
@@ -16,36 +18,24 @@ const StartForm = ({ formOptions, onSubmit }: Props): React.ReactElement => (
     validationSchema={startSchema}
     onSubmit={onSubmit}
   >
-    {({ isSubmitting }) => (
+    {({ isSubmitting, touched, errors }) => (
       <Form>
-        <div className="govuk-form-group lbh-form-group">
-          <label htmlFor="socialCareId" className="govuk-label lbh-label">
-            Social care ID
-          </label>
-          <Field
-            name="socialCareId"
-            id="socialCareId"
-            className="govuk-input lbh-input govuk-input--width-10"
-          />
-        </div>
+        <TextField
+          name="socialCareId"
+          label="Social care ID"
+          hint="For example, 12345678"
+          touched={touched}
+          errors={errors}
+          className="govuk-input--width-10"
+        />
 
-        <div className="govuk-form-group lbh-form-group">
-          <label htmlFor="formId" className="govuk-label lbh-label">
-            What do you want to start?
-          </label>
-          <Field
-            name="formId"
-            as="select"
-            id="formId"
-            className="govuk-select lbh-select"
-          >
-            {formOptions.map(option => (
-              <option value={option.id} key={option.id}>
-                {option.name}
-              </option>
-            ))}
-          </Field>
-        </div>
+        <SelectField
+          name="formId"
+          label="What do you want to start?"
+          touched={touched}
+          errors={errors}
+          options={formOptions}
+        />
 
         <button className="govuk-button lbh-button" disabled={isSubmitting}>
           Start
