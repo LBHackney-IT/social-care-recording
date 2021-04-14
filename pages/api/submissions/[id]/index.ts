@@ -1,8 +1,8 @@
-import prisma from "../../../lib/prisma"
-import { getSession } from "../../../lib/auth"
+import prisma from "../../../../lib/prisma"
+import { getSession } from "../../../../lib/auth"
 import { NextApiRequest, NextApiResponse } from "next"
-import forms from "../../../config/forms"
-import { getPersonById } from "../../../lib/socialCareApi"
+import forms from "../../../../config/forms"
+import { getPersonById } from "../../../../lib/socialCareApi"
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
