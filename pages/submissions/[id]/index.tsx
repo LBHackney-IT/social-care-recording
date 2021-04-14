@@ -38,4 +38,6 @@ export const getServerSideProps: GetServerSideProps = async ({
   }
 }
 
+TaskList.goBackPath = "/"
+
 export default TaskList

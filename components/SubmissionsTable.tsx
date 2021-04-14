@@ -7,6 +7,9 @@ interface Props {
 }
 
 const SubmissionsTable = ({ unfinishedSubmissions }: Props) => {
+  if (!(unfinishedSubmissions.length > 0))
+    return <p className="lbh-body">Nothing to show</p>
+
   return (
     <table className="govuk-table lbh-table">
       <thead className="govuk-table__head">

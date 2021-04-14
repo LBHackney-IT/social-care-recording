@@ -12,7 +12,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         data: {
           formId,
           socialCareId: Number(socialCareId),
-          createdBy: session.email,
+          createdBy: session.user.email,
         },
       })
       res.json(newSubmission)
