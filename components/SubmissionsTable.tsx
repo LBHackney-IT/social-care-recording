@@ -28,7 +28,9 @@ const SubmissionsTable = ({ unfinishedSubmissions }: Props) => {
               </Link>
             </td>
             <td className="govuk-table__cell">
-              {prettyDate(submission.createdAt)} by {submission.createdBy}
+              {console.log(submission.createdAt)}
+              {prettyDate((submission.createdAt as unknown) as string)} by{" "}
+              {submission.createdBy}
             </td>
           </tr>
         ))}
