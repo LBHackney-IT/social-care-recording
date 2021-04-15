@@ -10,25 +10,31 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (session) {
       let { id, stepId } = req.query
 
-      const submission = await prisma.submission.findUnique({
-        where: {
-          id,
-        },
-      })
+      if (req.method === "PATCH") {
+        res.json({
+          testing: "testing",
+        })
+      } else {
+        const submission = await prisma.submission.findUnique({
+          where: {
+            id,
+          },
+        })
 
-      // 2. grab person
-      const person = await getPersonById(submission.socialCareId)
+        // 2. grab person
+        const person = await getPersonById(submission.socialCareId)
 
-      // 3. grab this particular step from the form
-      const step = forms
-        .find(form => form.id === submission.formId)
-        .steps.find(step => step.id === stepId)
+        // 3. grab this particular step from the form
+        const step = forms
+          .find(form => form.id === submission.formId)
+          .steps.find(step => step.id === stepId)
 
-      res.json({
-        ...step,
-        person,
-        submission,
-      })
+        res.json({
+          ...step,
+          person,
+          submission,
+        })
+      }
     } else {
       res.status(401).json({
         error: "Not authenticated",

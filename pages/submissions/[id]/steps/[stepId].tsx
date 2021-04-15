@@ -3,35 +3,50 @@ import Head from "next/head"
 import Link from "next/link"
 import PersonWidget from "../../../../components/PersonWidget"
 import StepForm from "../../../../components/StepForm"
+import { useRouter } from "next/router"
 
-const handleSubmit = values => null
+const Step = ({ params, name, fields, person, submission }) => {
+  const router = useRouter()
 
-const Step = ({ params, name, fields, person, submission }) => (
-  <>
-    <Head>
-      <title>{name} | Social care | Hackney Council</title>
-    </Head>
-    <div className="govuk-grid-row">
-      <div className="govuk-grid-column-two-thirds">
-        <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">{name}</h1>
-      </div>
-    </div>
+  const handleSubmit = async values => {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions/${params.id}/steps/${params.stepId}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify(values),
+      }
+    )
+    const data = await res.json()
+    router.push(`/submissions/${params.id}`)
+  }
 
-    <div className="govuk-grid-row">
-      <div className="govuk-grid-column-two-thirds">
-        {fields && <StepForm fields={fields} onSubmit={handleSubmit} />}
+  return (
+    <>
+      <Head>
+        <title>{name} | Social care | Hackney Council</title>
+      </Head>
+      <div className="govuk-grid-row">
+        <div className="govuk-grid-column-two-thirds">
+          <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">{name}</h1>
+        </div>
       </div>
-      <div className="govuk-grid-column-one-third">
-        {person && <PersonWidget person={person} />}
+
+      <div className="govuk-grid-row">
+        <div className="govuk-grid-column-two-thirds">
+          {fields && <StepForm fields={fields} onSubmit={handleSubmit} />}
+        </div>
+        <div className="govuk-grid-column-one-third">
+          {person && <PersonWidget person={person} />}
+        </div>
       </div>
-    </div>
-  </>
-)
+    </>
+  )
+}
 
 Step.Postheader = ({ params }): React.ReactElement => (
   <div className="lbh-container">
     <Link href={`/submissions/${params.id}`}>
-      <a className="govuk-back-link lbh-back-link">Back to list</a>
+      <a className="govuk-back-link lbh-back-link">Back to sections</a>
     </Link>
   </div>
 )
