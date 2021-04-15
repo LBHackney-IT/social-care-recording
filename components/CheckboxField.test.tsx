@@ -52,7 +52,7 @@ describe("CheckboxField", () => {
       <Formik
         onSubmit={null}
         initialValues={{
-          foo: "1",
+          foo: ["1"],
         }}
       >
         {({ touched, errors }) => (

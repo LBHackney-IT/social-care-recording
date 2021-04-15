@@ -10,14 +10,20 @@ interface Props {
 
 const generateInitialValues = (fields): any => {
   const initialValues = {}
-  fields.map(field => (initialValues[field.id] = ""))
+  fields.map(
+    field => (initialValues[field.id] = field.type === "checkboxes" ? [] : "")
+  )
   return initialValues
 }
 
 const generateSchema = (fields): any => {
   const shape = {}
   fields.map(field => {
-    if (field.condition) {
+    if (field.type === "checkboxes") {
+      shape[field.id] = Yup.array()
+        .of(Yup.string())
+        .min(1, field.error || "Select at least one option")
+    } else if (field.condition) {
       shape[field.id] = Yup.string()
     } else {
       shape[field.id] = Yup.string().required(

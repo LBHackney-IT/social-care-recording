@@ -30,30 +30,43 @@ const Field = ({
     }`}
   >
     <fieldset
-      className="govuk-fieldset" aria-describedby={hint && `${name}-hint`}
+      className="govuk-fieldset"
+      aria-describedby={hint && `${name}-hint`}
     >
       <legend className="govuk-label lbh-label">{label}</legend>
-       {touched[name] && errors[name] && (
+
+      {hint && (
+        <span id={`${name}-hint`} className="govuk-hint lbh-hint">
+          {hint}
+        </span>
+      )}
+
+      {touched[name] && errors[name] && (
         <p className="govuk-error-message lbh-error-message" role="alert">
           <span className="govuk-visually-hidden">Error:</span> {errors[name]}
         </p>
-        )}
-        {choices.map(choice => (
-       <div class="govuk-checkboxes lbh-checkboxes" key={choice.value}>
-        <div class="govuk-checkboxes__item">
-            <input
-            className="govuk-checkboxes__input"
-            type="radio"
-            name={name}
-            value={choice.value}
-            id={`${name}-${choice.value}`}
+      )}
+
+      {choices.map(choice => (
+        <div className="govuk-checkboxes lbh-checkboxes" key={choice.value}>
+          <div className="govuk-checkboxes__item">
+            <RawField
+              type="checkbox"
+              name={name}
+              value={choice.value}
+              id={`${name}-${choice.value}`}
+              className="govuk-checkboxes__input"
             />
-            <label class="govuk-label govuk-checkboxes__label" for="nationality">
-            {choice.label}
+
+            <label
+              className="govuk-label govuk-checkboxes__label"
+              htmlFor={`${name}-${choice.value}`}
+            >
+              {choice.label}
             </label>
+          </div>
         </div>
-       </div>
-        ))}
+      ))}
     </fieldset>
   </div>
 )
