@@ -1,10 +1,14 @@
 import { GetServerSideProps } from "next"
+import Head from "next/head"
 import PersonWidget from "../../../components/PersonWidget"
 import TaskList from "../../../components/TaskList"
 import Link from "next/link"
 
 const TaskListPage = ({ submission, person, form }) => (
   <>
+    <Head>
+      <title>{form?.name} | Social care | Hackney Council</title>
+    </Head>
     <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">{form?.name}</h1>
     <div className="govuk-grid-row">
       <div className="govuk-grid-column-two-thirds">

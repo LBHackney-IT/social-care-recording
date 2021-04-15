@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next"
+import Head from "next/head"
 import Link from "next/link"
 import PersonWidget from "../../../../components/PersonWidget"
 import StepForm from "../../../../components/StepForm"
@@ -7,6 +8,9 @@ const handleSubmit = values => null
 
 const Step = ({ params, name, fields, person, submission }) => (
   <>
+    <Head>
+      <title>{name} | Social care | Hackney Council</title>
+    </Head>
     <div className="govuk-grid-row">
       <div className="govuk-grid-column-two-thirds">
         <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">{name}</h1>

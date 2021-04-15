@@ -17,7 +17,7 @@ const App = ({ Component, pageProps }: ExtendedAppProps) => {
     <Provider>
       <Head>
         <meta charSet="utf-8" />
-        <title>Hackney Council</title>
+        <title>Social care | Hackney Council</title>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, viewport-fit=cover"
