@@ -8,13 +8,14 @@ generator client {
 }
 
 model Submission {
-  id           String    @id @default(cuid())
-  socialCareId Int
-  formId       String
-  data         Json?
-  editedBy     String[]
-  createdBy    String
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @default(now())
-  submittedAt  DateTime?
+  id             String    @id @default(cuid())
+  socialCareId   Int
+  formId         String
+  data           Json?
+  completedSteps String[]
+  editedBy       String[]
+  createdBy      String
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @default(now())
+  submittedAt    DateTime?
 }
