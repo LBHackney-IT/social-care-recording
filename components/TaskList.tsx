@@ -35,7 +35,7 @@ const TaskList = ({ form, completedSteps }: Props): React.ReactElement => {
                 </span>
 
                 {completedSteps.includes(step.id) ? (
-                  <strong className={`govuk-tag lbh-tag--green lbh-tag--green app-task-list__tag ${s.tag}`} >
+                  <strong className={`govuk-tag lbh-tag--green app-task-list__tag ${s.tagDone}`} >
                     Done
                   </strong>
                 ) : (
