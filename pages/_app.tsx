@@ -4,7 +4,7 @@ import Head from "next/head"
 import Link from "next/link"
 import { Provider } from "../lib/auth"
 import Layout from "../components/Layout"
-import "./index.scss"
+import "../styles/index.scss"
 
 interface ExtendedAppProps extends AppProps {
   Component: NextComponentType & {
