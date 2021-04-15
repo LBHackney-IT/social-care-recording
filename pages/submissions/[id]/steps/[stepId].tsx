@@ -15,7 +15,6 @@ const Step = ({ params, name, fields, person, submission }) => (
 
     <div className="govuk-grid-row">
       <div className="govuk-grid-column-two-thirds">
-        <Link href={`/submissions/${params.id}`}>Back to task list</Link>
         {fields && <StepForm fields={fields} onSubmit={handleSubmit} />}
       </div>
       <div className="govuk-grid-column-one-third">
@@ -23,6 +22,14 @@ const Step = ({ params, name, fields, person, submission }) => (
       </div>
     </div>
   </>
+)
+
+Step.Postheader = ({ params }): React.ReactElement => (
+  <div className="lbh-container">
+    <Link href={`/submissions/${params.id}`}>
+      <a className="govuk-back-link lbh-back-link">Back to list</a>
+    </Link>
+  </div>
 )
 
 export const getServerSideProps: GetServerSideProps = async ({

@@ -8,7 +8,7 @@ import "./index.scss"
 
 interface ExtendedAppProps extends AppProps {
   Component: NextComponentType & {
-    goBackPath: string
+    Postheader: React.ComponentClass
   }
 }
 
@@ -28,15 +28,7 @@ const App = ({ Component, pageProps }: ExtendedAppProps) => {
 
       <Layout
         postheader={
-          Component.goBackPath && (
-            <Link href={Component.goBackPath}>
-              <div className="lbh-container">
-                <a href="#" className="govuk-back-link lbh-back-link">
-                  Go back
-                </a>
-              </div>
-            </Link>
-          )
+          Component.Postheader && <Component.Postheader {...pageProps} />
         }
       >
         <Component {...pageProps} />

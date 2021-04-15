@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next"
 import PersonWidget from "../../../components/PersonWidget"
 import TaskList from "../../../components/TaskList"
+import Link from "next/link"
 
 const TaskListPage = ({ submission, person, form }) => (
   <>
@@ -19,6 +20,14 @@ const TaskListPage = ({ submission, person, form }) => (
       </div>
     </div>
   </>
+)
+
+TaskListPage.Postheader = ({ params }): React.ReactElement => (
+  <div className="lbh-container">
+    <Link href={`/`}>
+      <a className="govuk-back-link lbh-back-link">Back to home</a>
+    </Link>
+  </div>
 )
 
 export const getServerSideProps: GetServerSideProps = async ({
