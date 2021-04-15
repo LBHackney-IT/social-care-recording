@@ -19,13 +19,13 @@ It also makes use of:
 
 You need node, npm and a local PostgreSQL database running.
 
-You also need a [complete `.env` file](#configuration).
+You also need a [complete `.env` file](#-configuration).
 
 ### 1. Update your hosts file
 
 In order for authentication cookie to work, you need to run the app on a domain ending in `hackney.gov.uk`.
 
-Update your hosts file and add the line:
+[Update your hosts file](https://duckduckgo.com/?t=ffab&q=update+hosts+file&ia=web) with the line:
 
 ```
 127.0.0.1    dev.hackney.gov.uk
@@ -58,6 +58,8 @@ You should be able to log in with a Google account ending in `hackney.gov.uk`.
 You can run the Jest unit tests with `npm test`.
 
 Cypress end-to-end tests can be run with `npm run cypress`, provided a local server is already running.
+
+Check types with `npm run typecheck`.
 
 ## 🧬 Configuration
 
