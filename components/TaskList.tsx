@@ -7,9 +7,10 @@ import { useRouter } from "next/router"
 
 interface Props {
   form: Form
+  completedSteps: String[]
 }
 
-const TaskList = ({ form }: Props): React.ReactElement => {
+const TaskList = ({ form, completedSteps }: Props): React.ReactElement => {
   const router = useRouter()
   const { id } = router.query
 
@@ -33,11 +34,17 @@ const TaskList = ({ form }: Props): React.ReactElement => {
                   </Link>
                 </span>
 
-                <strong
-                  className={`govuk-tag govuk-tag--grey app-task-list__tag ${s.tag}`}
-                >
-                  To do
-                </strong>
+                {completedSteps.includes(step.id) ? (
+                  <strong className={`govuk-tag app-task-list__tag ${s.tag}`}>
+                    Done
+                  </strong>
+                ) : (
+                  <strong
+                    className={`govuk-tag govuk-tag--grey app-task-list__tag ${s.tag}`}
+                  >
+                    To do
+                  </strong>
+                )}
               </li>
             ))}
           </ul>

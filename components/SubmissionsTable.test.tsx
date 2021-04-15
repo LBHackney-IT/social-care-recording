@@ -16,6 +16,7 @@ describe("SubmissionsTable", () => {
             createdAt: ("2021-04-14T10:14:00.87" as unknown) as Date,
             updatedAt: new Date(),
             submittedAt: null,
+            completedSteps: [],
           },
         ]}
       />

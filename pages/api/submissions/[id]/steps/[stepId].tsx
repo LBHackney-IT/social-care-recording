@@ -11,10 +11,28 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       let { id, stepId } = req.query
 
       if (req.method === "PATCH") {
+        let values = JSON.parse(req.body)
+
+        const submission = await prisma.submission.update({
+          where: {
+            id,
+          },
+          data: {
+            data: values,
+            editedBy: {
+              push: session.user.email,
+            },
+            completedSteps: {
+              push: stepId,
+            },
+          },
+        })
+
         res.json({
-          testing: "testing",
+          submission,
         })
       } else {
+        // 1. grab submission
         const submission = await prisma.submission.findUnique({
           where: {
             id,

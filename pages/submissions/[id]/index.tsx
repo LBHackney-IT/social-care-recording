@@ -4,7 +4,7 @@ import PersonWidget from "../../../components/PersonWidget"
 import TaskList from "../../../components/TaskList"
 import Link from "next/link"
 
-const TaskListPage = ({ submission, person, form }) => (
+const TaskListPage = ({ completedSteps, person, form }) => (
   <>
     <Head>
       <title>{form?.name} | Social care | Hackney Council</title>
@@ -14,10 +14,10 @@ const TaskListPage = ({ submission, person, form }) => (
       <div className="govuk-grid-column-two-thirds">
         <h2 className="lbh-heading-h4">Submission incomplete</h2>
         <p className="lbh-body  govuk-!-margin-top-2">
-          You've completed 0 of {form.steps.length} sections. Your work will be
-          saved automatically.
+          You've completed {completedSteps?.length || "0"} of{" "}
+          {form.steps.length} sections. Your work will be saved automatically.
         </p>
-        <TaskList form={form} />
+        <TaskList form={form} completedSteps={completedSteps} />
       </div>
       <div className="govuk-grid-column-one-third">
         {person && <PersonWidget person={person} />}
