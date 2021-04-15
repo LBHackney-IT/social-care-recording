@@ -21,7 +21,9 @@ describe("TaskList", () => {
     render(<TaskListHeader completedSteps={["1"]} steps={steps} />)
 
     expect(screen.getByText("Submission incomplete"))
-    expect(screen.getByText("You've completed 1 of 2 sections."))
+    expect(
+      screen.getByText("You've completed 1 of 2 sections.", { exact: false })
+    )
   })
 
   it("renders correctly when complete", () => {
