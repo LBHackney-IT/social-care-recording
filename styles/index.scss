@@ -8,3 +8,8 @@
     }
   }
 }
+
+// fix visited colour of go-back links
+.lbh-back-link:visited {
+  color: lbh-colour("lbh-link");
+}
