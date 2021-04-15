@@ -73,13 +73,12 @@ It's suitable for anywhere you'd deploy a Next.js app, including Heroku, Vercel,
 
 ## 🙋‍♀️ User needs
 
-- As a social worker, I need to record information about a person
-- As a social worker, I need to see a summary of the person I'm recording information about
-- As a social worker, I need to record information in an order that suits the material I have available
-- As a social worker, I need to record information over multiple sessions without losing my work
-- As a social worker, I need to submit information a manager to review
-
-- As a manager, I need to iterate and update the forms and protocols we use to collect information
+- **As a social worker**, I need to record information about a person
+- **As a social worker**, I need to see a summary of the person I'm recording information about
+- **As a social worker**, I need to record information in an order that suits the material I have available
+- **As a social worker**, I need to record information over multiple sessions without losing my work
+- **As a social worker**, I need to submit information a manager to review
+- **As a manager**, I need to iterate and update the forms and protocols we use to collect information
 
 ## 🛣 Roadmap
 
@@ -87,7 +86,6 @@ It's suitable for anywhere you'd deploy a Next.js app, including Heroku, Vercel,
 
 - submit a finished submission to the case viewer api
 - write a script to convert a csv into form config
-
 - add more flexible field types (date? repeater?)
 - restore a step's saved data from the database
 - better error handling in the api (especially 404s)
