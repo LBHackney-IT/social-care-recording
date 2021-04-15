@@ -1,39 +1,57 @@
-# Modern app boilerplate
+# Social care recording
 
-This is a worked example of a production-ready full-stack web app.
+Next-gen case recording for social care in Hackney.
 
-Major bits:
+## 🧱 How it's built
 
-- React for UI
-- [Next.js](https://next.js.org/) for rendering, routing, API routes and bundling code
-- [Prisma](https://www.prisma.io/) for talking to a PostgreSQL database
+It's a Next.js app that depends heavily on the [social care case viewer API](https://github.com/LBHackney-IT/social-care-case-viewer-api).
 
-Other bits:
+It has its own PostgreSQL database and internal API to keep track of unfinished form submissions and version history.
 
-- [Formik](https://formik.org/) and [Yup](https://www.npmjs.com/package/yup) for forms and validation
-- [Next-auth](https://next-auth.js.org/) for authentication
-- Sass for styling
-- [Jest]() and [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/) for unit tests
-- [Cypress](https://www.cypress.io/) for integration tests
-- [Reach UI](https://reach.tech/dialog/) for some accessible UI sprinkles
+It also makes use of:
 
-It contains a basic "post" model. Users can view a list of posts and click on one to see it in detail.
+- [Hackney Design System](https://github.com/LBHackney-IT/lbh-frontend) for styling the frontend
+- [LBH-Google-auth](https://github.com/LBHackney-IT/LBH-Google-auth) for authenticating users with their Hackney Google accounts
 
-After logging in, users can also create, edit and delete posts.
+## 💻 Getting started
 
-## 🐒 Getting started
+### Prerequisites
 
-You need Node.js and NPM installed, along with a PostgreSQL database.
+You need node, npm and a local PostgreSQL database running.
+
+You also need a [complete `.env` file](#configuration).
+
+### 1. Update your hosts file
+
+In order for authentication cookie to work, you need to run the app on a domain ending in `hackney.gov.uk`.
+
+Update your hosts file and add the line:
 
 ```
-npx create-next-app -e https://github.com/jhackett1/railsy-nextjs-prisma-example
+127.0.0.1    dev.hackney.gov.uk
 ```
 
-This will clone the repo and install the dependencies with [create-next-app](https://nextjs.org/docs/api-reference/create-next-app).
+On a Mac, the hosts file is at `/etc/hosts`.
 
-You can apply the schema to a fresh database with `npm run db:schema:load` and seed it with `npm run db:seed`.
+### 2. Prepare the database
 
-You can then boot it up with `npm run dev`. It will be on [localhost:3000/posts](http://localhost:3000/posts)
+You can apply the schema to a fresh database, and add example data with:
+
+```
+npm run db:schema:load
+npm run db:seed
+```
+
+### 3. Running it
+
+```
+npm install
+npm run dev
+```
+
+The app should then be on [dev.hackney.gov.uk:3000](http://dev.hackney.gov.uk:3000).
+
+You should be able to log in with a Google account ending in `hackney.gov.uk`.
 
 ## 🧪 Testing
 
@@ -47,23 +65,41 @@ It needs a few configuration variables to work.
 
 You can supply these with a `.env` file locally. Run `cp .env.sample .env` to make a fresh one.
 
-## 🦴 Anatomy
+## 🌍 Running it on the web
 
-It follows the example of Rails - with MVC and CRUD patterns that should seem familiar.
+It's suitable for anywhere you'd deploy a Next.js app, including Heroku, Vercel, Netlify and AWS.
 
-- `prisma` contains the database schema and seed data
-- `pages/api` contains API routes that overlap closely with Rails controller actions
-- The remainder of `pages` contains React/Next.js views
+[More in the Next.js docs](https://nextjs.org/docs/deployment).
 
-Other directories:
+## 🙋‍♀️ User needs
 
-- `components` contains reusable React components
-- `cypress` contains integration tests, their config and fixtures
-- `lib` contains everything else
+- As a social worker, I need to record information about a person
+- As a social worker, I need to see a summary of the person I'm recording information about
+- As a social worker, I need to record information in an order that suits the material I have available
+- As a social worker, I need to record information over multiple sessions without losing my work
+- As a social worker, I need to submit information a manager to review
 
-## To do
+- As a manager, I need to iterate and update the forms and protocols we use to collect information
 
-Need to add examples for:
+## 🛣 Roadmap
 
-1. Flash messages. Is this a good pattern to continue with? Would toast messages be a better fit?
-2. Background job queue, maybe with [BullMQ](https://github.com/taskforcesh/bullmq)
+### Now
+
+- submit a finished submission to the case viewer api
+- write a script to convert a csv into form config
+
+- add more flexible field types (date? repeater?)
+- restore a step's saved data from the database
+- better error handling in the api (especially 404s)
+
+### Next
+
+- autosave when idle for more than 5 seconds
+- prefills from person data
+- write cypress tests
+- 404 page (which users are sent to when looking for a step or submission that doesn't exist)
+
+### Later
+
+- replace "unfinished submissions" table with something more general-purpose
+- integrate with contentful for form config
