@@ -27,6 +27,7 @@ const formData: Form[] = [
             question: "Are you taking any prescribed medications?",
             hint: "For example, XYZ",
             type: "checkboxes",
+            required: true,
             choices: [
               {
                 value: "true",
@@ -43,6 +44,7 @@ const formData: Form[] = [
             question: "Which medications?",
             error: "This is a custom error message",
             type: "textarea",
+            required: true,
             condition: {
               id: "prescribed-medications",
               value: "true",
@@ -52,12 +54,14 @@ const formData: Form[] = [
             id: "support-taking-or-using-medicatons",
             question: "Do you need support taking or using medication?",
             type: "textarea",
+            required: true,
           },
           {
             id: "pain-or-distress",
             question:
               "Does your physical condition or any medication that you are taking cause you pain or distress?",
             type: "radios",
+            required: true,
             choices: [
               {
                 value: "true",
@@ -74,6 +78,7 @@ const formData: Form[] = [
             question:
               "Are you getting adequate relief from pain or other distressing physical symptoms?",
             type: "radios",
+            required: true,
             choices: [
               {
                 value: "true",
@@ -89,6 +94,7 @@ const formData: Form[] = [
             id: "difficulty-breathing",
             question: "Do you have difficulty breathing?",
             type: "radios",
+            required: true,
             choices: [
               {
                 value: "true",
