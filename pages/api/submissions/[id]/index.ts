@@ -13,12 +13,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       //   1. grab submission
       const submission = await prisma.submission.findUnique({
         where: {
-          id,
+          id: id.toString(),
         },
       })
 
       // 2. grab person
-      const person = await getPersonById(submission.socialCareId)
+      const person = await getPersonById(submission.socialCareId.toString())
 
       // 3. grab form
       const form = forms.find(form => form.id === submission.formId)

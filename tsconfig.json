@@ -25,6 +25,7 @@
     "**/*.tsx"
   ],
   "exclude": [
+    "prisma/seed.ts",
     "node_modules"
   ]
 }

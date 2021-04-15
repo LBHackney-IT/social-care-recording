@@ -14,7 +14,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       // 1. grab submission
       const submission = await prisma.submission.findUnique({
         where: {
-          id,
+          id: id.toString(),
         },
       })
 
@@ -23,12 +23,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         const updatedSubmission = await prisma.submission.update({
           where: {
-            id,
+            id: id.toString(),
           },
           data: {
             data: values,
             editedBy: pushUnique(submission.editedBy, session.user.email),
-            completedSteps: pushUnique(submission.completedSteps, stepId),
+            completedSteps: pushUnique(
+              submission.completedSteps,
+              stepId.toString()
+            ),
           },
         })
 
@@ -37,7 +40,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         })
       } else {
         // 2. grab person
-        const person = await getPersonById(submission.socialCareId)
+        const person = await getPersonById(submission.socialCareId.toString())
 
         // 3. grab this particular step from the form
         const step = forms
