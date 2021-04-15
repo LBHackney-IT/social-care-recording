@@ -26,7 +26,7 @@ const formData: Form[] = [
             id: "prescribed-medications",
             question: "Are you taking any prescribed medications?",
             hint: "For example, XYZ",
-            type: "radio",
+            type: "radios",
             choices: [
               {
                 value: "true",
@@ -57,7 +57,7 @@ const formData: Form[] = [
             id: "pain-or-distress",
             question:
               "Does your physical condition or any medication that you are taking cause you pain or distress?",
-            type: "radio",
+            type: "radios",
             choices: [
               {
                 value: "true",
@@ -73,7 +73,7 @@ const formData: Form[] = [
             id: "adequate-pain-relief",
             question:
               "Are you getting adequate relief from pain or other distressing physical symptoms?",
-            type: "radio",
+            type: "radios",
             choices: [
               {
                 value: "true",
@@ -88,7 +88,7 @@ const formData: Form[] = [
           {
             id: "difficulty-breathing",
             question: "Do you have difficulty breathing?",
-            type: "radio",
+            type: "radios",
             choices: [
               {
                 value: "true",

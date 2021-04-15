@@ -31,3 +31,8 @@ export const formsToChoices = (
     value: form.id,
     label: form.name,
   }))
+
+// push an element into an array, without duplicates
+export const pushUnique = (array: string[], newElement: string): string[] => [
+  ...new Set(array).add(newElement),
+]

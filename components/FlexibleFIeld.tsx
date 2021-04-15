@@ -24,7 +24,7 @@ const FlexibleField = ({
       />
     )
 
-  if (field.type === "radio")
+  if (field.type === "radios")
     return (
       <RadioField
         name={field.id}

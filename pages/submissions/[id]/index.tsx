@@ -1,8 +1,9 @@
-import { GetServerSideProps } from "next"
-import Head from "next/head"
-import PersonWidget from "../../../components/PersonWidget"
-import TaskList from "../../../components/TaskList"
-import Link from "next/link"
+import { GetServerSideProps } from "next";
+import Head from "next/head";
+import PersonWidget from "../../../components/PersonWidget";
+import TaskList from "../../../components/TaskList";
+import Link from "next/link";
+import TaskListHeader from "../../../components/TaskListHeader";
 
 const TaskListPage = ({ completedSteps, person, form }) => (
   <>
@@ -12,11 +13,7 @@ const TaskListPage = ({ completedSteps, person, form }) => (
     <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">{form?.name}</h1>
     <div className="govuk-grid-row">
       <div className="govuk-grid-column-two-thirds">
-        <h2 className="lbh-heading-h4">Submission incomplete</h2>
-        <p className="lbh-body  govuk-!-margin-top-2">
-          You've completed {completedSteps?.length || "0"} of{" "}
-          {form.steps.length} sections. Your work will be saved automatically.
-        </p>
+        <TaskListHeader steps={form?.steps} completedSteps={completedSteps} />
         <TaskList form={form} completedSteps={completedSteps} />
       </div>
       <div className="govuk-grid-column-one-third">
@@ -24,7 +21,7 @@ const TaskListPage = ({ completedSteps, person, form }) => (
       </div>
     </div>
   </>
-)
+);
 
 TaskListPage.Postheader = ({ params }): React.ReactElement => (
   <div className="lbh-container">
@@ -32,7 +29,7 @@ TaskListPage.Postheader = ({ params }): React.ReactElement => (
       <a className="govuk-back-link lbh-back-link">Back to home</a>
     </Link>
   </div>
-)
+);
 
 export const getServerSideProps: GetServerSideProps = async ({
   params,
@@ -45,17 +42,17 @@ export const getServerSideProps: GetServerSideProps = async ({
         cookie: req.headers.cookie,
       },
     }
-  )
+  );
 
-  const data = await res.json()
+  const data = await res.json();
 
   return {
     props: {
       ...data,
     },
-  }
-}
+  };
+};
 
-TaskListPage.goBackPath = "/"
+TaskListPage.goBackPath = "/";
 
-export default TaskListPage
+export default TaskListPage;

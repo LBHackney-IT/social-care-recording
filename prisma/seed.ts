@@ -1,7 +1,7 @@
 const { PrismaClient } = require("@prisma/client")
 const prisma = new PrismaClient()
 
-const main = async () => {
+const main = async (): Promise<void> => {
   // await prisma.post.deleteMany({})
   // await prisma.post.createMany({
   //   data: [

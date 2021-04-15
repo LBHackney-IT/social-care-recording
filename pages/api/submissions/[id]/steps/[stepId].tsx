@@ -3,6 +3,7 @@ import { getSession } from "../../../../../lib/auth"
 import { NextApiRequest, NextApiResponse } from "next"
 import forms from "../../../../../config/forms"
 import { getPersonById } from "../../../../../lib/socialCareApi"
+import { pushUnique } from "../../../../../lib/helpers"
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -10,37 +11,36 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (session) {
       let { id, stepId } = req.query
 
+      // 1. grab submission
+      const submission = await prisma.submission.findUnique({
+        where: {
+          id: id.toString(),
+        },
+      })
+
       if (req.method === "PATCH") {
         let values = JSON.parse(req.body)
 
-        const submission = await prisma.submission.update({
+        const updatedSubmission = await prisma.submission.update({
           where: {
-            id,
+            id: id.toString(),
           },
           data: {
             data: values,
-            editedBy: {
-              push: session.user.email,
-            },
-            completedSteps: {
-              push: stepId,
-            },
+            editedBy: pushUnique(submission.editedBy, session.user.email),
+            completedSteps: pushUnique(
+              submission.completedSteps,
+              stepId.toString()
+            ),
           },
         })
 
         res.json({
-          submission,
+          submission: updatedSubmission,
         })
       } else {
-        // 1. grab submission
-        const submission = await prisma.submission.findUnique({
-          where: {
-            id,
-          },
-        })
-
         // 2. grab person
-        const person = await getPersonById(submission.socialCareId)
+        const person = await getPersonById(submission.socialCareId.toString())
 
         // 3. grab this particular step from the form
         const step = forms
