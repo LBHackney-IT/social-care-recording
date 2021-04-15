@@ -4,6 +4,7 @@ import { startSchema } from "../lib/validators"
 import { Form as FormType } from "../config/forms.types"
 import TextField from "./TextField"
 import SelectField from "./SelectField"
+import CheckboxField from "./CheckboxField"
 import { formsToChoices } from "../lib/helpers"
 
 interface Props {
@@ -43,6 +44,13 @@ const StartForm = ({ forms, onSubmit }: Props): React.ReactElement => {
             errors={errors}
             choices={choices}
           />
+          <CheckboxField
+            name="check"
+            label="Checking what?"
+            touched={touched}
+            errors={errors}
+            choices={choices}
+             />
 
           <button className="govuk-button lbh-button" disabled={isSubmitting}>
             Start
