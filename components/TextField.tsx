@@ -50,7 +50,7 @@ const Field = ({
           ? "govuk-textarea lbh-textarea"
           : "govuk-input lbh-input"
       } ${className}`}
-      aria-describedby={hint ? `${name}-hint` : false}
+      aria-describedby={hint && `${name}-hint`}
       {...props}
     />
   </div>

@@ -29,7 +29,10 @@ const Field = ({
       touched[name] && errors[name] && "govuk-form-group--error"
     }`}
   >
-    <fieldset className="govuk-fieldset" aria-describedby={`${name}-hint`}>
+    <fieldset
+      className="govuk-fieldset"
+      aria-describedby={hint && `${name}-hint`}
+    >
       <legend className="govuk-label lbh-label">{label}</legend>
 
       {hint && (
