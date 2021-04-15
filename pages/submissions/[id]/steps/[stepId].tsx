@@ -31,9 +31,17 @@ const Step = ({ params, name, fields, person, submission }) => {
         </div>
       </div>
 
+      {JSON.stringify(submission.data)}
+
       <div className="govuk-grid-row">
         <div className="govuk-grid-column-two-thirds">
-          {fields && <StepForm fields={fields} onSubmit={handleSubmit} />}
+          {fields && (
+            <StepForm
+              initialValues={submission.data}
+              fields={fields}
+              onSubmit={handleSubmit}
+            />
+          )}
         </div>
         <div className="govuk-grid-column-one-third">
           {person && <PersonWidget person={person} />}

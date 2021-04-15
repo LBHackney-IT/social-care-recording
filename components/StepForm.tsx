@@ -5,6 +5,7 @@ import * as Yup from "yup"
 
 interface Props {
   fields: Field[]
+  initialValues
   onSubmit: (values) => void
 }
 
@@ -34,9 +35,13 @@ const generateSchema = (fields): any => {
   return Yup.object().shape(shape)
 }
 
-const StepForm = ({ fields, onSubmit }: Props): React.ReactElement => (
+const StepForm = ({
+  initialValues,
+  fields,
+  onSubmit,
+}: Props): React.ReactElement => (
   <Formik
-    initialValues={generateInitialValues(fields)}
+    initialValues={initialValues || generateInitialValues(fields)}
     validationSchema={generateSchema(fields)}
     onSubmit={onSubmit}
   >
