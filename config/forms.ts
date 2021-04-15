@@ -40,6 +40,7 @@ const formData: Form[] = [
           {
             id: "medications",
             question: "Which medications?",
+            error: "This is a custom error message",
             type: "textarea",
             condition: {
               id: "prescribed-medications",
