@@ -2,6 +2,7 @@ import { Formik, Form } from "formik"
 import { Field } from "../config/forms.types"
 import FlexibleField from "./FlexibleFIeld"
 import * as Yup from "yup"
+import Autosave from "./Autosave"
 
 interface Props {
   fields: Field[]
@@ -42,6 +43,8 @@ const StepForm = ({ fields, onSubmit }: Props): React.ReactElement => (
   >
     {({ values, isSubmitting, touched, errors }) => (
       <Form>
+        <Autosave />
+
         {fields.map(field => (
           <FlexibleField
             key={field.id}
