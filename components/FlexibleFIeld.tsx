@@ -1,5 +1,6 @@
 import TextField from "./TextField"
 import RadioField from "./RadioField"
+import { prependListener } from "node:process"
 
 const FlexibleField = ({
   values,
@@ -19,6 +20,7 @@ const FlexibleField = ({
         errors={errors}
         as="textarea"
         rows={3}
+        {...field}
       />
     )
 
@@ -30,6 +32,7 @@ const FlexibleField = ({
         touched={touched}
         choices={field.choices}
         errors={errors}
+        {...field}
       />
     )
 

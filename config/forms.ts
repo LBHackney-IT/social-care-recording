@@ -25,6 +25,7 @@ const formData: Form[] = [
           {
             id: "prescribed-medications",
             question: "Are you taking any prescribed medications?",
+            hint: "For example, XYZ",
             type: "radio",
             choices: [
               {
