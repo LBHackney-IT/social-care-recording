@@ -13,3 +13,14 @@
 .lbh-back-link:visited {
   color: lbh-colour("lbh-link");
 }
+
+// fix checkbox line height and spacing
+.lbh-checkboxes {
+  .govuk-checkboxes__label {
+    line-height: 1.4rem;
+  }
+
+  .govuk-checkboxes__item:last-child {
+    margin-bottom: 0;
+  }
+}

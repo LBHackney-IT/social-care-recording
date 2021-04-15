@@ -1,6 +1,6 @@
 import TextField from "./TextField"
 import RadioField from "./RadioField"
-import { prependListener } from "node:process"
+import CheckboxField from "./CheckboxField"
 
 const FlexibleField = ({
   values,
@@ -20,6 +20,18 @@ const FlexibleField = ({
         errors={errors}
         as="textarea"
         rows={3}
+        {...field}
+      />
+    )
+
+  if (field.type === "checkboxes")
+    return (
+      <CheckboxField
+        name={field.id}
+        label={field.question}
+        touched={touched}
+        choices={field.choices}
+        errors={errors}
         {...field}
       />
     )
