@@ -3,10 +3,13 @@ import { Field } from "../config/forms.types"
 import FlexibleField from "./FlexibleFIeld"
 import * as Yup from "yup"
 import Autosave from "./Autosave"
+import { generateFlexibleSchema } from "../lib/validators"
+
+type InitialValue = string | string[]
 
 interface Props {
   fields: Field[]
-  initialValues
+  initialValues?: InitialValue[]
   onSubmit: (values) => void
 }
 
@@ -18,24 +21,6 @@ const generateInitialValues = (fields): any => {
   return initialValues
 }
 
-const generateSchema = (fields): any => {
-  const shape = {}
-  fields.map(field => {
-    if (field.type === "checkboxes") {
-      shape[field.id] = Yup.array()
-        .of(Yup.string())
-        .min(1, field.error || "Select at least one option")
-    } else if (field.condition) {
-      shape[field.id] = Yup.string()
-    } else {
-      shape[field.id] = Yup.string().required(
-        field.error || "This question is required"
-      )
-    }
-  })
-  return Yup.object().shape(shape)
-}
-
 const StepForm = ({
   initialValues,
   fields,
@@ -43,14 +28,12 @@ const StepForm = ({
 }: Props): React.ReactElement => (
   <Formik
     initialValues={initialValues || generateInitialValues(fields)}
-    validationSchema={generateSchema(fields)}
+    validationSchema={generateFlexibleSchema(fields)}
     onSubmit={onSubmit}
   >
     {({ values, isSubmitting, touched, errors }) => (
       <Form>
         {/* <Autosave /> */}
-
-        {JSON.stringify(initialValues)}
 
         {fields.map(field => (
           <FlexibleField
