@@ -1,7 +1,11 @@
+import Head from "next/head"
 import { signIn } from "../lib/auth"
 
 const SignIn = () => (
   <>
+    <Head>
+      <title>Sign in | Social care | Hackney Council</title>
+    </Head>
     <h1 className="lbh-heading-h1">Sign in</h1>
     <button
       onClick={signIn}

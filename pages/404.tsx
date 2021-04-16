@@ -1,5 +1,11 @@
+import Head from "next/head"
+
 const NotFound = () => (
   <>
+    <Head>
+      <title>Page not found | Social care | Hackney Council</title>
+    </Head>
+
     <h1 className="lbh-heading-h1">Page not found</h1>
 
     <p className="lbh-body">
