@@ -12,6 +12,8 @@ export const generateFlexibleSchema = (fields): any => {
   const shape = {}
 
   fields.map(field => {
+    // TODO: what about conditional checkboxes?
+    // if statements won't work for all edge cases. need to refactor
     if (field.type === "checkboxes" && field.required) {
       shape[field.id] = Yup.array()
         .of(Yup.string())
