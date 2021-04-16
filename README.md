@@ -75,6 +75,8 @@ It's suitable for anywhere you'd deploy a Next.js app, including Heroku, Vercel,
 
 ## 🙋‍♀️ User needs
 
+This tool takes the standard case recording workflow and makes it more flexible, to better fit the ways social workers actually operate:
+
 - **As a social worker**, I need to record information about a person
 - **As a social worker**, I need to see a summary of the person I'm recording information about
 - **As a social worker**, I need to record information in an order that suits the material I have available
