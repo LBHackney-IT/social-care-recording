@@ -2,7 +2,7 @@ import { Formik, Form } from "formik"
 import { Field } from "../config/forms.types"
 import Autosave from "./Autosave"
 import { generateFlexibleSchema } from "../lib/validators"
-import FlexibleField from "./FlexibleField"
+import FlexibleField from "./FlexibleFields"
 
 type InitialValue = string | string[]
 
