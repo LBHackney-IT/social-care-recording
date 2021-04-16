@@ -15,7 +15,24 @@ const formData: Form[] = [
         id: "bar",
         name: "Bar",
         theme: "More stuff",
-        fields: [],
+        fields: [
+          {
+            id: "example question",
+            question: "What's your favourite colour?",
+            type: "checkboxes",
+            required: true,
+            choices: [
+              {
+                value: "red",
+                label: "Red",
+              },
+              {
+                value: "green",
+                label: "Green",
+              },
+            ],
+          },
+        ],
       },
       {
         id: "your-medication-and-symptoms",
@@ -26,7 +43,7 @@ const formData: Form[] = [
             id: "prescribed-medications",
             question: "Are you taking any prescribed medications?",
             hint: "For example, XYZ",
-            type: "checkboxes",
+            type: "radios",
             required: true,
             choices: [
               {

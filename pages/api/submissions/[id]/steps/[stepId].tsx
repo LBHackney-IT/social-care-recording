@@ -21,12 +21,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       if (req.method === "PATCH") {
         let values = JSON.parse(req.body)
 
+        let updatedAnswers = submission.answers || {}
+        updatedAnswers[stepId.toString()] = values
+
         const updatedSubmission = await prisma.submission.update({
           where: {
             id: id.toString(),
           },
           data: {
-            data: values,
+            answers: updatedAnswers,
             editedBy: pushUnique(submission.editedBy, session.user.email),
             completedSteps: pushUnique(
               submission.completedSteps,
@@ -50,7 +53,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         res.json({
           ...step,
           person,
-          submission,
+          submission: {
+            ...submission,
+            answers: submission.answers[stepId.toString()],
+          },
         })
       }
     } else {
@@ -61,7 +67,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   } catch (error) {
     console.error(error)
     res.status(500).json({
-      error,
+      error: error.toString(),
     })
   }
 }

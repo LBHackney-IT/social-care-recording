@@ -33,7 +33,13 @@ const Step = ({ params, name, fields, person, submission }) => {
 
       <div className="govuk-grid-row">
         <div className="govuk-grid-column-two-thirds">
-          {fields && <StepForm fields={fields} onSubmit={handleSubmit} />}
+          {fields && (
+            <StepForm
+              initialValues={submission.answers}
+              fields={fields}
+              onSubmit={handleSubmit}
+            />
+          )}
         </div>
         <div className="govuk-grid-column-one-third">
           {person && <PersonWidget person={person} />}

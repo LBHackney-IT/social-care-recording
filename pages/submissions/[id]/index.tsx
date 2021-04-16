@@ -1,9 +1,9 @@
-import { GetServerSideProps } from "next";
-import Head from "next/head";
-import PersonWidget from "../../../components/PersonWidget";
-import TaskList from "../../../components/TaskList";
-import Link from "next/link";
-import TaskListHeader from "../../../components/TaskListHeader";
+import { GetServerSideProps } from "next"
+import Head from "next/head"
+import PersonWidget from "../../../components/PersonWidget"
+import TaskList from "../../../components/TaskList"
+import Link from "next/link"
+import TaskListHeader from "../../../components/TaskListHeader"
 
 const TaskListPage = ({ completedSteps, person, form }) => (
   <>
@@ -21,7 +21,7 @@ const TaskListPage = ({ completedSteps, person, form }) => (
       </div>
     </div>
   </>
-);
+)
 
 TaskListPage.Postheader = ({ params }): React.ReactElement => (
   <div className="lbh-container">
@@ -29,30 +29,38 @@ TaskListPage.Postheader = ({ params }): React.ReactElement => (
       <a className="govuk-back-link lbh-back-link">Back to home</a>
     </Link>
   </div>
-);
+)
 
 export const getServerSideProps: GetServerSideProps = async ({
   params,
   req,
+  res,
 }) => {
-  const res = await fetch(
+  const res1 = await fetch(
     `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions/${params.id}`,
     {
       headers: {
         cookie: req.headers.cookie,
       },
     }
-  );
+  )
 
-  const data = await res.json();
+  const data = await res1.json()
+
+  // redirect if submission doesn't exist
+  if (!data.id) {
+    res.setHeader("location", "/404")
+    res.statusCode = 302
+    res.end()
+  }
 
   return {
     props: {
       ...data,
     },
-  };
-};
+  }
+}
 
-TaskListPage.goBackPath = "/";
+TaskListPage.goBackPath = "/"
 
-export default TaskListPage;
+export default TaskListPage

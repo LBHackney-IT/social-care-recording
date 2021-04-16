@@ -11,7 +11,7 @@ model Submission {
   id             String    @id @default(cuid())
   socialCareId   Int
   formId         String
-  data           Json?
+  answers        Json      @default("{}")
   completedSteps String[]
   editedBy       String[]
   createdBy      String
