@@ -60,8 +60,9 @@ Step.Postheader = ({ params }): React.ReactElement => (
 export const getServerSideProps: GetServerSideProps = async ({
   params,
   req,
+  res,
 }) => {
-  const res = await fetch(
+  const res1 = await fetch(
     `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions/${params.id}/steps/${params.stepId}`,
     {
       headers: {
@@ -69,7 +70,14 @@ export const getServerSideProps: GetServerSideProps = async ({
       },
     }
   )
-  const data = await res.json()
+  const data = await res1.json()
+
+  // redirect if submission doesn't exist
+  if (!data.answers) {
+    res.setHeader("location", "/404")
+    res.statusCode = 404
+    res.end()
+  }
 
   return {
     props: {

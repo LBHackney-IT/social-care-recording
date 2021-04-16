@@ -50,7 +50,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   // redirect if submission doesn't exist
   if (!data.id) {
     res.setHeader("location", "/404")
-    res.statusCode = 302
+    res.statusCode = 404
     res.end()
   }
 
