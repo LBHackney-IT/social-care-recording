@@ -1,5 +1,10 @@
 @import "node_modules/lbh-frontend/lbh/all";
 
+// turn off frustrating smooth scroll
+html {
+  scroll-behavior: initial;
+}
+
 // fix spacing of inline radios
 .govuk-radios--inline {
   @include govuk-media-query($from: tablet) {
