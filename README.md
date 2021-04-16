@@ -99,7 +99,6 @@ This tool takes the standard case recording workflow and makes it more flexible,
 - Staging site
 - Write a script to convert a CSV into form config
 - Add more flexible field types (date? repeater?)
-- Fix bug with flaky luxon generating different formats between client, server and ci
 
 ### Next
 
