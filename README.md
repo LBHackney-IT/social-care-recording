@@ -98,8 +98,10 @@ It's suitable for anywhere you'd deploy a Next.js app, including Heroku, Vercel,
 - prefills from person data
 - write cypress tests
 - 404 page (which users are sent to when looking for a step or submission that doesn't exist)
+- if form has one step, skip the task list
 
 ### Later
 
+- keep a proper version history for auditing
 - replace "unfinished submissions" table with something more general-purpose
 - integrate with contentful for form config
