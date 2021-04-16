@@ -90,7 +90,7 @@ This tool takes the standard case recording workflow and makes it more flexible,
 
 ### Now
 
-- **Autosave** when idle for more than 5 seconds
+- **Autosave** a valid form submission when the user is idle for more than 5 seconds
 - **Prefill** from core person data
 - **Submit** to the case viewer api
 - Refactor APIs for better semantics

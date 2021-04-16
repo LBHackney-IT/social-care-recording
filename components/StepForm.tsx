@@ -1,8 +1,8 @@
 import { Formik, Form } from "formik"
 import { Field } from "../config/forms.types"
-import FlexibleField from "./FlexibleField"
 import Autosave from "./Autosave"
 import { generateFlexibleSchema } from "../lib/validators"
+import FlexibleField from "./FlexibleField"
 
 type InitialValue = string | string[]
 
