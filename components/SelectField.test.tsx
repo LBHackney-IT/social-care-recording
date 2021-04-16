@@ -70,6 +70,31 @@ describe("SelectField", () => {
     expect(screen.getByDisplayValue("Foo option"))
   })
 
+  it("has a blank option when not required", () => {
+    render(
+      <Formik
+        onSubmit={null}
+        initialValues={{
+          foo: "",
+        }}
+      >
+        {({ touched, errors }) => (
+          <Form>
+            <SelectField
+              touched={touched}
+              errors={errors}
+              name="foo"
+              label="Label text"
+              hint="Hint text"
+              choices={choices}
+            />
+          </Form>
+        )}
+      </Formik>
+    )
+    expect(screen.getByDisplayValue(""))
+  })
+
   it("renders errors", () => {
     render(
       <Formik

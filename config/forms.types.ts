@@ -6,7 +6,7 @@ export interface Choice {
 export interface Field {
   id: string
   question: string
-  type: "text" | "textarea" | "radios" | "checkboxes"
+  type: "text" | "textarea" | "radios" | "checkboxes" | "select"
   required: boolean
   hint?: string
   error?: string

@@ -98,7 +98,10 @@ This tool takes the standard case recording workflow and makes it more flexible,
 - Protected routes (make sure everything checks for ression and redirect to /sign-in if not)
 - Staging site
 - Write a script to convert a CSV into form config
-- Add more flexible field types (date? repeater?)
+- Add more flexible field types
+  - Text repeater?
+  - Date?
+  - File upload?
 
 ### Next
 

@@ -11,7 +11,7 @@ describe("SubmissionsTable", () => {
             socialCareId: 12345,
             formId: "A",
             createdBy: "example@email.com",
-            data: {},
+            answers: {},
             editedBy: [],
             createdAt: ("2021-04-14T10:14:00.87" as unknown) as Date,
             updatedAt: new Date(),

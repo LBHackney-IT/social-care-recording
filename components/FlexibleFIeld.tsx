@@ -1,6 +1,7 @@
 import TextField from "./TextField"
 import RadioField from "./RadioField"
 import CheckboxField from "./CheckboxField"
+import SelectField from "./SelectField"
 
 const FlexibleField = ({
   values,
@@ -27,6 +28,18 @@ const FlexibleField = ({
   if (field.type === "checkboxes")
     return (
       <CheckboxField
+        name={field.id}
+        label={field.question}
+        touched={touched}
+        choices={field.choices}
+        errors={errors}
+        {...field}
+      />
+    )
+
+  if (field.type === "select")
+    return (
+      <SelectField
         name={field.id}
         label={field.question}
         touched={touched}

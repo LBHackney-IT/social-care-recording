@@ -19,8 +19,8 @@ const formData: Form[] = [
           {
             id: "example question",
             question: "What's your favourite colour?",
-            type: "checkboxes",
-            required: true,
+            type: "select",
+            required: false,
             choices: [
               {
                 value: "red",

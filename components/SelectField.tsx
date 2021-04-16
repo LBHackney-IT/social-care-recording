@@ -55,6 +55,8 @@ const Field = ({
       className={`govuk-select lbh-select ${className}`}
       {...props}
     >
+      {!required && <option value=""></option>}
+
       {choices.map(choice => (
         <option value={choice.value} key={choice.value}>
           {choice.label}
