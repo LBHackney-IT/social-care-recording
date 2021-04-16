@@ -24,3 +24,10 @@
     margin-bottom: 0;
   }
 }
+
+// make grid rows work with position: sticky
+.govuk-grid-row {
+  @include govuk-media-query($from: tablet) {
+    display: flex;
+  }
+}

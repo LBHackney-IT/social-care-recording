@@ -1,8 +1,13 @@
-@import "lbh-frontend/lbh/settings/all";
+@import "lbh-frontend/lbh/base";
 
 .aside {
   border: 4px solid lbh-colour("lbh-primary-button");
   padding: 20px;
+
+  @include govuk-media-query($from: tablet) {
+    position: sticky;
+    top: 20px;
+  }
 }
 
 .title {
