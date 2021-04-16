@@ -15,15 +15,15 @@ export const generateFlexibleSchema = (fields): any => {
     if (field.type === "checkboxes" && field.required) {
       shape[field.id] = Yup.array()
         .of(Yup.string())
-        .min(1, field.error || "Select at least one option")
+        .min(1, field.error || "Please choose at least one option")
     } else if (field.type === "checkboxes") {
       shape[field.id] = Yup.array().of(Yup.string())
-    } else if (field.required) {
+    } else if (!field.required || field.condition) {
+      shape[field.id] = Yup.string()
+    } else {
       shape[field.id] = Yup.string().required(
         field.error || "This question is required"
       )
-    } else {
-      shape[field.id] = Yup.string()
     }
   })
 
