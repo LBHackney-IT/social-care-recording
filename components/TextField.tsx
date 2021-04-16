@@ -8,6 +8,7 @@ interface FieldProps {
   type?: string
   hint?: string
   className?: string
+  required?: boolean
   as?: string
   rows?: number
 }
@@ -18,6 +19,7 @@ const Field = ({
   name,
   label,
   hint,
+  required,
   className,
   ...props
 }: FieldProps): React.ReactElement => (

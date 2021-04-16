@@ -1,9 +1,9 @@
-import s from "../styles/TaskList.module.scss";
-import { Step } from "../config/forms.types";
+import s from "../styles/TaskList.module.scss"
+import { Step } from "../config/forms.types"
 
 interface Props {
-  steps: Step[];
-  completedSteps: String[];
+  steps: Step[]
+  completedSteps: String[]
 }
 
 const TaskListHeader = ({
@@ -19,7 +19,7 @@ const TaskListHeader = ({
           sections. Your work will be saved automatically.
         </p>
       </>
-    );
+    )
 
   return (
     <>
@@ -27,8 +27,10 @@ const TaskListHeader = ({
       <p className="lbh-body  govuk-!-margin-top-2">
         You can now submit for review.
       </p>
-    </>
-  );
-};
 
-export default TaskListHeader;
+      <button className="govuk-button lbh-button">Finish and send</button>
+    </>
+  )
+}
+
+export default TaskListHeader

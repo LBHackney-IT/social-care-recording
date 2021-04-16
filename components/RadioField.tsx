@@ -8,6 +8,7 @@ interface FieldProps {
   type?: string
   hint?: string
   className?: string
+  required?: boolean
   choices: {
     value: string
     label: string
@@ -22,6 +23,7 @@ const Field = ({
   hint,
   className,
   choices,
+  required,
   ...props
 }: FieldProps): React.ReactElement => (
   <div

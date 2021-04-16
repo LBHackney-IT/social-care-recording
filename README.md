@@ -86,10 +86,10 @@ It's suitable for anywhere you'd deploy a Next.js app, including Heroku, Vercel,
 
 ### Now
 
+- ~restore a step's saved data from the database~ (DONE)
 - submit a finished submission to the case viewer api
 - write a script to convert a csv into form config
 - add more flexible field types (date? repeater?)
-- restore a step's saved data from the database
 - better error handling in the api (especially 404s)
 
 ### Next
