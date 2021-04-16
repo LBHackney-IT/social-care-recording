@@ -72,13 +72,6 @@ export const getServerSideProps: GetServerSideProps = async ({
   )
   const data = await res1.json()
 
-  // redirect if submission doesn't exist
-  if (!data.answers) {
-    res.setHeader("location", "/404")
-    res.statusCode = 404
-    res.end()
-  }
-
   return {
     props: {
       params,
