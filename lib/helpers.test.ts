@@ -1,4 +1,4 @@
-import { groupByTheme, formsToChoices, pushUnique } from "./helpers"
+import { groupByTheme, formsToChoices, pushUnique, debounce } from "./helpers"
 
 const form = {
   id: "1",
@@ -60,5 +60,29 @@ describe("pushUnique", () => {
   it("leaves arrays without duplicates alone", () => {
     const result = pushUnique(["one", "two", "three", "four"], "five")
     expect(result).toEqual(["one", "two", "three", "four", "five"])
+  })
+})
+
+describe("debounce", () => {
+  jest.useFakeTimers()
+
+  let func: jest.Mock
+  let debouncedFunc: Function
+
+  beforeEach(() => {
+    func = jest.fn()
+    debouncedFunc = debounce(func, 1000)
+  })
+
+  it("executes only after a delay", () => {
+    for (let i = 0; i < 100; i++) {
+      debouncedFunc()
+    }
+
+    expect(func).toHaveBeenCalledTimes(0)
+
+    jest.runAllTimers()
+
+    expect(func).toBeCalledTimes(1)
   })
 })
