@@ -4,6 +4,8 @@ Next-gen case recording for social care in Hackney.
 
 ## 🧱 How it's built
 
+<img src="https://github.com/LBHackney-IT/social-care-recording/blob/main/public/blueprint.png?raw=true" width="450px" alt="" />
+
 It's a Next.js app that depends heavily on the [social care case viewer API](https://github.com/LBHackney-IT/social-care-case-viewer-api).
 
 It has its own PostgreSQL database and internal API to keep track of unfinished form submissions and version history.
@@ -110,3 +112,4 @@ This tool takes the standard case recording workflow and makes it more flexible,
 - Replace "unfinished submissions" table with something more general-purpose
 - Integrate with Contentful for form config
 - Group recording
+- Handle file uploading
