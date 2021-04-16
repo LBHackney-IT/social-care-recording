@@ -25,6 +25,17 @@ const FlexibleField = ({
       />
     )
 
+  if (field.type === "text")
+    return (
+      <TextField
+        name={field.id}
+        label={field.question}
+        touched={touched}
+        errors={errors}
+        {...field}
+      />
+    )
+
   if (field.type === "checkboxes")
     return (
       <CheckboxField

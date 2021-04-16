@@ -70,7 +70,7 @@ const formData: Form[] = [
           {
             id: "support-taking-or-using-medicatons",
             question: "Do you need support taking or using medication?",
-            type: "textarea",
+            type: "text",
             required: true,
           },
           {
