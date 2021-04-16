@@ -56,19 +56,22 @@
   }
 }
 
-.tag {
-  float: right;
-  margin-top: 0;
-  margin-bottom: 0;
-  text-transform: none;
-  font-weight: 400;
-  background: #F8F8F8;
-  color: #525A5B, 100% !important;
-}
-
+.tag,
 .tagDone {
   float: right;
   margin-top: 0;
   margin-bottom: 0;
   text-transform: none;
+  letter-spacing: 0;
+}
+
+.tag {
+  font-weight: 400;
+  background: lbh-colour("lbh-grey-3");
+  color: lbh-colour("lbh-secondary-text");
+}
+
+.tagDone {
+  background: lbh-colour("lbh-primary-button");
+  color: lbh-colour("lbh-white");
 }
