@@ -86,22 +86,24 @@ It's suitable for anywhere you'd deploy a Next.js app, including Heroku, Vercel,
 
 ### Now
 
-- ~restore a step's saved data from the database~ (DONE)
-- submit a finished submission to the case viewer api
-- write a script to convert a csv into form config
-- add more flexible field types (date? repeater?)
-- better error handling in the api (especially 404s)
+- **Autosave** when idle for more than 5 seconds
+- **Prefill** from core person data
+- **Submit** to the case viewer api
+- Refactor APIs for better semantics
+- Error handling (redirect to 404 properly)
+- Protected routes (make sure everything checks for ression and redirect to /sign-in if not)
+- Staging site
+- Write a script to convert a CSV into form config
+- Add more flexible field types (date? repeater?)
 
 ### Next
 
-- autosave when idle for more than 5 seconds
-- prefills from person data
-- write cypress tests
-- 404 page (which users are sent to when looking for a step or submission that doesn't exist)
-- if form has one step, skip the task list
+- Write cypress tests
+- If form has one step, skip the task list
 
 ### Later
 
-- keep a proper version history for auditing
-- replace "unfinished submissions" table with something more general-purpose
-- integrate with contentful for form config
+- Keep a proper version history for auditing
+- Replace "unfinished submissions" table with something more general-purpose
+- Integrate with Contentful for form config
+- Group recording

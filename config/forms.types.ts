@@ -11,6 +11,7 @@ export interface Field {
   hint?: string
   error?: string
   choices?: Choice[]
+  prefill?: string
   classNames?: string
   condition?: {
     id: string

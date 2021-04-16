@@ -96,6 +96,7 @@ const formData: Form[] = [
               "Are you getting adequate relief from pain or other distressing physical symptoms?",
             type: "radios",
             required: true,
+            prefill: "dateOfBirth",
             choices: [
               {
                 value: "true",
