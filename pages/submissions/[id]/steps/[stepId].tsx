@@ -1,3 +1,4 @@
+import { useCallback } from "react"
 import { GetServerSideProps } from "next"
 import Head from "next/head"
 import Link from "next/link"
@@ -27,7 +28,10 @@ const Step = ({ params, name, fields, person, submission }) => {
     // router.push(`/submissions/${params.id}`)
   }
 
-  const prefilling = fields.find(field => field.prefill)
+  const prefilling = useCallback(
+    fields.find(field => field.prefill),
+    [fields]
+  )
 
   return (
     <>
