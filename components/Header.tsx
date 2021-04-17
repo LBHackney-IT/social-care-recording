@@ -61,8 +61,9 @@ const Header = (): React.ReactElement => {
             Beta
           </strong>
           <span className="govuk-phase-banner__text">
-            This is a new website—<a href="#feedback">your feedback</a> will
-            help us to improve it.
+            This is a new website—
+            <a href={process.env.NEXT_PUBLIC_FEEDBACK_URL}>your feedback</a>{" "}
+            will help us to improve it.
           </span>
         </p>
       </div>
