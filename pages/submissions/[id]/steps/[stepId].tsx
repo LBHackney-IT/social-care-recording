@@ -47,6 +47,13 @@ const Step = ({ params, name, fields, person, submission }) => {
                 onSubmit={handleSubmit}
               />
             )}
+            <p className="lbh-body">
+              <Link href={`/submissions/${params.id}`}>
+                <a className="lbh-link lbh-link--no-visited-state">
+                  Back to list
+                </a>
+              </Link>
+            </p>
           </div>
           <div className="govuk-grid-column-one-third">
             <div className={s.sticky}>
@@ -63,7 +70,7 @@ const Step = ({ params, name, fields, person, submission }) => {
 Step.Postheader = ({ params }): React.ReactElement => (
   <div className="lbh-container">
     <Link href={`/submissions/${params.id}`}>
-      <a className="govuk-back-link lbh-back-link">Back to sections</a>
+      <a className="govuk-back-link lbh-back-link">Back to list</a>
     </Link>
   </div>
 )
