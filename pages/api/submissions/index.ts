@@ -1,12 +1,15 @@
 import prisma from "../../../lib/prisma"
 import { getSession } from "../../../lib/auth"
 import { NextApiRequest, NextApiResponse } from "next"
+import { startSchema } from "../../../lib/validators"
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const session = await getSession({ req })
     if (session) {
       let { formId, socialCareId } = JSON.parse(req.body)
+
+      await startSchema.validate({ formId, socialCareId })
 
       const newSubmission = await prisma.submission.create({
         data: {
