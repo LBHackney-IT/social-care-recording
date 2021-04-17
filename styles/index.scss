@@ -15,8 +15,16 @@ html {
 }
 
 // fix visited colour of go-back links
-.lbh-back-link:visited {
-  color: lbh-colour("lbh-link");
+.lbh-back-link {
+  &:visited {
+    color: lbh-colour("lbh-link");
+  }
+  &:hover {
+    color: lbh-colour("lbh-link-hover");
+  }
+  &:focus {
+    color: lbh-colour("lbh-text");
+  }
 }
 
 // fix checkbox line height and spacing

@@ -11,5 +11,6 @@
   @include govuk-media-query($from: tablet) {
     position: sticky;
     top: 25px;
+    margin-left: 10px;
   }
 }
