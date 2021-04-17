@@ -11,6 +11,7 @@ import {
 } from "../../../../contexts/autosaveContext"
 import s from "../../../../styles/Sidebar.module.scss"
 import Banner from "../../../../components/Banner"
+import { getSession } from "../../../../lib/auth"
 
 const Step = ({ params, name, fields, person, submission }) => {
   const router = useRouter()
@@ -95,6 +96,15 @@ export const getServerSideProps: GetServerSideProps = async ({
   req,
   res,
 }) => {
+  if (!getSession({ req })) {
+    return {
+      props: {},
+      redirect: {
+        destination: "/sign-in",
+      },
+    }
+  }
+
   const res1 = await fetch(
     `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions/${params.id}/steps/${params.stepId}`,
     {
@@ -104,6 +114,16 @@ export const getServerSideProps: GetServerSideProps = async ({
     }
   )
   const data = await res1.json()
+
+  // redirect if step doesn't exist
+  if (!data.id) {
+    return {
+      props: {},
+      redirect: {
+        destination: "/404",
+      },
+    }
+  }
 
   return {
     props: {

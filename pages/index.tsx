@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Submission } from "@prisma/client"
 import { Form } from "../config/forms.types"
 import SubmissionsTable from "../components/SubmissionsTable"
+import { getSession } from "../lib/auth"
 
 interface Props {
   forms: Form[]
@@ -32,7 +33,7 @@ const Start = ({ forms, unfinishedSubmissions }: Props) => {
 
       <div className="govuk-grid-column-one-half">
         <h2 className="lbh-heading-h3">Start a new submission</h2>
-        <StartForm onSubmit={handleSubmit} forms={forms} />
+        {forms && <StartForm onSubmit={handleSubmit} forms={forms} />}
       </div>
 
       <div className="govuk-grid-column-one-half">
@@ -43,13 +44,22 @@ const Start = ({ forms, unfinishedSubmissions }: Props) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api`, {
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  if (!getSession({ req })) {
+    return {
+      props: {},
+      redirect: {
+        destination: "/sign-in",
+      },
+    }
+  }
+
+  const res2 = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api`, {
     headers: {
       cookie: req.headers.cookie,
     },
   })
-  const data = await res.json()
+  const data = await res2.json()
   return {
     props: {
       ...data,
