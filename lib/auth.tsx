@@ -1,14 +1,18 @@
-import { createContext, useContext, useState, useEffect } from "react"
+import React, { createContext, useContext, useState, useEffect } from "react"
 import cookie from "cookie"
 import jsonwebtoken from "jsonwebtoken"
 import { useRouter } from "next/router"
 
-const SessionContext = createContext()
+const SessionContext = createContext(null)
 
 // wrap app with provider to use session hooks
-export const Provider = ({ children }) => {
+export const Provider = ({
+  children,
+}: {
+  children: React.ReactChild[]
+}): React.ReactElement => {
   const [data, setData] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState<boolean>(true)
 
   return (
     <SessionContext.Provider value={{ data, setData, loading, setLoading }}>
@@ -60,13 +64,13 @@ export const getSession = ctx => {
 // go to sign in page
 export const signIn = () => {
   let redirect = "http://dev.hackney.gov.uk:3000"
-  window.location = `https://auth.hackney.gov.uk/auth?redirect_uri=${redirect}`
+  window.location.href = `https://auth.hackney.gov.uk/auth?redirect_uri=${redirect}`
 }
 
 // clear cookie and sign out
 export const signOut = async () => {
   await fetch("/api/auth/sign-out")
-  window.location = "/sign-in"
+  window.location.href = "/sign-in"
 }
 
 // require user to be signed in to view
