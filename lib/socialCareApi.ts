@@ -20,3 +20,24 @@ export const getPersonById = async (id: string): Promise<Person | null> => {
     return null
   }
 }
+
+export const addRecordToCase = async (
+  person: Person,
+  data: any
+): Promise<Person | null> => {
+  try {
+    const res = await fetch(`${process.env.SOCIAL_CARE_API_ENDPOINT}/cases`, {
+      headers: {
+        "x-api-key": process.env.SOCIAL_CARE_API_KEY,
+      },
+      method: "POST",
+      body: JSON.stringify({
+        ...person,
+        caseFormDate: data,
+      }),
+    })
+    return await res.json()
+  } catch (e) {
+    return null
+  }
+}

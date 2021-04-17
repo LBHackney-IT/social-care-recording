@@ -1,27 +1,47 @@
 import { GetServerSideProps } from "next"
 import Head from "next/head"
+import { useRouter } from "next/router"
 import PersonWidget from "../../../components/PersonWidget"
 import TaskList from "../../../components/TaskList"
 import Link from "next/link"
 import TaskListHeader from "../../../components/TaskListHeader"
 
-const TaskListPage = ({ completedSteps, person, form }) => (
-  <>
-    <Head>
-      <title>{form?.name} | Social care | Hackney Council</title>
-    </Head>
-    <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">{form?.name}</h1>
-    <div className="govuk-grid-row">
-      <div className="govuk-grid-column-two-thirds">
-        <TaskListHeader steps={form?.steps} completedSteps={completedSteps} />
-        <TaskList form={form} completedSteps={completedSteps} />
+const TaskListPage = ({ completedSteps, person, form, params }) => {
+  const router = useRouter()
+
+  const handleFinish = async () => {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions/${params.id}/confirm`,
+      {
+        method: "POST",
+      }
+    )
+    const data = await res.json()
+    if (data) router.push(`/submissions/${params.id}/confirm`)
+  }
+
+  return (
+    <>
+      <Head>
+        <title>{form?.name} | Social care | Hackney Council</title>
+      </Head>
+      <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">{form?.name}</h1>
+      <div className="govuk-grid-row">
+        <div className="govuk-grid-column-two-thirds">
+          <TaskListHeader
+            onFinish={handleFinish}
+            steps={form?.steps}
+            completedSteps={completedSteps}
+          />
+          <TaskList form={form} completedSteps={completedSteps} />
+        </div>
+        <div className="govuk-grid-column-one-third">
+          {person && <PersonWidget person={person} />}
+        </div>
       </div>
-      <div className="govuk-grid-column-one-third">
-        {person && <PersonWidget person={person} />}
-      </div>
-    </div>
-  </>
-)
+    </>
+  )
+}
 
 TaskListPage.Postheader = ({ params }): React.ReactElement => (
   <div className="lbh-container">
@@ -57,10 +77,9 @@ export const getServerSideProps: GetServerSideProps = async ({
   return {
     props: {
       ...data,
+      params,
     },
   }
 }
-
-TaskListPage.goBackPath = "/"
 
 export default TaskListPage
