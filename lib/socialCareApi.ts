@@ -1,6 +1,8 @@
-export const getPersonById = async (id: string) => {
+import { Person } from "./socialCareApi.types"
+
+export const getPersonById = async (id: string): Promise<Person | boolean> => {
   try {
-    const res2 = await fetch(
+    const res = await fetch(
       `${process.env.SOCIAL_CARE_API_ENDPOINT}/residents?mosaic_id=${id}`,
       {
         headers: {
@@ -8,10 +10,13 @@ export const getPersonById = async (id: string) => {
         },
       }
     )
-    const data = await res2.json()
-    return data.residents.find(resident => resident.mosaicId === String(id))
+    const data = await res.json()
+    const person = data.residents?.find(
+      resident => resident.mosaicId === String(id)
+    )
+    if (!person) return null
+    return person
   } catch (e) {
-    console.error(e)
-    return false
+    return null
   }
 }
