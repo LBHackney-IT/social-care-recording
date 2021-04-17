@@ -36,8 +36,8 @@ const Step = ({ params, name, fields, person, submission }) => {
       </Head>
 
       {prefilling && (
-        <Banner title="Some information on this page has been prefilled">
-          You can add more details if you need.
+        <Banner title="Some answers on this page have been prefilled">
+          You can change them if you need.
         </Banner>
       )}
 
