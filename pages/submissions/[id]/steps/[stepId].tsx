@@ -27,15 +27,19 @@ const Step = ({ params, name, fields, person, submission }) => {
     // router.push(`/submissions/${params.id}`)
   }
 
+  const prefilling = fields.find(field => field.prefill)
+
   return (
     <>
       <Head>
         <title>{name} | Social care | Hackney Council</title>
       </Head>
 
-      {/* <Banner title="Some information on this page has been prefilled">
-        You can add more details if you need.
-      </Banner> */}
+      {prefilling && (
+        <Banner title="Some information on this page has been prefilled">
+          You can add more details if you need.
+        </Banner>
+      )}
 
       <div className="govuk-grid-row">
         <div className="govuk-grid-column-two-thirds">
