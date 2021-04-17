@@ -115,6 +115,16 @@ export const getServerSideProps: GetServerSideProps = async ({
   )
   const data = await res1.json()
 
+  // redirect if step doesn't exist
+  if (!data.id) {
+    return {
+      props: {},
+      redirect: {
+        destination: "/404",
+      },
+    }
+  }
+
   return {
     props: {
       params,
