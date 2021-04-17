@@ -1,6 +1,8 @@
-import { render, screen, waitFor, fireEvent } from "@testing-library/react"
+import { render, screen, waitFor, fireEvent, act } from "@testing-library/react"
+import { Formik, Form, Field } from "formik"
 import AutosaveContext, {
   AutosaveProvider,
+  AutosaveTrigger,
   AutosaveIndicator,
 } from "./autosaveContext"
 
@@ -37,5 +39,49 @@ describe("AutosaveIndicator", () => {
       </AutosaveContext.Provider>
     )
     expect(screen.getByText("Unsaved changes"))
+  })
+})
+
+describe("AutosaveTrigger", () => {
+  const mockSubmit = jest.fn()
+
+  it("submits changes after a delay", async () => {
+    jest.useFakeTimers()
+
+    render(
+      <AutosaveProvider>
+        <Formik
+          initialValues={{
+            foo: "",
+          }}
+          onSubmit={mockSubmit}
+        >
+          <Form>
+            <label htmlFor="foo">Foo</label>
+            <Field name="foo" id="foo" />
+            <AutosaveTrigger />
+          </Form>
+        </Formik>
+      </AutosaveProvider>
+    )
+
+    expect(mockSubmit).toHaveBeenCalledTimes(0)
+
+    fireEvent.change(screen.getByLabelText("Foo"), {
+      target: { value: "test value" },
+    })
+
+    jest.runAllTimers()
+
+    await waitFor(() => expect(mockSubmit).toHaveBeenCalledTimes(1))
+  })
+
+  it("submits the latest values", () => {
+    expect(mockSubmit).toHaveBeenLastCalledWith(
+      {
+        foo: "test value",
+      },
+      expect.anything()
+    )
   })
 })
