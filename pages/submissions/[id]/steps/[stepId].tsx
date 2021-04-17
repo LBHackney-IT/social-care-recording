@@ -4,11 +4,16 @@ import Link from "next/link"
 import PersonWidget from "../../../../components/PersonWidget"
 import StepForm from "../../../../components/StepForm"
 import { useRouter } from "next/router"
+import {
+  AutosaveProvider,
+  AutosaveIndicator,
+} from "../../../../contexts/autosaveContext"
+import s from "../../../../styles/Sidebar.module.scss"
 
 const Step = ({ params, name, fields, person, submission }) => {
   const router = useRouter()
 
-  const handleSubmit = async values => {
+  const handleSubmit = async (values): Promise<void> => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions/${params.id}/steps/${params.stepId}`,
       {
@@ -17,7 +22,8 @@ const Step = ({ params, name, fields, person, submission }) => {
       }
     )
     const data = await res.json()
-    router.push(`/submissions/${params.id}`)
+    // TODO: how can we redirect back to the task list if the user clicks the button and the section is complete, but not on autosave?
+    // router.push(`/submissions/${params.id}`)
   }
 
   return (
@@ -31,20 +37,25 @@ const Step = ({ params, name, fields, person, submission }) => {
         </div>
       </div>
 
-      <div className="govuk-grid-row">
-        <div className="govuk-grid-column-two-thirds">
-          {fields && (
-            <StepForm
-              initialValues={submission.answers}
-              fields={fields}
-              onSubmit={handleSubmit}
-            />
-          )}
+      <AutosaveProvider>
+        <div className={`govuk-grid-row ${s.outer}`}>
+          <div className="govuk-grid-column-two-thirds">
+            {fields && (
+              <StepForm
+                initialValues={submission.answers}
+                fields={fields}
+                onSubmit={handleSubmit}
+              />
+            )}
+          </div>
+          <div className="govuk-grid-column-one-third">
+            <div className={s.sticky}>
+              {person && <PersonWidget person={person} />}
+              <AutosaveIndicator />
+            </div>
+          </div>
         </div>
-        <div className="govuk-grid-column-one-third">
-          {person && <PersonWidget person={person} />}
-        </div>
-      </div>
+      </AutosaveProvider>
     </>
   )
 }

@@ -3,11 +3,6 @@
 .aside {
   border: 4px solid lbh-colour("lbh-primary-button");
   padding: 20px;
-
-  @include govuk-media-query($from: tablet) {
-    position: sticky;
-    top: 25px;
-  }
 }
 
 .title {

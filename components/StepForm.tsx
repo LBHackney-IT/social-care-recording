@@ -1,8 +1,9 @@
 import { Formik, Form } from "formik"
 import { Field } from "../config/forms.types"
-import Autosave from "./Autosave"
+import { AutosaveTrigger } from "../contexts/autosaveContext"
 import { generateFlexibleSchema } from "../lib/validators"
 import FlexibleField from "./FlexibleFields"
+import Link from "next/link"
 
 type InitialValue = string | string[]
 
@@ -24,31 +25,36 @@ const StepForm = ({
   initialValues,
   fields,
   onSubmit,
-}: Props): React.ReactElement => (
-  <Formik
-    initialValues={initialValues || generateInitialValues(fields)}
-    validationSchema={generateFlexibleSchema(fields)}
-    onSubmit={onSubmit}
-  >
-    {({ values, isSubmitting, touched, errors }) => (
-      <Form>
-        {fields.map(field => (
-          <FlexibleField
-            key={field.id}
-            field={field}
-            touched={touched}
-            errors={errors}
-            values={values}
-          />
-        ))}
+}: Props): React.ReactElement => {
+  return (
+    <Formik
+      initialValues={initialValues || generateInitialValues(fields)}
+      validationSchema={generateFlexibleSchema(fields)}
+      onSubmit={onSubmit}
+    >
+      {({ values, isSubmitting, touched, errors, status, setStatus }) => (
+        <>
+          <Form>
+            {fields.map(field => (
+              <FlexibleField
+                key={field.id}
+                field={field}
+                touched={touched}
+                errors={errors}
+                values={values}
+              />
+            ))}
 
-        <button className="govuk-button lbh-button" disabled={isSubmitting}>
-          Continue
-        </button>
+            <AutosaveTrigger />
 
-        <Autosave />
-      </Form>
-    )}
-  </Formik>
-)
+            <button className="govuk-button lbh-button" disabled={isSubmitting}>
+              Save changes
+            </button>
+          </Form>
+        </>
+      )}
+    </Formik>
+  )
+}
+
 export default StepForm
