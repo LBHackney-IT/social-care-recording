@@ -90,15 +90,16 @@ This tool takes the standard case recording workflow and makes it more flexible,
 
 ### Now
 
-- **Autosave** a valid form submission when the user is idle for more than 5 seconds
-- Hitting the "continue" button on a step should return to the task list page if the form submitted successgully
+- ~~**Autosave** a valid form submission when the user is idle for more than 5 seconds~~ (DONE)
 - **Prefill** from core person data
-- **Submit** to the case viewer api
+- Hitting the "continue" button on a step should return to the task list page if the form submitted successfully
+- Improve autosave so it doesn't submit after initial form mount
 - Refactor APIs for better semantics
 - APIs should validate against the same schemas as the UI
 - Error handling (redirect to 404 properly)
 - Protected routes (make sure everything checks for ression and redirect to /sign-in if not)
 - Write a script to convert a CSV into form config
+- **Submit** to the case viewer api
 
 ### Next
 
