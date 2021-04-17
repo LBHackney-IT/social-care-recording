@@ -74,16 +74,16 @@ export const signOut = async () => {
 }
 
 // require user to be signed in to view
-export const withSession = Component => props => {
-  const [session, loading] = useSession()
-  const router = useRouter()
+// export const withSession = Component => props => {
+//   const [session, loading] = useSession()
+//   const router = useRouter()
 
-  if (!session && !loading) router.push("/sign-in")
+//   if (!session && !loading) router.push("/sign-in")
 
-  return <Component {...props} session={session} />
+//   return <Component {...props} session={session} />
 
-  return <p>Loading...</p>
-}
+//   return <p>Loading...</p>
+// }
 
 // utility to check if user is in named group
 export const hasGroup = (group, session) => session?.groups?.includes(group)

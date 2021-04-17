@@ -91,7 +91,7 @@ This tool takes the standard case recording workflow and makes it more flexible,
 ### Now
 
 - ~~**Autosave** a valid form submission when the user is idle for more than 5 seconds~~ (DONE)
-- **Prefill** from core person data
+- **Prefill** from core person data (DONE)
 - Hitting the "continue" button on a step should return to the task list page if the form submitted successfully
 - Improve autosave so it doesn't submit after initial form mount
 - Refactor APIs for better semantics

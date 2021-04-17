@@ -4,6 +4,7 @@ import PersonWidget from "../../../components/PersonWidget"
 import TaskList from "../../../components/TaskList"
 import Link from "next/link"
 import TaskListHeader from "../../../components/TaskListHeader"
+import { getSession } from "../../../lib/auth"
 
 const TaskListPage = ({ completedSteps, person, form }) => (
   <>
@@ -36,6 +37,15 @@ export const getServerSideProps: GetServerSideProps = async ({
   req,
   res,
 }) => {
+  if (!getSession({ req })) {
+    return {
+      props: {},
+      redirect: {
+        destination: "/sign-in",
+      },
+    }
+  }
+
   const res1 = await fetch(
     `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions/${params.id}`,
     {
@@ -49,9 +59,12 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   // redirect if submission doesn't exist
   if (!data.id) {
-    res.setHeader("location", "/404")
-    res.statusCode = 404
-    res.end()
+    return {
+      props: {},
+      redirect: {
+        destination: "/404",
+      },
+    }
   }
 
   return {

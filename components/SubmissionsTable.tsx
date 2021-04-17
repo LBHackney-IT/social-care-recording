@@ -7,7 +7,7 @@ interface Props {
 }
 
 const SubmissionsTable = ({ unfinishedSubmissions }: Props) => {
-  if (!(unfinishedSubmissions.length > 0))
+  if (!(unfinishedSubmissions?.length > 0))
     return <p className="lbh-body">Nothing to show</p>
 
   return (
