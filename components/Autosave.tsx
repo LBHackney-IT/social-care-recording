@@ -1,62 +1,65 @@
 import { useState, useCallback, useEffect } from "react"
 import { useFormikContext } from "formik"
 import { useRouter } from "next/router"
+import { debounce } from "../lib/helpers"
+import s from "../styles/Autosave.module.scss"
+import useWarnUnsavedChanges from "../hooks/useWarnUnsavedChanges"
 
-const Autosave = () => {
-  const [isSaved, setIsSaved] = useState(null)
-  const [saving, setSaving] = useState(false)
+interface Props {
+  delay?: number
+}
 
-  const { values, isValid } = useFormikContext()
+const Autosave = ({ delay = 1000 }: Props): React.ReactElement => {
   const { query } = useRouter()
+  const { dirty, values, errors, validateForm } = useFormikContext()
 
-  const save = async values => {
-    setSaving(true)
-    console.log("SAVING ", values)
-    // const res = await fetch(
-    //   `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions/${query.id}/steps/${query.stepId}`,
-    //   {
-    //     method: "PATCH",
-    //     body: JSON.stringify(values),
-    //   }
-    // )
-    // const data = await res.json()
-    setSaving(false)
-  }
+  const [saved, setSaved] = useState<Boolean>(true)
+  const [saving, setSaving] = useState<Boolean>(false)
 
-  const debounce = (func, wait, immediate) => {
-    let timeout
-    return function () {
-      var context = this,
-        args = arguments
-      var later = function () {
-        timeout = null
-        if (!immediate) func.apply(context, args)
-      }
-      var callNow = immediate && !timeout
-      clearTimeout(timeout)
-      timeout = setTimeout(later, wait)
-      if (callNow) func.apply(context, args)
+  useWarnUnsavedChanges(!saved)
+
+  const save = async (): Promise<void> => {
+    const errors = await validateForm()
+
+    if (Object.entries(errors).length === 0) {
+      setSaving(true)
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions/${query.id}/steps/${query.stepId}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify(values),
+        }
+      )
+      const data = await res.json()
+      setSaving(false)
+      setSaved(true)
     }
   }
 
-  const debouncedSave = useCallback(
-    debounce(
-      () => {
-        return save(values).then(() => setIsSaved(true))
-      },
-      5000,
-      false
-    ),
-    []
+  const debounceCallback = useCallback(debounce(save, delay), [])
+
+  useEffect(() => {
+    if (dirty) setSaved(false)
+    debounceCallback()
+  }, [values])
+
+  return (
+    <div className={s.outer} aria-live="polite">
+      {saving && (
+        <img
+          src="/spinner.svg"
+          alt=""
+          aria-hidden="true"
+          className={s.spinner}
+        />
+      )}
+      <p className={`lbh-body-s ${s.text}`}>
+        {saving && "Saving changes..."}
+        {saved && "Changes saved"}
+        {!saved && !saving && "Unsaved changes"}
+      </p>
+    </div>
   )
-
-  useEffect(() => debouncedSave, [debouncedSave, values])
-
-  if (saving) return <p className="lbh-body-s">Saving changes...</p>
-
-  if (isSaved) return <p className="lbh-body-s">Changes saved</p>
-
-  return <p className="lbh-body-s">Unsaved changes</p>
 }
 
 export default Autosave

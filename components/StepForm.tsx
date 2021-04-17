@@ -32,8 +32,6 @@ const StepForm = ({
   >
     {({ values, isSubmitting, touched, errors }) => (
       <Form>
-        {/* <Autosave /> */}
-
         {fields.map(field => (
           <FlexibleField
             key={field.id}
@@ -47,6 +45,8 @@ const StepForm = ({
         <button className="govuk-button lbh-button" disabled={isSubmitting}>
           Continue
         </button>
+
+        <Autosave />
       </Form>
     )}
   </Formik>
