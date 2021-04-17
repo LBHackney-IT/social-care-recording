@@ -9,6 +9,7 @@ import {
   AutosaveIndicator,
 } from "../../../../contexts/autosaveContext"
 import s from "../../../../styles/Sidebar.module.scss"
+import Banner from "../../../../components/Banner"
 
 const Step = ({ params, name, fields, person, submission }) => {
   const router = useRouter()
@@ -31,6 +32,11 @@ const Step = ({ params, name, fields, person, submission }) => {
       <Head>
         <title>{name} | Social care | Hackney Council</title>
       </Head>
+
+      {/* <Banner title="Some information on this page has been prefilled">
+        You can add more details if you need.
+      </Banner> */}
+
       <div className="govuk-grid-row">
         <div className="govuk-grid-column-two-thirds">
           <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">{name}</h1>
@@ -42,6 +48,7 @@ const Step = ({ params, name, fields, person, submission }) => {
           <div className="govuk-grid-column-two-thirds">
             {fields && (
               <StepForm
+                person={person}
                 initialValues={submission.answers}
                 fields={fields}
                 onSubmit={handleSubmit}

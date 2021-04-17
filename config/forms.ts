@@ -72,6 +72,7 @@ const formData: Form[] = [
             question: "Do you need support taking or using medication?",
             type: "text",
             required: true,
+            prefill: "firstName",
           },
           {
             id: "pain-or-distress",
@@ -96,7 +97,6 @@ const formData: Form[] = [
               "Are you getting adequate relief from pain or other distressing physical symptoms?",
             type: "radios",
             required: true,
-            prefill: "dateOfBirth",
             choices: [
               {
                 value: "true",

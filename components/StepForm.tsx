@@ -3,32 +3,39 @@ import { Field } from "../config/forms.types"
 import { AutosaveTrigger } from "../contexts/autosaveContext"
 import { generateFlexibleSchema } from "../lib/validators"
 import FlexibleField from "./FlexibleFields"
+import { Person } from "../lib/socialCareApi.types"
 import Link from "next/link"
 
 type InitialValue = string | string[]
 
 interface Props {
   fields: Field[]
+  person: Person
   initialValues?: InitialValue[]
   onSubmit: (values) => void
 }
 
-const generateInitialValues = (fields): any => {
+const generateInitialValues = (fields, person): any => {
   const initialValues = {}
-  fields.map(
-    field => (initialValues[field.id] = field.type === "checkboxes" ? [] : "")
-  )
+  fields.map(field => {
+    if (person[field.prefill]) {
+      initialValues[field.id] = person[field.prefill]
+    } else {
+      initialValues[field.id] = field.type === "checkboxes" ? [] : ""
+    }
+  })
   return initialValues
 }
 
 const StepForm = ({
   initialValues,
   fields,
+  person,
   onSubmit,
 }: Props): React.ReactElement => {
   return (
     <Formik
-      initialValues={initialValues || generateInitialValues(fields)}
+      initialValues={initialValues || generateInitialValues(fields, person)}
       validationSchema={generateFlexibleSchema(fields)}
       onSubmit={onSubmit}
     >
