@@ -5,7 +5,7 @@ import { useRouter } from "next/router"
 
 const SessionContext = createContext(null)
 
-// wrap app with provider to use session hooks
+/* Wrap app with provider to use session hooks */
 export const Provider = ({
   children,
 }: {
@@ -21,7 +21,7 @@ export const Provider = ({
   )
 }
 
-// hook to use session client-side
+/** Hook to use session client-side */
 export const useSession = () => {
   const { data, setData, loading, setLoading } = useContext(SessionContext)
 
@@ -42,7 +42,7 @@ export const useSession = () => {
   return [data, loading]
 }
 
-// get session server-side
+/** Get session server-side */
 export const getSession = ctx => {
   const { req } = ctx
 
@@ -61,13 +61,13 @@ export const getSession = ctx => {
   }
 }
 
-// go to sign in page
+/** Go to sign in page */
 export const signIn = () => {
   let redirect = "http://dev.hackney.gov.uk:3000"
   window.location.href = `https://auth.hackney.gov.uk/auth?redirect_uri=${redirect}`
 }
 
-// clear cookie and sign out
+/** Clear cookie and sign out */
 export const signOut = async () => {
   await fetch("/api/auth/sign-out")
   window.location.href = "/sign-in"
@@ -85,5 +85,5 @@ export const signOut = async () => {
 //   return <p>Loading...</p>
 // }
 
-// utility to check if user is in named group
+/** Utility to check if user is in named group */
 export const hasGroup = (group, session) => session?.groups?.includes(group)

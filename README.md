@@ -102,7 +102,8 @@ This tool takes the standard case recording workflow and makes it more flexible,
 1. **Submit** to the case viewer api
 2. Hitting the "continue" button on a step should return to the task list page if the form submitted successfully
 3. If form has one step, skip the task list
-4. Write a script to convert a CSV into form config
+4. Refactor APIs to use a common helper to handle 401s and 500s
+5. Write a script to convert a CSV into form config
 
 ### Next
 
