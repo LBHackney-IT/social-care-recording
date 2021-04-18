@@ -1,35 +1,49 @@
 import prisma from "../../../../lib/prisma"
 import { NextApiRequest, NextApiResponse } from "next"
 import forms from "../../../../config/forms"
-import { getPersonById } from "../../../../lib/socialCareApi"
-import { apiHandler } from "../../../../lib/apiHelpers"
+import { getPersonById, addRecordToCase } from "../../../../lib/socialCareApi"
+import { apiHandler, ApiRequestWithSession } from "../../../../lib/apiHelpers"
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
   let { id } = req.query
 
-  //   1. grab submission
-  const submission = await prisma.submission.findUnique({
-    where: {
-      id: id.toString(),
-    },
-  })
-
-  if (!submission)
-    res.status(404).json({
-      error: "Submission not found",
+  if (req.method === "POST") {
+    const submission = await prisma.submission.update({
+      where: {
+        id: id.toString(),
+      },
+      data: {
+        submittedAt: new Date(),
+      },
+    })
+    // TODO: send the submission via the api
+    // addRecordToCase({}, {}, req.session.user.email, submission.formId)
+    res.json(submission)
+  } else {
+    //   1. grab submission
+    const submission = await prisma.submission.findUnique({
+      where: {
+        id: id.toString(),
+      },
     })
 
-  // 2. grab person
-  const person = await getPersonById(submission.socialCareId.toString())
+    if (!submission)
+      res.status(404).json({
+        error: "Submission not found",
+      })
 
-  // 3. grab form
-  const form = forms.find(form => form.id === submission.formId)
+    // 2. grab person
+    const person = await getPersonById(submission.socialCareId.toString())
 
-  res.json({
-    ...submission,
-    person,
-    form,
-  })
+    // 3. grab form
+    const form = forms.find(form => form.id === submission.formId)
+
+    res.json({
+      ...submission,
+      person,
+      form,
+    })
+  }
 }
 
 export default apiHandler(handler)
