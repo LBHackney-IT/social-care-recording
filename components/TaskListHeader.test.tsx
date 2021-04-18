@@ -1,5 +1,5 @@
 import TaskListHeader from "./TaskListHeader"
-import { render, screen } from "@testing-library/react"
+import { render, screen, fireEvent } from "@testing-library/react"
 
 const steps = [
   {
@@ -18,7 +18,13 @@ const steps = [
 
 describe("TaskList", () => {
   it("renders correctly when incomplete", () => {
-    render(<TaskListHeader completedSteps={["1"]} steps={steps} />)
+    render(
+      <TaskListHeader
+        onFinish={() => {}}
+        completedSteps={["1"]}
+        steps={steps}
+      />
+    )
 
     expect(screen.getByText("Submission incomplete"))
     expect(
@@ -27,8 +33,29 @@ describe("TaskList", () => {
   })
 
   it("renders correctly when complete", () => {
-    render(<TaskListHeader completedSteps={["1", "2"]} steps={steps} />)
+    render(
+      <TaskListHeader
+        onFinish={() => {}}
+        completedSteps={["1", "2"]}
+        steps={steps}
+      />
+    )
 
     expect(screen.getByText("Submission complete"))
+  })
+
+  const mockHandler = jest.fn()
+
+  it("calls the finish handler", () => {
+    render(
+      <TaskListHeader
+        onFinish={mockHandler}
+        completedSteps={["1", "2"]}
+        steps={steps}
+      />
+    )
+
+    fireEvent.click(screen.getByText("Finish and send"))
+    expect(mockHandler).toHaveBeenCalled()
   })
 })
