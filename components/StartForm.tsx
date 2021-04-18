@@ -23,7 +23,7 @@ const StartForm = ({ forms, onSubmit }: Props): React.ReactElement => {
         socialCareId: "",
         formId: choices[0].value,
       }}
-      // validationSchema={startSchema}
+      validationSchema={startSchema}
       onSubmit={onSubmit}
     >
       {({ isSubmitting, touched, errors, status }) => (
