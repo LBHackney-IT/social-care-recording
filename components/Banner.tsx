@@ -1,10 +1,11 @@
 interface Props {
   title: string
-  children: React.ReactChild
+  children: React.ReactChild | React.ReactChild[]
+  className?: string
 }
 
-const Banner = ({ title, children }: Props): React.ReactElement => (
-  <section className="lbh-page-announcement">
+const Banner = ({ title, children, className }: Props): React.ReactElement => (
+  <section role="alert" className={`lbh-page-announcement ${className}`}>
     <h3 className="lbh-page-announcement__title">{title}</h3>
     <div className="lbh-page-announcement__content">{children}</div>
   </section>

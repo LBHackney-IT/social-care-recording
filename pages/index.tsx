@@ -15,16 +15,21 @@ interface Props {
 const Start = ({ forms, unfinishedSubmissions }: Props) => {
   const router = useRouter()
 
-  const handleSubmit = async values => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions`,
-      {
-        method: "POST",
-        body: JSON.stringify(values),
-      }
-    )
-    const data = await res.json()
-    router.push(`/submissions/${data.id}`)
+  const handleSubmit = async (values, { setStatus }) => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions`,
+        {
+          method: "POST",
+          body: JSON.stringify(values),
+        }
+      )
+      const data = await res.json()
+      if (data.error) throw data.error
+      router.push(`/submissions/${data.id}`)
+    } catch (e) {
+      setStatus(e.toString())
+    }
   }
 
   return (

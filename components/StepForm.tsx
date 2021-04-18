@@ -5,6 +5,7 @@ import { generateFlexibleSchema } from "../lib/validators"
 import FlexibleField from "./FlexibleFields"
 import { Person } from "../lib/socialCareApi.types"
 import Link from "next/link"
+import Banner from "./Banner"
 
 type InitialValue = string | string[]
 
@@ -12,7 +13,7 @@ interface Props {
   fields: Field[]
   person: Person
   initialValues?: InitialValue[]
-  onSubmit: (values) => void
+  onSubmit: (values, any) => void
 }
 
 const generateInitialValues = (fields, person): any => {
@@ -39,9 +40,19 @@ const StepForm = ({
       validationSchema={generateFlexibleSchema(fields)}
       onSubmit={onSubmit}
     >
-      {({ values, isSubmitting, touched, errors, status, setStatus }) => (
+      {({ values, isSubmitting, touched, errors, status }) => (
         <>
           <Form>
+            {status && (
+              <Banner
+                title="There was a problem saving your answers"
+                className="lbh-page-announcement--warning"
+              >
+                <p>Please refresh the page or try again later.</p>
+                <p className="lbh-body-xs">{status}</p>
+              </Banner>
+            )}
+
             {fields.map(field => (
               <FlexibleField
                 key={field.id}

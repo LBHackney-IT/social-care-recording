@@ -16,17 +16,22 @@ import { getSession } from "../../../../lib/auth"
 const Step = ({ params, stepAnswers, person, step }) => {
   const router = useRouter()
 
-  const handleSubmit = async (values): Promise<void> => {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions/${params.id}/steps/${params.stepId}`,
-      {
-        method: "PATCH",
-        body: JSON.stringify(values),
-      }
-    )
-    const data = await res.json()
-    // TODO: how can we redirect back to the task list if the user clicks the button and the section is complete, but not on autosave?
-    // router.push(`/submissions/${params.id}`)
+  const handleSubmit = async (values, { setStatus }): Promise<void> => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions/${params.id}/steps/${params.stepId}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify(values),
+        }
+      )
+      const data = await res.json()
+      if (data.error) throw data.error
+      // TODO: how can we redirect back to the task list if the user clicks the button and the section is complete, but not on autosave?
+      // router.push(`/submissions/${params.id}`)
+    } catch (e) {
+      setStatus(e.toString())
+    }
   }
 
   const prefillable = useCallback(

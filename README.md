@@ -97,12 +97,12 @@ This tool takes the standard case recording workflow and makes it more flexible,
 - ~~APIs should validate against the same schemas as the UI~~ (DONE)
 - ~~Refactor APIs to be submission-centric~~ (DONE)
 - ~~Improve autosave so it doesn't submit after initial form mount~~ (DONE)
+- ~~Refactor forms to use formik status messages~~ (DONE)
 
-1. Refactor forms to use formik status messages
-2. **Submit** to the case viewer api
-3. Hitting the "continue" button on a step should return to the task list page if the form submitted successfully
-4. If form has one step, skip the task list
-5. Write a script to convert a CSV into form config
+1. **Submit** to the case viewer api
+2. Hitting the "continue" button on a step should return to the task list page if the form submitted successfully
+3. If form has one step, skip the task list
+4. Write a script to convert a CSV into form config
 
 ### Next
 

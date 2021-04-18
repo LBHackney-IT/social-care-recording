@@ -5,10 +5,11 @@ import { Form as FormType } from "../config/forms.types"
 import TextField from "./TextField"
 import SelectField from "./SelectField"
 import { formsToChoices } from "../lib/helpers"
+import Banner from "./Banner"
 
 interface Props {
   forms: FormType[]
-  onSubmit: (values) => void
+  onSubmit: (values, any) => void
 }
 
 const StartForm = ({ forms, onSubmit }: Props): React.ReactElement => {
@@ -22,11 +23,21 @@ const StartForm = ({ forms, onSubmit }: Props): React.ReactElement => {
         socialCareId: "",
         formId: choices[0].value,
       }}
-      validationSchema={startSchema}
+      // validationSchema={startSchema}
       onSubmit={onSubmit}
     >
-      {({ isSubmitting, touched, errors }) => (
+      {({ isSubmitting, touched, errors, status }) => (
         <Form>
+          {status && (
+            <Banner
+              title="There was a problem submitting the form"
+              className="lbh-page-announcement--warning"
+            >
+              <p>Please refresh the page or try again later.</p>
+              <p className="lbh-body-xs">{status}</p>
+            </Banner>
+          )}
+
           <TextField
             name="socialCareId"
             label="Social care ID"
