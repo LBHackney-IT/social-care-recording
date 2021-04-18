@@ -9,6 +9,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     where: {
       submittedAt: null,
     },
+    orderBy: {
+      updatedAt: "desc",
+    },
   })
 
   res.json({
