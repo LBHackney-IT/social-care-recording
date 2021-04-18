@@ -2,6 +2,7 @@ import TextField from "./TextField"
 import RadioField from "./RadioField"
 import CheckboxField from "./CheckboxField"
 import SelectField from "./SelectField"
+import RepeaterField from "./RepeaterField"
 
 const FlexibleField = ({
   values,
@@ -28,6 +29,17 @@ const FlexibleField = ({
   if (field.type === "text")
     return (
       <TextField
+        name={field.id}
+        label={field.question}
+        touched={touched}
+        errors={errors}
+        {...field}
+      />
+    )
+
+  if (field.type === "repeater")
+    return (
+      <RepeaterField
         name={field.id}
         label={field.question}
         touched={touched}

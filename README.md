@@ -99,18 +99,18 @@ This tool takes the standard case recording workflow and makes it more flexible,
 - ~~Improve autosave so it doesn't submit after initial form mount~~ (DONE)
 - ~~Refactor forms to use formik status messages~~ (DONE)
 - ~~Refactor APIs to use a common helper to handle 401s and 500s~~ (DONE)
+- ~~ Add repeater field~~ (DONE)
 
 1. **Submit** to the case viewer api
 2. Hitting the "continue" button on a step should return to the task list page if the form submitted successfully
-3. If form has one step, skip the task list
+3. If form has one step, skip the task list (or implement specific extra pages for case notes?)
 4. Write a script to convert a CSV into form config
 
 ### Next
 
 - Write cypress tests
 - Staging site
-- Add more flexible field types
-  - Text repeater?
+- Add more field types
   - Date?
   - File upload?
 

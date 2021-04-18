@@ -12,7 +12,7 @@ export const generateFlexibleSchema = (fields): any => {
   const shape = {}
 
   fields.map(field => {
-    if (field.type === "checkboxes") {
+    if (field.type === "checkboxes" || field.type === "repeater") {
       shape[field.id] = Yup.array().of(Yup.string())
     } else {
       shape[field.id] = Yup.string()
@@ -24,6 +24,11 @@ export const generateFlexibleSchema = (fields): any => {
         shape[field.id] = shape[field.id].min(
           1,
           field.error || "Please choose at least one option"
+        )
+      } else if (field.type === "repeater") {
+        shape[field.id] = shape[field.id].min(
+          1,
+          field.error || "Please add at least one item"
         )
       } else {
         shape[field.id] = shape[field.id].required(

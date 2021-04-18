@@ -6,11 +6,13 @@ export interface Choice {
 export interface Field {
   id: string
   question: string
-  type: "text" | "textarea" | "radios" | "checkboxes" | "select"
+  type: "text" | "textarea" | "radios" | "checkboxes" | "select" | "repeater"
+  /** Required value is always ignored on fields with a condition */
   required: boolean
   hint?: string
   error?: string
   choices?: Choice[]
+  /** Checkbox and repeater fields don't support prefilling */
   prefill?: string
   classNames?: string
   condition?: {

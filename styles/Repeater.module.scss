@@ -1,0 +1,23 @@
+@import "lbh-frontend/lbh/base";
+
+.row {
+  button {
+    margin-top: 10px;
+    margin-left: auto;
+    display: block;
+  }
+  @include govuk-media-query($from: tablet) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    button {
+      margin-top: 0;
+      margin-left: 20px;
+    }
+  }
+}
+
+.addAnother {
+  margin-bottom: 0.375rem;
+}
