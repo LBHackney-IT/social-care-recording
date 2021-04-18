@@ -12,7 +12,6 @@ export const apiHandler = handler => async (
 ) => {
   try {
     const session = await getSession({ req })
-    console.log(session)
     if (session) {
       req.session = session
       return await handler(req, res)
