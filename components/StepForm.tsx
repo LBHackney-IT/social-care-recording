@@ -18,10 +18,10 @@ interface Props {
 const generateInitialValues = (fields, person): any => {
   const initialValues = {}
   fields.map(field => {
-    if (person[field.prefill]) {
-      initialValues[field.id] = person[field.prefill]
+    if (field.type === "checkboxes") {
+      initialValues[field.id] = []
     } else {
-      initialValues[field.id] = field.type === "checkboxes" ? [] : ""
+      initialValues[field.id] = person[field.prefill] || ""
     }
   })
   return initialValues
