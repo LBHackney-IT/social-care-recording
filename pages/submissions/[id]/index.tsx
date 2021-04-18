@@ -58,14 +58,21 @@ export const getServerSideProps: GetServerSideProps = async ({
   const data = await res1.json()
 
   // redirect if submission doesn't exist
-  if (!data.id) {
+  if (!data.id)
     return {
       props: {},
       redirect: {
         destination: "/404",
       },
     }
-  }
+
+  if (data.form.steps.length === 1)
+    return {
+      props: {},
+      redirect: {
+        destination: `/submissions/${params.id}/steps/${data.form.steps[0].id}`,
+      },
+    }
 
   return {
     props: {

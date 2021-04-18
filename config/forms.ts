@@ -130,8 +130,32 @@ const formData: Form[] = [
   },
   {
     id: "example",
-    name: "Example process",
-    steps: [],
+    name: "Case note",
+    steps: [
+      {
+        id: "bar",
+        name: "Bar",
+        theme: "More stuff",
+        fields: [
+          {
+            id: "example question",
+            question: "What's your favourite colour?",
+            type: "select",
+            required: false,
+            choices: [
+              {
+                value: "red",
+                label: "Red",
+              },
+              {
+                value: "green",
+                label: "Green",
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
 ]
 
