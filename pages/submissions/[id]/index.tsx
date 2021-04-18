@@ -5,22 +5,35 @@ import TaskList from "../../../components/TaskList"
 import Link from "next/link"
 import TaskListHeader from "../../../components/TaskListHeader"
 import { getSession } from "../../../lib/auth"
+import SingleStep from "../../../components/SingleStep"
+import s from "../../../styles/Sidebar.module.scss"
 
-const TaskListPage = ({ completedSteps, person, form }) => (
+const TaskListPage = ({ completedSteps, answers, person, form, params }) => (
   <>
     <Head>
       <title>{form?.name} | Social care | Hackney Council</title>
     </Head>
     <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">{form?.name}</h1>
-    <div className="govuk-grid-row">
-      <div className="govuk-grid-column-two-thirds">
-        <TaskListHeader steps={form?.steps} completedSteps={completedSteps} />
-        <TaskList form={form} completedSteps={completedSteps} />
+    {form.steps ? (
+      <div className={`govuk-grid-row ${s.outer}`}>
+        <div className="govuk-grid-column-two-thirds">
+          <TaskListHeader steps={form?.steps} completedSteps={completedSteps} />
+          <TaskList form={form} completedSteps={completedSteps} />
+        </div>
+        <div className="govuk-grid-column-one-third">
+          <div className={s.sticky}>
+            <PersonWidget person={person} />
+          </div>
+        </div>
       </div>
-      <div className="govuk-grid-column-one-third">
-        <PersonWidget person={person} />
-      </div>
-    </div>
+    ) : (
+      <SingleStep
+        stepAnswers={answers.id}
+        fields={form.fields}
+        person={person}
+        params={params}
+      />
+    )}
   </>
 )
 
@@ -54,7 +67,6 @@ export const getServerSideProps: GetServerSideProps = async ({
       },
     }
   )
-
   const data = await res1.json()
 
   // redirect if submission doesn't exist
@@ -66,17 +78,10 @@ export const getServerSideProps: GetServerSideProps = async ({
       },
     }
 
-  if (data.form.steps.length === 1)
-    return {
-      props: {},
-      redirect: {
-        destination: `/submissions/${params.id}/steps/${data.form.steps[0].id}`,
-      },
-    }
-
   return {
     props: {
       ...data,
+      params,
     },
   }
 }

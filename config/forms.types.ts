@@ -29,5 +29,8 @@ export interface Step {
 export interface Form {
   id: string
   name: string
-  steps: Step[]
+  /** For long task list-style forms */
+  steps?: Step[]
+  /** For short forms */
+  fields?: Field[]
 }

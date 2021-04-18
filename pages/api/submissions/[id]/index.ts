@@ -7,29 +7,32 @@ import { apiHandler } from "../../../../lib/apiHelpers"
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   let { id } = req.query
 
-  //   1. grab submission
-  const submission = await prisma.submission.findUnique({
-    where: {
-      id: id.toString(),
-    },
-  })
-
-  if (!submission)
-    res.status(404).json({
-      error: "Submission not found",
+  if (req.method === "PATCH") {
+  } else {
+    //   1. grab submission
+    const submission = await prisma.submission.findUnique({
+      where: {
+        id: id.toString(),
+      },
     })
 
-  // 2. grab person
-  const person = await getPersonById(submission.socialCareId.toString())
+    if (!submission)
+      res.status(404).json({
+        error: "Submission not found",
+      })
 
-  // 3. grab form
-  const form = forms.find(form => form.id === submission.formId)
+    // 2. grab person
+    const person = await getPersonById(submission.socialCareId.toString())
 
-  res.json({
-    ...submission,
-    person,
-    form,
-  })
+    // 3. grab form
+    const form = forms.find(form => form.id === submission.formId)
+
+    res.json({
+      ...submission,
+      person,
+      form,
+    })
+  }
 }
 
 export default apiHandler(handler)

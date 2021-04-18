@@ -131,29 +131,28 @@ const formData: Form[] = [
   {
     id: "example",
     name: "Case note",
-    steps: [
+    fields: [
       {
-        id: "bar",
-        name: "Bar",
-        theme: "More stuff",
-        fields: [
+        id: "example question",
+        question: "What's your favourite colour?",
+        type: "select",
+        required: false,
+        choices: [
           {
-            id: "example question",
-            question: "What's your favourite colour?",
-            type: "select",
-            required: false,
-            choices: [
-              {
-                value: "red",
-                label: "Red",
-              },
-              {
-                value: "green",
-                label: "Green",
-              },
-            ],
+            value: "red",
+            label: "Red",
+          },
+          {
+            value: "green",
+            label: "Green",
           },
         ],
+      },
+      {
+        id: "what-happened",
+        question: "What happened?",
+        type: "textarea",
+        required: true,
       },
     ],
   },
