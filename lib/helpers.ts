@@ -37,6 +37,7 @@ export const pushUnique = (array: string[], newElement: string): string[] => [
   ...new Set(array).add(newElement),
 ]
 
+/** Throttle calling a function to at most once during the given delay */
 export const debounce = (func: () => any, delay: number): (() => any) => {
   let debounceTimer
   return function () {
@@ -45,4 +46,17 @@ export const debounce = (func: () => any, delay: number): (() => any) => {
     clearTimeout(debounceTimer)
     debounceTimer = setTimeout(() => func.apply(context, args), delay)
   }
+}
+
+/** Generate flexible initial values for a flexible schema */
+export const generateInitialValues = (fields, person): any => {
+  const initialValues = {}
+  fields.map(field => {
+    if (field.type === "checkboxes" || field.type === "repeater") {
+      initialValues[field.id] = []
+    } else {
+      initialValues[field.id] = (person && person[field.prefill]) || ""
+    }
+  })
+  return initialValues
 }

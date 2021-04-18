@@ -6,6 +6,7 @@ import FlexibleField from "./FlexibleFields"
 import { Person } from "../lib/socialCareApi.types"
 import Link from "next/link"
 import Banner from "./Banner"
+import { generateInitialValues } from "../lib/helpers"
 
 type InitialValue = string | string[]
 
@@ -14,18 +15,6 @@ interface Props {
   person: Person
   initialValues?: InitialValue[]
   onSubmit: (values, any) => void
-}
-
-const generateInitialValues = (fields, person): any => {
-  const initialValues = {}
-  fields.map(field => {
-    if (field.type === "checkboxes" || field.type === "repeater") {
-      initialValues[field.id] = []
-    } else {
-      initialValues[field.id] = (person && person[field.prefill]) || ""
-    }
-  })
-  return initialValues
 }
 
 const StepForm = ({

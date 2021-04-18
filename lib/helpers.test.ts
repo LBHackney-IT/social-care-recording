@@ -1,4 +1,10 @@
-import { groupByTheme, formsToChoices, pushUnique, debounce } from "./helpers"
+import {
+  groupByTheme,
+  formsToChoices,
+  pushUnique,
+  debounce,
+  generateInitialValues,
+} from "./helpers"
 
 const form = {
   id: "1",
@@ -84,5 +90,54 @@ describe("debounce", () => {
     jest.runAllTimers()
 
     expect(func).toBeCalledTimes(1)
+  })
+})
+
+describe("generateInitialValues", () => {
+  it("correctly handles different field types", () => {
+    const result = generateInitialValues(
+      [
+        {
+          id: "one",
+          type: "text",
+        },
+        {
+          id: "two",
+          type: "checkboxes",
+        },
+        {
+          id: "three",
+          type: "repeater",
+        },
+      ],
+      {}
+    )
+
+    expect(result).toMatchObject({
+      one: "",
+      two: [],
+      three: [],
+    })
+  })
+
+  it("prefills if there's data available", () => {
+    const result = generateInitialValues(
+      [
+        {
+          id: "foo",
+          prefill: "one",
+        },
+        {
+          id: "bar",
+          prefill: "two",
+        },
+      ],
+      { one: "example value" }
+    )
+
+    expect(result).toMatchObject({
+      foo: "example value",
+      bar: "",
+    })
   })
 })
