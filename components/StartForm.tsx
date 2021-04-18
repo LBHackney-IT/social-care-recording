@@ -6,6 +6,7 @@ import TextField from "./TextField"
 import SelectField from "./SelectField"
 import { formsToChoices } from "../lib/helpers"
 import Banner from "./Banner"
+import Link from "next/link"
 
 interface Props {
   forms: FormType[]
@@ -26,7 +27,7 @@ const StartForm = ({ forms, onSubmit }: Props): React.ReactElement => {
       validationSchema={startSchema}
       onSubmit={onSubmit}
     >
-      {({ isSubmitting, touched, errors, status }) => (
+      {({ values, isSubmitting, touched, errors, status }) => (
         <Form>
           {status && (
             <Banner
@@ -58,6 +59,18 @@ const StartForm = ({ forms, onSubmit }: Props): React.ReactElement => {
           <button className="govuk-button lbh-button" disabled={isSubmitting}>
             Start
           </button>
+
+          {values.socialCareId && (
+            <p className="lbh-body">
+              Or,{" "}
+              <Link href={`/case-notes/${values.socialCareId}`}>
+                <a className="lbh-link lbh-link--no-visited-state">
+                  add a case note
+                </a>
+              </Link>
+              .
+            </p>
+          )}
         </Form>
       )}
     </Formik>
