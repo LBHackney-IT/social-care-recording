@@ -4,11 +4,13 @@ import { Step } from "../config/forms.types"
 interface Props {
   steps: Step[]
   completedSteps: String[]
+  onFinish: () => void
 }
 
 const TaskListHeader = ({
   steps,
   completedSteps,
+  onFinish,
 }: Props): React.ReactElement => {
   if (completedSteps?.length < steps.length)
     return (
@@ -28,7 +30,9 @@ const TaskListHeader = ({
         You can now submit for review.
       </p>
 
-      <button className="govuk-button lbh-button">Finish and send</button>
+      <button onClick={onFinish} className="govuk-button lbh-button">
+        Finish and send
+      </button>
     </>
   )
 }

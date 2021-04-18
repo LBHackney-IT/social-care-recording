@@ -6,23 +6,45 @@ import Link from "next/link"
 import TaskListHeader from "../../../components/TaskListHeader"
 import { getSession } from "../../../lib/auth"
 
-const TaskListPage = ({ completedSteps, person, form }) => (
-  <>
-    <Head>
-      <title>{form?.name} | Social care | Hackney Council</title>
-    </Head>
-    <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">{form?.name}</h1>
-    <div className="govuk-grid-row">
-      <div className="govuk-grid-column-two-thirds">
-        <TaskListHeader steps={form?.steps} completedSteps={completedSteps} />
-        <TaskList form={form} completedSteps={completedSteps} />
+const TaskListPage = ({ params, completedSteps, person, form }) => {
+  const handleFinish = async (): Promise<void> => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions/${params.id}`,
+        {
+          method: "POST",
+        }
+      )
+      const data = await res.json()
+      if (data.error) throw data.error
+      // TODO: what happens after this?
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  return (
+    <>
+      <Head>
+        <title>{form?.name} | Social care | Hackney Council</title>
+      </Head>
+      <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">{form?.name}</h1>
+      <div className="govuk-grid-row">
+        <div className="govuk-grid-column-two-thirds">
+          <TaskListHeader
+            steps={form?.steps}
+            completedSteps={completedSteps}
+            onFinish={handleFinish}
+          />
+          <TaskList form={form} completedSteps={completedSteps} />
+        </div>
+        <div className="govuk-grid-column-one-third">
+          <PersonWidget person={person} />
+        </div>
       </div>
-      <div className="govuk-grid-column-one-third">
-        <PersonWidget person={person} />
-      </div>
-    </div>
-  </>
-)
+    </>
+  )
+}
 
 TaskListPage.Postheader = ({ params }): React.ReactElement => (
   <div className="lbh-container">
@@ -76,6 +98,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   return {
     props: {
+      params,
       ...data,
     },
   }
