@@ -36,6 +36,8 @@ export const AutosaveTrigger = ({
 
   const { submitForm, validateForm, values, isSubmitting } = useFormikContext()
 
+  const [runCount, setRunCount] = useState(0)
+
   // keep context in sync with submit status
   useEffect(() => {
     setSaving(!!isSubmitting)
@@ -51,12 +53,16 @@ export const AutosaveTrigger = ({
   useWarnUnsavedChanges(!saved)
 
   useEffect(() => {
-    setSaved(false)
-    validateForm().then(errors => {
-      if (Object.keys(errors).length === 0) {
-        debouncedSubmit()
-      }
-    })
+    // skip first autosave because it's just the form mounting
+    if (runCount > 0) {
+      setSaved(false)
+      validateForm().then(errors => {
+        if (Object.keys(errors).length === 0) {
+          debouncedSubmit()
+        }
+      })
+    }
+    setRunCount(runCount + 1)
   }, [debouncedSubmit, values])
 
   return null
