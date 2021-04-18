@@ -88,14 +88,6 @@ export const getServerSideProps: GetServerSideProps = async ({
       },
     }
 
-  if (data.form.steps.length === 1)
-    return {
-      props: {},
-      redirect: {
-        destination: `/submissions/${params.id}/steps/${data.form.steps[0].id}`,
-      },
-    }
-
   return {
     props: {
       params,
@@ -103,7 +95,5 @@ export const getServerSideProps: GetServerSideProps = async ({
     },
   }
 }
-
-TaskListPage.goBackPath = "/"
 
 export default TaskListPage
