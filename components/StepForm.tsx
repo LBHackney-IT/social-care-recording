@@ -22,7 +22,7 @@ const generateInitialValues = (fields, person): any => {
     if (field.type === "checkboxes") {
       initialValues[field.id] = []
     } else {
-      initialValues[field.id] = person[field.prefill] || ""
+      initialValues[field.id] = (person && person[field.prefill]) || ""
     }
   })
   return initialValues

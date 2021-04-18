@@ -80,7 +80,7 @@ const Step = ({ params, stepAnswers, person, step }) => {
           </div>
           <div className="govuk-grid-column-one-third">
             <div className={s.sticky}>
-              {person && <PersonWidget person={person} />}
+              <PersonWidget person={person} />
               <AutosaveIndicator />
             </div>
           </div>

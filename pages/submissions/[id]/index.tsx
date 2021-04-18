@@ -18,7 +18,7 @@ const TaskListPage = ({ completedSteps, person, form }) => (
         <TaskList form={form} completedSteps={completedSteps} />
       </div>
       <div className="govuk-grid-column-one-third">
-        {person && <PersonWidget person={person} />}
+        <PersonWidget person={person} />
       </div>
     </div>
   </>
