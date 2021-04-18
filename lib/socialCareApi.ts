@@ -1,5 +1,6 @@
 import { Person } from "./socialCareApi.types"
 
+/** Get core data about a person by their social care ID */
 export const getPersonById = async (id: string): Promise<Person | null> => {
   try {
     const res = await fetch(
