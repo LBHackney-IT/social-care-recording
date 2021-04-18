@@ -37,3 +37,8 @@ html {
     margin-bottom: 0;
   }
 }
+
+// fix spacing of grid rows next to each other
+.govuk-grid-row + .govuk-grid-row {
+  margin-top: 0;
+}
