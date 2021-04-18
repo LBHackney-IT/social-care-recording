@@ -29,7 +29,7 @@ const Step = ({ params, name, fields, person, submission }) => {
     // router.push(`/submissions/${params.id}`)
   }
 
-  const prefilling = useCallback(
+  const prefillable = useCallback(
     fields.find(field => field.prefill),
     [fields]
   )
@@ -40,7 +40,7 @@ const Step = ({ params, name, fields, person, submission }) => {
         <title>{name} | Social care | Hackney Council</title>
       </Head>
 
-      {prefilling && (
+      {!submission.answers && prefillable && (
         <Banner title="Some answers on this page have been prefilled">
           You can change them if you need.
         </Banner>
