@@ -3,7 +3,7 @@ import s from "../styles/PersonWidget.module.scss"
 import { prettyDate } from "../lib/formatters"
 
 interface Props {
-  person: Person
+  person: Person | false
 }
 
 const PersonWidget = ({ person }: Props): React.ReactElement => {
