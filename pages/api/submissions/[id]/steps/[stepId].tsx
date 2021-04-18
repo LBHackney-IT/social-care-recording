@@ -24,6 +24,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         .find(form => form.id === submission.formId)
         .steps.find(step => step.id === stepId)
 
+      if (!step)
+        res.status(404).json({
+          error: "Step not found",
+        })
+
       if (req.method === "PATCH") {
         let values = JSON.parse(req.body)
 
@@ -54,12 +59,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const person = await getPersonById(submission.socialCareId.toString())
 
         res.json({
-          ...step,
+          ...submission,
+          // include the answers for this step
+          stepAnswers: submission.answers[stepId.toString()],
+          step,
           person,
-          submission: {
-            ...submission,
-            answers: submission.answers[stepId.toString()],
-          },
         })
       }
     } else {

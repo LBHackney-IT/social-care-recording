@@ -13,7 +13,7 @@ import s from "../../../../styles/Sidebar.module.scss"
 import Banner from "../../../../components/Banner"
 import { getSession } from "../../../../lib/auth"
 
-const Step = ({ params, name, fields, person, submission }) => {
+const Step = ({ params, stepAnswers, person, step }) => {
   const router = useRouter()
 
   const handleSubmit = async (values): Promise<void> => {
@@ -30,17 +30,17 @@ const Step = ({ params, name, fields, person, submission }) => {
   }
 
   const prefillable = useCallback(
-    fields.find(field => field.prefill),
-    [fields]
+    step.fields.find(field => field.prefill),
+    [step.fields]
   )
 
   return (
     <>
       <Head>
-        <title>{name} | Social care | Hackney Council</title>
+        <title>{step.name} | Social care | Hackney Council</title>
       </Head>
 
-      {!submission.answers && prefillable && (
+      {!stepAnswers && prefillable && (
         <Banner title="Some answers on this page have been prefilled">
           You can change them if you need.
         </Banner>
@@ -48,18 +48,20 @@ const Step = ({ params, name, fields, person, submission }) => {
 
       <div className="govuk-grid-row">
         <div className="govuk-grid-column-two-thirds">
-          <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">{name}</h1>
+          <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">
+            {step.name}
+          </h1>
         </div>
       </div>
 
       <AutosaveProvider>
         <div className={`govuk-grid-row ${s.outer}`}>
           <div className="govuk-grid-column-two-thirds">
-            {fields && (
+            {step.fields && (
               <StepForm
                 person={person}
-                initialValues={submission.answers}
-                fields={fields}
+                initialValues={stepAnswers}
+                fields={step.fields}
                 onSubmit={handleSubmit}
               />
             )}
@@ -116,7 +118,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const data = await res1.json()
 
   // redirect if step doesn't exist
-  if (!data.id) {
+  if (!data.step) {
     return {
       props: {},
       redirect: {

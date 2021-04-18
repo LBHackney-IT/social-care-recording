@@ -17,6 +17,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         },
       })
 
+      if (!submission)
+        res.status(404).json({
+          error: "Submission not found",
+        })
+
       // 2. grab person
       const person = await getPersonById(submission.socialCareId.toString())
 
