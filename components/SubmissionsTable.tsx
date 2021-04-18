@@ -18,6 +18,9 @@ const SubmissionsTable = ({ unfinishedSubmissions }: Props) => {
             Person
           </th>
           <th scope="col" className="govuk-table__header">
+            Form
+          </th>
+          <th scope="col" className="govuk-table__header">
             Started
           </th>
         </tr>
@@ -29,6 +32,9 @@ const SubmissionsTable = ({ unfinishedSubmissions }: Props) => {
               <Link href={`/submissions/${submission.id}`}>
                 <a className="lbh-link">{submission.socialCareId}</a>
               </Link>
+            </td>
+            <td className="govuk-table__cell lbh-body-s">
+              {submission.formId}
             </td>
             <td className="govuk-table__cell lbh-body-s">
               {prettyDate((submission.createdAt as unknown) as string)} by{" "}
