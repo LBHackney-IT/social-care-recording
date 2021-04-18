@@ -28,7 +28,7 @@ export const addRecordToCase = async (
   person: Person,
   worker: string,
   formName: string
-): Promise<Person | null> => {
+) => {
   try {
     // TODO: test aaaaaaaall of this
     const res = await fetch(`${process.env.SOCIAL_CARE_API_ENDPOINT}/cases`, {
