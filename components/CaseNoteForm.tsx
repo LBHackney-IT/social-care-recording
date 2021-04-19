@@ -5,6 +5,7 @@ import { Form as FormType } from "../config/forms.types"
 import TextField from "./TextField"
 import RadioField from "./RadioField"
 import RepeaterField from "./RepeaterField"
+import FileUploadField from "./FileUploadField"
 import Link from "next/link"
 
 interface Props {
@@ -19,11 +20,12 @@ const CaseNoteForm = ({ onSubmit }: Props): React.ReactElement => {
         subtype: "",
         whatHappened: "",
         actions: [],
+        files: null,
       }}
       validationSchema={caseNoteSchema}
       onSubmit={onSubmit}
     >
-      {({ values, isSubmitting, touched, errors }) => (
+      {({ values, isSubmitting, touched, errors, setFieldValue }) => (
         <Form>
           <RadioField
             name="type"
@@ -70,6 +72,14 @@ const CaseNoteForm = ({ onSubmit }: Props): React.ReactElement => {
           )}
 
           {values.type === "correspondance" && (
+            <div className="govuk-inset-text lbh-inset-text">
+              You don't need to copy and paste emails. Forward your threads to{" "}
+              <strong>exampleemail@hackney.gov.uk</strong> to automatically add
+              them to a person's record.
+            </div>
+          )}
+
+          {values.type === "correspondance" && (
             <RadioField
               name="subtype"
               label="What kind of correspondance?"
@@ -100,9 +110,19 @@ const CaseNoteForm = ({ onSubmit }: Props): React.ReactElement => {
           <RepeaterField
             label="Actions"
             name="actions"
+            hint="eg. 'Dave to contact GP'"
             touched={touched}
             errors={errors}
             itemName="action"
+          />
+
+          <FileUploadField
+            label="Add files or photos"
+            name="files"
+            touched={touched}
+            errors={errors}
+            setFieldValue={setFieldValue}
+            multiple
           />
 
           <button className="govuk-button lbh-button" disabled={isSubmitting}>

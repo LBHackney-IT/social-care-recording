@@ -42,3 +42,8 @@ html {
 .govuk-grid-row + .govuk-grid-row {
   margin-top: 0;
 }
+
+// fix file upload spaciong
+.lbh-file-upload {
+  margin-top: 0;
+}

@@ -13,6 +13,7 @@ export const caseNoteSchema = Yup.object().shape({
   subtype: Yup.string(),
   whatHappened: Yup.string().required("Please describe what happened"),
   actions: Yup.array().of(Yup.string()),
+  files: Yup.array().of(Yup.mixed()),
 })
 
 export const generateFlexibleSchema = (fields): any => {
