@@ -9,6 +9,8 @@ export const startSchema = Yup.object().shape({
 })
 
 export const caseNoteSchema = Yup.object().shape({
+  type: Yup.string().required("Please give a type"),
+  subtype: Yup.string(),
   whatHappened: Yup.string().required("Please describe what happened"),
   actions: Yup.array().of(Yup.string()),
 })

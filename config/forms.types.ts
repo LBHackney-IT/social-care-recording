@@ -14,7 +14,7 @@ export interface Field {
   choices?: Choice[]
   /** Checkbox and repeater fields don't support prefilling */
   prefill?: string
-  classNames?: string
+  className?: string
   condition?: {
     id: string
     value: string | boolean

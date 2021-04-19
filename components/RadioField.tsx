@@ -50,7 +50,7 @@ const Field = ({
       )}
 
       <div
-        className={`govuk-radios govuk-radios--inline lbh-radios govuk-!-margin-top-3 ${className}`}
+        className={`govuk-radios lbh-radios govuk-!-margin-top-3 ${className}`}
       >
         {choices.map(choice => (
           <div className="govuk-radios__item" key={choice.value}>

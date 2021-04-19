@@ -44,6 +44,7 @@ const formData: Form[] = [
             question: "Are you taking any prescribed medications?",
             hint: "For example, XYZ",
             type: "radios",
+            className: "govuk-radios--inline",
             required: true,
             choices: [
               {
@@ -70,15 +71,23 @@ const formData: Form[] = [
           {
             id: "support-taking-or-using-medicatons",
             question: "Do you need support taking or using medication?",
-            type: "repeater",
+            type: "text",
             required: true,
             prefill: "firstName",
+          },
+          {
+            id: "repeater-example",
+            question: "Example repeater question",
+            type: "repeater",
+            hint: "Example hint",
+            required: true,
           },
           {
             id: "pain-or-distress",
             question:
               "Does your physical condition or any medication that you are taking cause you pain or distress?",
             type: "radios",
+            className: "govuk-radios--inline",
             required: true,
             choices: [
               {
@@ -96,6 +105,7 @@ const formData: Form[] = [
             question:
               "Are you getting adequate relief from pain or other distressing physical symptoms?",
             type: "radios",
+            className: "govuk-radios--inline",
             required: true,
             choices: [
               {
@@ -112,6 +122,7 @@ const formData: Form[] = [
             id: "difficulty-breathing",
             question: "Do you have difficulty breathing?",
             type: "radios",
+            className: "govuk-radios--inline",
             required: true,
             choices: [
               {
