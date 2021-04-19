@@ -8,6 +8,11 @@ export const startSchema = Yup.object().shape({
   formId: Yup.string().required("Please choose a form"),
 })
 
+export const caseNoteSchema = Yup.object().shape({
+  whatHappened: Yup.string().required("Please describe what happened"),
+  actions: Yup.array().of(Yup.string()),
+})
+
 export const generateFlexibleSchema = (fields): any => {
   const shape = {}
 

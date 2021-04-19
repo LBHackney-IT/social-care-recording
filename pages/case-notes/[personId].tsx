@@ -3,6 +3,7 @@ import Head from "next/head"
 import PersonWidget from "../../components/PersonWidget"
 import Link from "next/link"
 import { getSession } from "../../lib/auth"
+import CaseNoteForm from "../../components/CaseNoteForm"
 
 const NewCaseNotePage = ({ params, person }) => {
   return (
@@ -12,7 +13,9 @@ const NewCaseNotePage = ({ params, person }) => {
       </Head>
       <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">New case note</h1>
       <div className="govuk-grid-row">
-        <div className="govuk-grid-column-two-thirds">Case note form here</div>
+        <div className="govuk-grid-column-two-thirds">
+          <CaseNoteForm onSubmit={null} />
+        </div>
         <div className="govuk-grid-column-one-third">
           <PersonWidget person={person} />
         </div>

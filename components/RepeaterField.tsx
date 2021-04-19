@@ -10,6 +10,7 @@ interface FieldProps {
   hint?: string
   className?: string
   required?: boolean
+  itemName?: string
 }
 
 const RepeaterField = ({
@@ -20,6 +21,7 @@ const RepeaterField = ({
   hint,
   className,
   required,
+  itemName,
   ...props
 }: FieldProps): React.ReactElement => {
   const { values } = useFormikContext()
@@ -85,7 +87,9 @@ const RepeaterField = ({
                   <path d="M6.94 0L5 0V12H6.94V0Z" />
                   <path d="M12 5H0V7H12V5Z" />
                 </svg>
-                {values[name].length > 0 ? "Add another item" : "Add an item"}
+                {values[name].length > 0
+                  ? `Add another ${itemName || "item"}`
+                  : `Add an ${itemName || "item"}`}
               </button>
             </>
           )}
