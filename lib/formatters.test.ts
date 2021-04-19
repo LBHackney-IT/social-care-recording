@@ -21,7 +21,7 @@ describe("prettyDateFromMillis", () => {
     expect(result).toEqual("9 Sep 2001")
 
     const result2 = prettyDateFromMillis(2000000000000)
-    expect(result2).toEqual("18 DMay 2033")
+    expect(result2).toEqual("18 May 2033")
   })
 })
 
