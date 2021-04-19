@@ -1,4 +1,4 @@
-import { prettyDate } from "./formatters"
+import { prettyDate, prettyDateFromMillis, prettyFileSize } from "./formatters"
 
 describe("prettyDate", () => {
   it("correctly formats ISO date strings", () => {
@@ -12,5 +12,23 @@ describe("prettyDate", () => {
   it("prints nothing if fed an unparsable string", () => {
     const result = prettyDate("blah")
     expect(result).toBe("")
+  })
+})
+
+describe("prettyDateFromMillis", () => {
+  it("correctly formats millisecond dates", () => {
+    const result = prettyDateFromMillis(1000000000000)
+    expect(result).toEqual("9 Sep 2001")
+
+    const result2 = prettyDateFromMillis(2000000000000)
+    expect(result2).toEqual("18 DMay 2033")
+  })
+})
+
+describe("File size helper", () => {
+  it("returns correct strings with the right number of decimal places", () => {
+    expect(prettyFileSize(0)).toEqual("0.0 B")
+    expect(prettyFileSize(1024)).toEqual("1.0 KB")
+    expect(prettyFileSize(1073741824)).toEqual("1.0 GB")
   })
 })
