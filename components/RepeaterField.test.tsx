@@ -91,5 +91,31 @@ describe("RepeaterField", () => {
       </Formik>
     )
     expect(screen.getByText("Example error"))
+
+    render(
+      <Formik
+        onSubmit={null}
+        initialValues={{
+          foo: ["one", "two", "three"],
+        }}
+      >
+        {({ touched, errors }) => (
+          <Form>
+            <RepeaterField
+              touched={{
+                foo: true,
+              }}
+              errors={{
+                foo: ["Example error 2"],
+              }}
+              name="foo"
+              label="Label text"
+              hint="Hint text"
+            />
+          </Form>
+        )}
+      </Formik>
+    )
+    expect(screen.getByText("Example error 2"))
   })
 })

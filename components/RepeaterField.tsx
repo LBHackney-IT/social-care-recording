@@ -47,7 +47,7 @@ const RepeaterField = ({
         {touched[name] && errors[name] && (
           <p className="govuk-error-message lbh-error-message" role="alert">
             <span className="govuk-visually-hidden">Error:</span>{" "}
-            {errors[name][0] || errors[name]}
+            {Array.isArray(errors[name]) ? errors[name][0] : errors[name]}
           </p>
         )}
 
