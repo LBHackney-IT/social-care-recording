@@ -77,6 +77,7 @@ const RepeaterField = ({
               ))}
 
               <button
+                type="button"
                 onClick={() => push("")}
                 className={`govuk-button lbh-button lbh-button--add ${s.addAnother}`}
               >
