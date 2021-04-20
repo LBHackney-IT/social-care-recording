@@ -51,8 +51,6 @@ const Field = ({
         </p>
       )}
 
-      {console.log(props)}
-
       <div
         className={`govuk-radios lbh-radios govuk-!-margin-top-3 ${className}`}
       >
