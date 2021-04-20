@@ -1,4 +1,25 @@
-import { generateFlexibleSchema } from "./validators"
+import { caseNoteSchema, generateFlexibleSchema } from "./validators"
+
+describe("caseNoteSchema", () => {
+  it("validates subtype", async () => {
+    await expect(
+      caseNoteSchema.validate({
+        type: "test",
+        whatHappened: "test",
+      })
+    ).rejects.toThrowError("Please give a type")
+  })
+
+  it("doesn't validate subtype if the type is something else", () => {
+    const result = caseNoteSchema.validate({
+      type: "something-else",
+      subtype: "test",
+      whatHappened: "test",
+    })
+
+    expect(result).toBeTruthy()
+  })
+})
 
 describe("generateFlexibleSchema", () => {
   it("handles different field types", async () => {
