@@ -4,14 +4,14 @@ const PersonViewPrototype = () => (
 
     <div className="govuk-grid-row">
       <div className="govuk-grid-column-two-thirds">
-        <section className="lbh-collapsible" data-module="lbh-collapsible">
+        <section className="lbh-collapsible govuk-!-margin-top-8" data-module="lbh-collapsible">
           <button
             aria-expanded="true"
             data-behavior="lbh-collapsible-toggle"
             className="lbh-collapsible__button"
           >
             <h2 className="lbh-heading-h2 lbh-collapsible__heading">
-              Contact details
+              Personal details
             </h2>
             <svg width="17" height="10" viewBox="0 0 17 10">
               <path d="M2 1.5L8.5 7.5L15 1.5" stroke-width="3" />
@@ -47,7 +47,7 @@ const PersonViewPrototype = () => (
             </dl>
           </div>
         </section>
-        <section className="lbh-collapsible" data-module="lbh-collapsible">
+        <section className="lbh-collapsible govuk-!-margin-top-8" data-module="lbh-collapsible">
           <button
             aria-expanded="false"
             data-behavior="lbh-collapsible-toggle"
@@ -66,13 +66,13 @@ const PersonViewPrototype = () => (
             hidden
           ></div>
         </section>
-        <section className="lbh-collapsible" data-module="lbh-collapsible">
+        <section className="lbh-collapsible govuk-!-margin-top-8" data-module="lbh-collapsible">
           <button
             aria-expanded="true"
             data-behavior="lbh-collapsible-toggle"
-            className="lbh-collapsible__button"
+            className="lbh-collapsible__button "
           >
-            <h2 className="lbh-heading-h2 lbh-collapsible__heading ">
+            <h2 className="lbh-heading-h2 lbh-collapsible__heading">
               Case history (14)
             </h2>
             <svg width="17" height="10" viewBox="0 0 17 10">
@@ -83,22 +83,41 @@ const PersonViewPrototype = () => (
             className="lbh-collapsible__content"
             data-behavior="lbh-collapsible-content"
           >
-            <dl className="govuk-summary-list lbh-summary-list">
-              <button
-                className="govuk-button lbh-button__left"
+              <div class="govuk-button-group">
+                <details class="govuk-details govuk-grid-column-two-thirds" data-module="govuk-details">
+                  <summary class="govuk-details__summary">
+                    <span class="govuk-details__summary-text">
+                      Filter and sort
+                    </span>
+                  </summary>
+                  <div class="govuk-details__text">
+                    filter coming soon.
+                  </div>
+                </details>
+               <button
+                className="govuk-button lbh-button govuk-grid-column-one-third"
                 data-module="govuk-button"
               >
                 New note
               </button>
-              <div className="govuk-summary-list__row">
-                <dt className="govuk-summary-list__key">ID</dt>
-                <dd className="govuk-summary-list__value">12345</dd>
               </div>
-              <div className="govuk-summary-list__row">
-                <dt className="govuk-summary-list__key">Date of birth</dt>
-                <dd className="govuk-summary-list__value">07 Sep 1993</dd>
-              </div>
-            </dl>
+              <table class="govuk-table">
+                <thead class="govuk-table__head">
+                <th scope="col" class="govuk-table__header"> Created on
+                </th>
+                <th scope="col" class="govuk-table__header"> Type and title
+                </th>
+                <th scope="col" class="govuk-table__header"> Created by
+                </th>
+                </thead>
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">30 Oct 2020 </td>
+                  <td class="govuk-table__cell">Correspondance</td>
+                  <td class="govuk-table__cell">By Firstname Surname</td>
+                  </tr>
+                </tbody>
+              </table>
           </div>
         </section>
         <nav className="lbh-pagination">
@@ -164,13 +183,17 @@ const PersonViewPrototype = () => (
         </nav>
       </div>
       <div className="govuk-grid-column-one-third">
+      <div class="govuk-button-group">
+        <a class="govuk-link" href="#">Open all</a>
+        <a class="govuk-link" href="#">Close all</a>
+      </div>
         <section className="lbh-collapsible" data-module="lbh-collapsible">
           <button
             aria-expanded="true"
             data-behavior="lbh-collapsible-toggle"
             className="lbh-collapsible__button"
           >
-            <h2 className="lbh-heading-h2 lbh-collapsible__heading">
+            <h2 className="lbh-heading-h2 lbh-collapsible__heading ">
               Allocations
             </h2>
             <svg width="17" height="10" viewBox="0 0 17 10">
@@ -195,7 +218,7 @@ const PersonViewPrototype = () => (
             </button>
           </div>
         </section>
-        <section className="lbh-collapsible" data-module="lbh-collapsible">
+        <section className="lbh-collapsible govuk-!-margin-top-8" data-module="lbh-collapsible">
           <button
             aria-expanded="false"
             data-behavior="lbh-collapsible-toggle"
