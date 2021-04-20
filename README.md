@@ -99,7 +99,7 @@ This tool takes the standard case recording workflow and makes it more flexible,
 - ~~Improve autosave so it doesn't submit after initial form mount~~ (DONE)
 - ~~Refactor forms to use formik status messages~~ (DONE)
 - ~~Refactor APIs to use a common helper to handle 401s and 500s~~ (DONE)
-- ~~ Add repeater field~~ (DONE)
+- ~~Add repeater field~~ (DONE)
 
 1. **Submit** to the case viewer api
 2. Hitting the "continue" button on a step should return to the task list page if the form submitted successfully
