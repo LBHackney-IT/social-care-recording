@@ -13,6 +13,7 @@ interface FieldProps {
     value: string
     label: string
   }[]
+  onChange?: React.ChangeEventHandler<HTMLInputElement>
 }
 
 const Field = ({
@@ -24,6 +25,7 @@ const Field = ({
   className,
   choices,
   required,
+  onChange,
   ...props
 }: FieldProps): React.ReactElement => (
   <div
@@ -49,18 +51,32 @@ const Field = ({
         </p>
       )}
 
+      {console.log(props)}
+
       <div
         className={`govuk-radios lbh-radios govuk-!-margin-top-3 ${className}`}
       >
         {choices.map(choice => (
           <div className="govuk-radios__item" key={choice.value}>
-            <RawField
-              type="radio"
-              name={name}
-              value={choice.value}
-              id={`${name}-${choice.value}`}
-              className="govuk-radios__input"
-            />
+            {onChange ? (
+              <input
+                type="radio"
+                name={name}
+                value={choice.value}
+                id={`${name}-${choice.value}`}
+                className="govuk-radios__input"
+                onChange={onChange}
+                {...props}
+              />
+            ) : (
+              <RawField
+                type="radio"
+                name={name}
+                value={choice.value}
+                id={`${name}-${choice.value}`}
+                className="govuk-radios__input"
+              />
+            )}
             <label
               className="govuk-label govuk-radios__label"
               htmlFor={`${name}-${choice.value}`}

@@ -1,6 +1,8 @@
 import RadioField from "./RadioField"
 import { Formik, Form } from "formik"
-import { render, screen } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
+
+const mockHandler = jest.fn()
 
 const choices = [
   {
@@ -99,5 +101,22 @@ describe("RadioField", () => {
       </Formik>
     )
     expect(screen.getByText("Example error"))
+  })
+
+  it("calls a custom change handler", () => {
+    render(
+      <RadioField
+        touched={{}}
+        errors={{}}
+        name="foo"
+        label="Label text"
+        hint="Hint text"
+        choices={choices}
+        onChange={mockHandler}
+      />
+    )
+
+    fireEvent.click(screen.getByText("Foo option"))
+    expect(mockHandler).toBeCalled()
   })
 })
