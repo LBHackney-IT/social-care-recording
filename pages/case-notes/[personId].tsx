@@ -4,8 +4,16 @@ import PersonWidget from "../../components/PersonWidget"
 import Link from "next/link"
 import { getSession } from "../../lib/auth"
 import CaseNoteForm from "../../components/CaseNoteForm"
+import { useRouter } from "next/router"
 
 const NewCaseNotePage = ({ params, person }) => {
+  const router = useRouter()
+
+  // TODO: handle this for real
+  const handleSubmit = () => {
+    router.push("/PROTOTYPE")
+  }
+
   return (
     <>
       <Head>
@@ -14,7 +22,7 @@ const NewCaseNotePage = ({ params, person }) => {
       <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">New case note</h1>
       <div className="govuk-grid-row">
         <div className="govuk-grid-column-two-thirds">
-          <CaseNoteForm onSubmit={null} />
+          <CaseNoteForm onSubmit={handleSubmit} />
         </div>
         <div className="govuk-grid-column-one-third">
           <PersonWidget person={person} />
