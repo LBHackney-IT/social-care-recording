@@ -111,9 +111,8 @@ This tool takes the standard case recording workflow and makes it more flexible,
 
 - Write cypress tests
 - Staging site
-- Add more field types
-  - Date?
-  - File upload?
+- Add date field type
+- Make file upload field available in flexible schemas (add support in `generateFlexibleSchema` and figure out how to handle in autosave, etc)
 
 ### Later
 

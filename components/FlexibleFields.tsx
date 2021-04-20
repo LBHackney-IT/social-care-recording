@@ -3,6 +3,7 @@ import RadioField from "./RadioField"
 import CheckboxField from "./CheckboxField"
 import SelectField from "./SelectField"
 import RepeaterField from "./RepeaterField"
+import FileUploadField from "./FileUploadField"
 
 const FlexibleField = ({
   values,
@@ -12,6 +13,17 @@ const FlexibleField = ({
 }): React.ReactElement => {
   if (field.condition && values[field.condition.id] !== field.condition.value)
     return null
+
+  // if (field.type === "file")
+  //   return (
+  //     <FileUploadField
+  //       name={field.id}
+  //       label={field.question}
+  //       touched={touched}
+  //       errors={errors}
+  //       {...field}
+  //     />
+  //   )
 
   if (field.type === "textarea")
     return (
