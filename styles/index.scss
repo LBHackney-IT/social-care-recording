@@ -1,5 +1,7 @@
 @import "node_modules/lbh-frontend/lbh/all";
 
+@import "node_modules/lbh-frontend/lbh/components/lbh-dialog/dialog";
+
 // turn off frustrating smooth scroll
 html {
   scroll-behavior: initial;
@@ -54,4 +56,9 @@ html {
   @include govuk-media-query($from: tablet) {
     margin-top: 2rem;
   }
+}
+
+// fix dialog button spacing
+.lbh-dialog__close {
+  margin-top: 0;
 }
