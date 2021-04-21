@@ -69,7 +69,7 @@ const Multibutton = ({ choices }): React.ReactElement => {
           <ListboxList>
             {choices.map((choice, i) => (
               <ListboxOption value={i.toString()} key={i} className={s.option}>
-                {currentValue === i && (
+                {currentValue === i.toString() && (
                   <svg width="15" height="12" viewBox="0 0 15 12" fill="none">
                     <path
                       d="M1 5.5L5.33333 10L14 1"

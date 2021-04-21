@@ -6,10 +6,7 @@ const PersonViewPrototype = () => (
 
     <div className="govuk-grid-row">
       <div className="govuk-grid-column-two-thirds">
-        <section
-          className="lbh-collapsible govuk-!-margin-top-8"
-          data-module="lbh-collapsible"
-        >
+        <section className="lbh-collapsible" data-module="lbh-collapsible">
           <button
             aria-expanded="true"
             data-behavior="lbh-collapsible-toggle"
@@ -118,13 +115,13 @@ const PersonViewPrototype = () => (
                     "Record visits and correspondance with this person.",
                 },
                 {
-                  href: "#0",
+                  href: "#",
                   title: "Start an assessment",
                   description:
                     "Begin a statutory social care needs assessment for this person.",
                 },
                 {
-                  href: "#1",
+                  href: "#",
                   title: "Add something else",
                   description:
                     "Record any other important details about this person.",
@@ -134,18 +131,20 @@ const PersonViewPrototype = () => (
 
             <table className="govuk-table">
               <thead className="govuk-table__head">
-                <th scope="col" className="govuk-table__header">
-                  {" "}
-                  Created on
-                </th>
-                <th scope="col" className="govuk-table__header">
-                  {" "}
-                  Type and title
-                </th>
-                <th scope="col" className="govuk-table__header">
-                  {" "}
-                  Created by
-                </th>
+                <tr>
+                  <th scope="col" className="govuk-table__header">
+                    {" "}
+                    Created on
+                  </th>
+                  <th scope="col" className="govuk-table__header">
+                    {" "}
+                    Type and title
+                  </th>
+                  <th scope="col" className="govuk-table__header">
+                    {" "}
+                    Created by
+                  </th>
+                </tr>
               </thead>
               <tbody className="govuk-table__body">
                 <tr className="govuk-table__row">
@@ -189,18 +188,11 @@ const PersonViewPrototype = () => (
           <ul className="lbh-pagination">
             <li className="lbh-pagination__item">
               <a
-                className="lbh-pagination__link"
+                className="lbh-pagination__link lbh-pagination__link--current"
                 href="#"
-                aria-label="Previous page"
+                aria-current="true"
+                aria-label="Page 1, current page"
               >
-                <span aria-hidden="true" role="presentation">
-                  &laquo;
-                </span>
-                Previous
-              </a>
-            </li>
-            <li className="lbh-pagination__item">
-              <a className="lbh-pagination__link" href="#" aria-label="Page 1">
                 1
               </a>
             </li>
@@ -210,12 +202,7 @@ const PersonViewPrototype = () => (
               </a>
             </li>
             <li className="lbh-pagination__item">
-              <a
-                className="lbh-pagination__link lbh-pagination__link--current"
-                href="#"
-                aria-current="true"
-                aria-label="Page 3, current page"
-              >
+              <a className="lbh-pagination__link" href="#" aria-label="Page 3">
                 3
               </a>
             </li>
@@ -235,7 +222,7 @@ const PersonViewPrototype = () => (
                 href="#"
                 aria-label="Next page"
               >
-                Next
+                Next{" "}
                 <span aria-hidden="true" role="presentation">
                   &raquo;
                 </span>
@@ -245,14 +232,6 @@ const PersonViewPrototype = () => (
         </nav>
       </div>
       <div className="govuk-grid-column-one-third">
-        <div className="govuk-button-group">
-          <a className="govuk-link" href="#">
-            Open all
-          </a>
-          <a className="govuk-link" href="#">
-            Close all
-          </a>
-        </div>
         <section className="lbh-collapsible" data-module="lbh-collapsible">
           <button
             aria-expanded="true"
@@ -270,17 +249,13 @@ const PersonViewPrototype = () => (
             className="lbh-collapsible__content"
             data-behavior="lbh-collapsible-content"
           >
-            <dl className="govuk-summary-list lbh-summary-list">
-              <dd className="govuk-summary-list__value">
-                {" "}
-                No one is allocated right now{" "}
-              </dd>{" "}
-            </dl>
+            <p className="lbh-body">No one is allocated right now</p>
+
             <button
               className="govuk-button govuk-secondary lbh-button lbh-button--secondary"
               data-module="govuk-button"
             >
-              Allocation
+              Allocate
             </button>
           </div>
         </section>

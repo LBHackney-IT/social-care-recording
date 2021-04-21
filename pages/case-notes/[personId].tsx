@@ -39,8 +39,8 @@ const NewCaseNotePage = ({ params, person }) => {
 
 NewCaseNotePage.Postheader = ({ params }): React.ReactElement => (
   <div className="lbh-container">
-    <Link href={`/`}>
-      <a className="govuk-back-link lbh-back-link">Back to home</a>
+    <Link href="/PROTOTYPE">
+      <a className="govuk-back-link lbh-back-link">Back to person</a>
     </Link>
   </div>
 )
