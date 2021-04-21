@@ -1,10 +1,35 @@
 import Multibutton from "../../components/Multibutton"
 
 const PersonViewPrototype = () => (
-  <div>
-    <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">Test User</h1>
+  <>
+    <h1 className="lbh-heading-h1 govuk-!-margin-bottom-7">Test User</h1>
 
-    <div className="govuk-grid-row">
+    <Multibutton
+      storageKey="lbh-default-contact-method"
+      secondary
+      choices={[
+        {
+          href: "https://hackney-sms-demo.herokuapp.com",
+          title: "Send a message",
+          target: "blank",
+          description: "Send them a text message using our SMS tool.",
+        },
+        {
+          href: "https://mail.google.com/mail/u/0/#compose",
+          title: "Send an email",
+          target: "blank",
+          description: "Using your Gmail account.",
+        },
+        {
+          href: "https://www.notifications.service.gov.uk/",
+          title: "Send a letter",
+          target: "blank",
+          description: "Using the Notify letters service.",
+        },
+      ]}
+    />
+
+    <div className="govuk-grid-row govuk-!-margin-top-7">
       <div className="govuk-grid-column-two-thirds">
         <section className="lbh-collapsible" data-module="lbh-collapsible">
           <button
@@ -57,28 +82,6 @@ const PersonViewPrototype = () => (
           data-module="lbh-collapsible"
         >
           <button
-            aria-expanded="false"
-            data-behavior="lbh-collapsible-toggle"
-            className="lbh-collapsible__button"
-          >
-            <h2 className="lbh-heading-h2 lbh-collapsible__heading">
-              Relationships (5)
-            </h2>
-            <svg width="17" height="10" viewBox="0 0 17 10">
-              <path d="M2 1.5L8.5 7.5L15 1.5" strokeWidth="3" />
-            </svg>
-          </button>
-          <div
-            className="lbh-collapsible__content"
-            data-behavior="lbh-collapsible-content"
-            hidden
-          ></div>
-        </section>
-        <section
-          className="lbh-collapsible govuk-!-margin-top-8"
-          data-module="lbh-collapsible"
-        >
-          <button
             aria-expanded="true"
             data-behavior="lbh-collapsible-toggle"
             className="lbh-collapsible__button "
@@ -103,6 +106,7 @@ const PersonViewPrototype = () => (
               <div className="govuk-details__text">filter coming soon.</div>
             </details> */}
             <Multibutton
+              storageKey="lbh-default-record"
               choices={[
                 {
                   href: "/case-notes/2",
@@ -244,6 +248,28 @@ const PersonViewPrototype = () => (
             </nav>
           </div>
         </section>
+        <section
+          className="lbh-collapsible govuk-!-margin-top-8"
+          data-module="lbh-collapsible"
+        >
+          <button
+            aria-expanded="false"
+            data-behavior="lbh-collapsible-toggle"
+            className="lbh-collapsible__button"
+          >
+            <h2 className="lbh-heading-h2 lbh-collapsible__heading">
+              Relationships (5)
+            </h2>
+            <svg width="17" height="10" viewBox="0 0 17 10">
+              <path d="M2 1.5L8.5 7.5L15 1.5" strokeWidth="3" />
+            </svg>
+          </button>
+          <div
+            className="lbh-collapsible__content"
+            data-behavior="lbh-collapsible-content"
+            hidden
+          ></div>
+        </section>
       </div>
       <div className="govuk-grid-column-one-third">
         <section className="lbh-collapsible" data-module="lbh-collapsible">
@@ -295,7 +321,7 @@ const PersonViewPrototype = () => (
         </section>
       </div>
     </div>
-  </div>
+  </>
 )
 
 export default PersonViewPrototype

@@ -12,18 +12,23 @@ import "@reach/listbox/styles.css"
 import s from "../styles/Multibutton.module.scss"
 
 interface Props {
+  /** Unique key to store/retrieve the default value from localstorage */
+  storageKey?: string
+  secondary?: boolean
   choices: {
     href: string
     title: string
     description: string
+    target?: string
   }[]
 }
 
-const Multibutton = ({ choices }): React.ReactElement => {
-  const [currentValue, setCurrentValue] = useLocalStorage(
-    "lbh-default-record",
-    "0"
-  )
+const Multibutton = ({
+  storageKey,
+  secondary,
+  choices,
+}: Props): React.ReactElement => {
+  const [currentValue, setCurrentValue] = useLocalStorage(storageKey, "0")
 
   const selection = choices[currentValue]
 
@@ -31,20 +36,24 @@ const Multibutton = ({ choices }): React.ReactElement => {
     <div className={s.outer}>
       <a
         href={selection?.href}
-        className={`govuk-button lbh-button ${s.button}`}
+        target={selection?.target}
+        className={`govuk-button lbh-button ${
+          secondary && "govuk-button--secondary lbh-button--secondary"
+        } ${s.button}`}
       >
-        <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-          <rect
-            x="4.5293"
-            y="11"
-            width="11"
-            height="1.94118"
-            transform="rotate(-90 4.5293 11)"
-            fill="white"
-          />
-          <rect y="4.52942" width="11" height="1.94118" fill="white" />
-        </svg>
-
+        {!secondary && (
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+            <rect
+              x="4.5293"
+              y="11"
+              width="11"
+              height="1.94118"
+              transform="rotate(-90 4.5293 11)"
+              fill="white"
+            />
+            <rect y="4.52942" width="11" height="1.94118" fill="white" />
+          </svg>
+        )}
         {selection?.title}
       </a>
 
@@ -57,7 +66,11 @@ const Multibutton = ({ choices }): React.ReactElement => {
         value={currentValue}
         onChange={value => setCurrentValue(value)}
       >
-        <ListboxButton className={`govuk-button lbh-button ${s.listbox}`}>
+        <ListboxButton
+          className={`govuk-button lbh-button  ${
+            secondary && "govuk-button--secondary lbh-button--secondary"
+          } ${secondary && s.listboxSecondary} ${s.listbox}`}
+        >
           <span className="govuk-visually-hidden">
             Selected: {selection?.title}
           </span>

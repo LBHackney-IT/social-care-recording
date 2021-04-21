@@ -3,6 +3,7 @@ import { useState } from "react"
 import PersonWidget from "./PersonWidget"
 import Dialog from "./Dialog"
 import s from "../styles/PersonWidget.module.scss"
+import PersonSelect from "./PersonSelect"
 
 interface Props {
   initialPerson: Person
@@ -13,10 +14,13 @@ const GroupRecordingWidget = ({ initialPerson }: Props): React.ReactElement => {
   const [open, setOpen] = useState(0)
   const [dialogOpen, setDialogOpen] = useState(false)
 
+  const [query, setQuery] = useState("")
+
   const handleAdd = () => {
     setPeople(people.concat(people[0]))
     setOpen(people.length)
     setDialogOpen(false)
+    setQuery("")
   }
 
   const handleRemove = index => {
@@ -71,16 +75,78 @@ const GroupRecordingWidget = ({ initialPerson }: Props): React.ReactElement => {
       >
         <div className="govuk-form-group lbh-form-group">
           <label className="govuk-label lbh-label" htmlFor="query">
-            Search by name, contact detail or social care ID
+            {/* Search by name, contact detail or social care ID */}
+            Social care ID
           </label>
-          <input
-            className="govuk-input lbh-input"
-            id="query"
-            name="query"
-            type="text"
-            placeholder="eg. 123456"
-          />
+          <div className="lbh-search-box" style={{ marginTop: 0 }}>
+            <input
+              className="govuk-input lbh-input"
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+              id="query"
+              name="query"
+              type="search"
+              placeholder="eg. 123456"
+            />
+            <button className="lbh-search-box__action">
+              <span className="govuk-visually-hidden">Search</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M9.6999 10.6C12.0747 10.6 13.9999 8.67482 13.9999 6.3C13.9999 3.92518 12.0747 2 9.6999 2C7.32508 2 5.3999 3.92518 5.3999 6.3C5.3999 8.67482 7.32508 10.6 9.6999 10.6ZM9.6999 12.6C13.1793 12.6 15.9999 9.77939 15.9999 6.3C15.9999 2.82061 13.1793 0 9.6999 0C6.22051 0 3.3999 2.82061 3.3999 6.3C3.3999 9.77939 6.22051 12.6 9.6999 12.6Z"
+                  fill="#0B0C0C"
+                />
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M6.70706 10.7071L1.70706 15.7071L0.292847 14.2929L5.29285 9.29289L6.70706 10.7071Z"
+                  fill="#0B0C0C"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
+
+        {query && (
+          <PersonSelect
+            name="person"
+            label="Matching people"
+            choices={[
+              {
+                value: "0",
+                label: "Firstname Surname",
+                dateOfBirth: "Born 20 Sep 1990",
+                address: "123 Town St, Citythorpe, AB1 23C",
+              },
+            ]}
+          />
+        )}
+
+        <PersonSelect
+          name="person"
+          label={query ? "Or, choose a relative" : "Choose a relative"}
+          choices={[
+            {
+              value: "1",
+              label: "Bart Simpson",
+              dateOfBirth: "Born 20 Sep 1990",
+              address: "123 Town St, Citythorpe, AB1 23C",
+            },
+            {
+              value: "2",
+              label: "Lisa Simpson",
+              dateOfBirth: "Born 20 Sep 1990",
+              address: "123 Town St, Citythorpe, AB1 23C",
+            },
+            {
+              value: "3",
+              label: "Maggie Simpson",
+              dateOfBirth: "Born 20 Sep 1990",
+              address: "123 Town St, Citythorpe, AB1 23C",
+            },
+          ]}
+        />
 
         <button className="govuk-button lbh-button" onClick={handleAdd}>
           Add person

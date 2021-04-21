@@ -107,6 +107,8 @@ This tool takes the standard case recording workflow and makes it more flexible,
 3. Write a script to convert a CSV into form config
 4. fix bug where changing a field type to checkbox/repeater from something else (and _maybe_ vice versa) _after_ a submission has been started caused the intitial values to become invalid (because it expects to be able to map over the values) use `Yup.ensure()`?
 
+5. add tests for `PersonSelect`, `Multibutton` and `GroupRecordingWidget`
+
 ### Next
 
 - Write cypress tests

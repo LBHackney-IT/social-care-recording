@@ -48,6 +48,28 @@
   }
 }
 
+.listboxSecondary {
+  border: 1px solid lbh-colour("lbh-primary-button");
+  border-left: 1px solid lbh-colour("lbh-primary-button");
+  padding: 19px;
+
+  svg path {
+    stroke: lbh-colour("lbh-primary-button");
+  }
+
+  &:hover svg path {
+    stroke: lbh-colour("lbh-white");
+  }
+
+  &:focus svg path {
+    stroke: lbh-colour("lbh-text");
+  }
+  &:active svg path,
+  &:focus:hover svg path {
+    stroke: lbh-colour("lbh-white");
+  }
+}
+
 .popover {
   border-radius: 5px;
   border: 1px solid lbh-colour("lbh-border");
@@ -55,7 +77,6 @@
   padding: 0;
   overflow: hidden;
   background: lbh-colour("lbh-grey-4");
-  margin-top: 4px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 
   width: inherit;
@@ -63,6 +84,7 @@
 
   &:focus-within {
     box-shadow: none;
+    outline: none;
   }
 
   [data-reach-listbox-option] {

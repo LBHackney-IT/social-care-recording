@@ -7,13 +7,21 @@ const formData: Form[] = [
     steps: [
       {
         id: "foo",
-        name: "Foo",
+        name: "Example section",
         theme: "About you",
-        fields: [],
+        fields: [
+          {
+            id: "repeater-example",
+            question: "Example repeater question",
+            type: "repeater",
+            hint: "Example hint",
+            required: true,
+          },
+        ],
       },
       {
         id: "bar",
-        name: "Bar",
+        name: "Example section 2",
         theme: "More stuff",
         fields: [
           {
@@ -74,13 +82,6 @@ const formData: Form[] = [
             type: "text",
             required: true,
             prefill: "firstName",
-          },
-          {
-            id: "repeater-example",
-            question: "Example repeater question",
-            type: "repeater",
-            hint: "Example hint",
-            required: true,
           },
           {
             id: "pain-or-distress",
