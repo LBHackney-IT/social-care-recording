@@ -76,7 +76,7 @@ const GroupRecordingWidget = ({ initialPerson }: Props): React.ReactElement => {
         <div className="govuk-form-group lbh-form-group">
           <label className="govuk-label lbh-label" htmlFor="query">
             {/* Search by name, contact detail or social care ID */}
-            Social care ID
+            Search by social care ID
           </label>
           <div className="lbh-search-box" style={{ marginTop: 0 }}>
             <input
@@ -125,7 +125,7 @@ const GroupRecordingWidget = ({ initialPerson }: Props): React.ReactElement => {
 
         <PersonSelect
           name="person"
-          label={query ? "Or, choose a relative" : "Choose a relative"}
+          label="Or choose a relative"
           choices={[
             {
               value: "1",
