@@ -91,6 +91,14 @@ const PersonViewPrototype = () => (
             className="lbh-collapsible__content"
             data-behavior="lbh-collapsible-content"
           >
+            {/*<div class="govuk-button-group">
+              <button
+                className="govuk-button lbh-button govuk-grid-column-one-quarter"
+                data-module="govuk-button"
+              >
+                New note
+              </button>
+              </div>*/}
             <details className="govuk-details" data-module="govuk-details">
               <summary className="govuk-details__summary">
                 <span className="govuk-details__summary-text">
@@ -99,13 +107,6 @@ const PersonViewPrototype = () => (
               </summary>
               <div className="govuk-details__text">filter coming soon.</div>
             </details>
-            {/* <button
-                className="govuk-button lbh-button govuk-grid-column-one-third"
-                data-module="govuk-button"
-              >
-                New note
-              </button> */}
-
             <Multibutton
               choices={[
                 {
@@ -182,10 +183,7 @@ const PersonViewPrototype = () => (
           </div>
         </section>
         <nav className="lbh-pagination">
-          <div className="lbh-pagination__summary">
-            Showing 101—150 of 246 results
-          </div>
-          <ul className="lbh-pagination">
+          <ul className="lbh-pagination ">
             <li className="lbh-pagination__item">
               <a
                 className="lbh-pagination__link lbh-pagination__link--current"
