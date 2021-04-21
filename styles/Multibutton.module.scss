@@ -30,7 +30,8 @@
 
 .listbox {
   border: none;
-  border-left: 1px solid lbh-colour("lbh-secondary-inner-shadow");
+  // this colour doesn't seem to be in the design system
+  border-left: 2px solid #002d18;
   border-radius: 0px 10px 10px 0px;
   margin-top: 0;
   display: flex;
@@ -54,6 +55,8 @@
   padding: 0;
   overflow: hidden;
   background: lbh-colour("lbh-grey-4");
+  margin-top: 4px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 
   width: inherit;
   max-width: 250px;

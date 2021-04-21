@@ -106,21 +106,20 @@ const PersonViewPrototype = () => (
               choices={[
                 {
                   href: "/case-notes/2",
-                  title: "Add a case note",
-                  description:
-                    "Record visits and correspondance with this person.",
+                  title: "Add case note",
+                  description: "Record visits and correspondance.",
                 },
                 {
                   href: "#",
-                  title: "Start an assessment",
+                  title: "Start assessment",
                   description:
-                    "Begin a statutory social care needs assessment for this person.",
+                    "Begin a statutory social care needs assessment.",
                 },
                 {
                   href: "#",
                   title: "Add something else",
                   description:
-                    "Record any other important details about this person.",
+                    "Record any other important details about this case.",
                 },
               ]}
             />
