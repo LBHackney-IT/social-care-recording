@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next",
     "build": "prisma generate && next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "test": "jest",
     "cypress": "cypress open",
     "db:schema:load": "prisma db push --preview-feature",
