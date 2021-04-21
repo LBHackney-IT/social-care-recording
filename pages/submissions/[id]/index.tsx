@@ -5,6 +5,7 @@ import TaskList from "../../../components/TaskList"
 import Link from "next/link"
 import TaskListHeader from "../../../components/TaskListHeader"
 import { getSession } from "../../../lib/auth"
+import s from "../../../styles/Sidebar.module.scss"
 
 const TaskListPage = ({ params, completedSteps, person, form }) => {
   const handleFinish = async (): Promise<void> => {
@@ -29,7 +30,7 @@ const TaskListPage = ({ params, completedSteps, person, form }) => {
         <title>{form?.name} | Social care | Hackney Council</title>
       </Head>
       <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">{form?.name}</h1>
-      <div className="govuk-grid-row">
+      <div className={`govuk-grid-row ${s.outer}`}>
         <div className="govuk-grid-column-two-thirds">
           <TaskListHeader
             steps={form?.steps}
@@ -39,7 +40,9 @@ const TaskListPage = ({ params, completedSteps, person, form }) => {
           <TaskList form={form} completedSteps={completedSteps} />
         </div>
         <div className="govuk-grid-column-one-third">
-          <PersonWidget person={person} />
+          <div className={s.sticky}>
+            <PersonWidget person={person} />
+          </div>
         </div>
       </div>
     </>

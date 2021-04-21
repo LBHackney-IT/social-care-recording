@@ -99,21 +99,20 @@ This tool takes the standard case recording workflow and makes it more flexible,
 - ~~Improve autosave so it doesn't submit after initial form mount~~ (DONE)
 - ~~Refactor forms to use formik status messages~~ (DONE)
 - ~~Refactor APIs to use a common helper to handle 401s and 500s~~ (DONE)
-- ~~Add repeater field~~ (DONE)
+- ~~ Add repeater field~~ (DONE)
+- ~~Implement specific form for case notes~~ (DONE)
 
 1. **Submit** to the case viewer api
 2. Hitting the "continue" button on a step should return to the task list page if the form submitted successfully
-3. If form has one step, skip the task list (or implement specific extra pages for case notes?)
-4. Write a script to convert a CSV into form config
-5. fix bug where changing a field type to checkbox/repeater from something else (and _maybe_ vice versa) _after_ a submission has been started caused the intitial values to become invalid (because it expects to be able to map over the values)
+3. Write a script to convert a CSV into form config
+4. fix bug where changing a field type to checkbox/repeater from something else (and _maybe_ vice versa) _after_ a submission has been started caused the intitial values to become invalid (because it expects to be able to map over the values) use `Yup.ensure()`?
 
 ### Next
 
 - Write cypress tests
 - Staging site
-- Add more field types
-  - Date?
-  - File upload?
+- Add date field type
+- Make file upload field available in flexible schemas (add support in `generateFlexibleSchema` and figure out how to handle in autosave, etc)
 
 ### Later
 

@@ -109,6 +109,10 @@ describe("generateInitialValues", () => {
           id: "three",
           type: "repeater",
         },
+        {
+          id: "four",
+          type: "file",
+        },
       ],
       {}
     )
@@ -117,6 +121,7 @@ describe("generateInitialValues", () => {
       one: "",
       two: [],
       three: [],
+      four: null,
     })
   })
 

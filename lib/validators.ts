@@ -10,9 +10,13 @@ export const startSchema = Yup.object().shape({
 
 export const caseNoteSchema = Yup.object().shape({
   type: Yup.string().required("Please give a type"),
-  subtype: Yup.string(),
+  subtype: Yup.string().when("type", {
+    is: val => val !== "something-else",
+    then: Yup.string().required("Please give a type"),
+  }),
   whatHappened: Yup.string().required("Please describe what happened"),
   actions: Yup.array().of(Yup.string()),
+  files: Yup.array().of(Yup.mixed()).nullable(),
 })
 
 export const generateFlexibleSchema = (fields): any => {
