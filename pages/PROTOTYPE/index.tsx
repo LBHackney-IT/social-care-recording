@@ -84,7 +84,7 @@ const PersonViewPrototype = () => (
             data-behavior="lbh-collapsible-content"
           >
               <div class="govuk-button-group">
-                <details class="govuk-details govuk-grid-column-two-thirds" data-module="govuk-details">
+                <details class="govuk-details govuk-grid-column-three-quarters" data-module="govuk-details">
                   <summary class="govuk-details__summary">
                     <span class="govuk-details__summary-text">
                       Filter and sort
@@ -95,25 +95,33 @@ const PersonViewPrototype = () => (
                   </div>
                 </details>
                <button
-                className="govuk-button lbh-button govuk-grid-column-one-third"
+                className="govuk-button lbh-button govuk-grid-column-one-quarter"
                 data-module="govuk-button"
               >
                 New note
               </button>
               </div>
-              <table class="govuk-table">
-                <thead class="govuk-table__head">
-                <th scope="col" class="govuk-table__header"> Created on
-                </th>
-                <th scope="col" class="govuk-table__header"> Type and title
-                </th>
-                <th scope="col" class="govuk-table__header"> Created by
-                </th>
-                </thead>
+              <table class="govuk-table govuk-!-margin-bottom-2">
                 <tbody class="govuk-table__body">
                   <tr class="govuk-table__row">
                   <td class="govuk-table__cell">30 Oct 2020 </td>
-                  <td class="govuk-table__cell">Correspondance</td>
+                  <td class="govuk-table__cell"><a class="govuk-link" href="#">Correspondance</a>
+                  <p class="govuk-!-margin-top-2" >A short description of the note...</p>
+                  </td>
+                  <td class="govuk-table__cell">By Firstname Surname</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">17 Sept 2020 </td>
+                  <td class="govuk-table__cell"><a class="govuk-link" href="#">Case note</a>
+                  <p class="govuk-!-margin-top-2" >A short description of the note...</p>
+                  </td>
+                  <td class="govuk-table__cell">By Firstname Surname</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">23 Jun 2020 </td>
+                  <td class="govuk-table__cell"><a class="govuk-link" href="#">Review of care and support</a>
+                  <p class="govuk-!-margin-top-2" >A short description of the note...</p>
+                  </td>
                   <td class="govuk-table__cell">By Firstname Surname</td>
                   </tr>
                 </tbody>
@@ -121,22 +129,14 @@ const PersonViewPrototype = () => (
           </div>
         </section>
         <nav className="lbh-pagination">
-          <div className="lbh-pagination__summary">
-            Showing 101—150 of 246 results
-          </div>
-          <ul className="lbh-pagination">
+
+          <ul className="lbh-pagination ">
             <li className="lbh-pagination__item">
-              <a
-                className="lbh-pagination__link"
-                href="#"
-                aria-label="Previous page"
-              >
-                <span aria-hidden="true" role="presentation">
-                  &laquo;
-                </span>
-                Previous
-              </a>
+              <div className="lbh-pagination__summary">
+                Showing 101—150 of 246 results
+              </div>
             </li>
+             <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
             <li className="lbh-pagination__item">
               <a className="lbh-pagination__link" href="#" aria-label="Page 1">
                 1
@@ -187,7 +187,7 @@ const PersonViewPrototype = () => (
         <a class="govuk-link" href="#">Open all</a>
         <a class="govuk-link" href="#">Close all</a>
       </div>
-        <section className="lbh-collapsible" data-module="lbh-collapsible">
+        <section className="lbh-collapsible govuk-!-margin-bottom-0" data-module="lbh-collapsible">
           <button
             aria-expanded="true"
             data-behavior="lbh-collapsible-toggle"
@@ -205,10 +205,8 @@ const PersonViewPrototype = () => (
             data-behavior="lbh-collapsible-content"
           >
             <dl className="govuk-summary-list lbh-summary-list">
-              <dd className="govuk-summary-list__value">
                 {" "}
                 No one is allocated right now{" "}
-              </dd>{" "}
             </dl>
             <button
               className="govuk-button govuk-secondary lbh-button lbh-button--secondary"
