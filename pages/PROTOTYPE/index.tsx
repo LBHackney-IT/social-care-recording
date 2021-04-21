@@ -2,7 +2,7 @@ import Multibutton from "../../components/Multibutton"
 
 const PersonViewPrototype = () => (
   <div>
-    <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">Namey McName</h1>
+    <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">Test User</h1>
 
     <div className="govuk-grid-row">
       <div className="govuk-grid-column-two-thirds">
@@ -34,11 +34,14 @@ const PersonViewPrototype = () => (
               </div>
               <div className="govuk-summary-list__row">
                 <dt className="govuk-summary-list__key">Address</dt>
-                <dd className="govuk-summary-list__value">12345</dd>
+                <dd className="govuk-summary-list__value">
+                  123 Town St
+                  <br /> Citythorpe
+                </dd>
               </div>
               <div className="govuk-summary-list__row">
                 <dt className="govuk-summary-list__key">Phone number</dt>
-                <dd className="govuk-summary-list__value">0777777777</dd>
+                <dd className="govuk-summary-list__value">077 777 7777</dd>
               </div>
               <div className="govuk-summary-list__row">
                 <dt className="govuk-summary-list__key">Responsibility of</dt>
@@ -88,25 +91,17 @@ const PersonViewPrototype = () => (
             </svg>
           </button>
           <div
-            className="lbh-collapsible__content"
+            className="lbh-collapsible__content govuk-!-margin-top-6"
             data-behavior="lbh-collapsible-content"
           >
-            {/*<div class="govuk-button-group">
-              <button
-                className="govuk-button lbh-button govuk-grid-column-one-quarter"
-                data-module="govuk-button"
-              >
-                New note
-              </button>
-              </div>*/}
-            <details className="govuk-details" data-module="govuk-details">
+            {/* <details className="govuk-details" data-module="govuk-details">
               <summary className="govuk-details__summary">
                 <span className="govuk-details__summary-text">
                   Filter and sort
                 </span>
               </summary>
               <div className="govuk-details__text">filter coming soon.</div>
-            </details>
+            </details> */}
             <Multibutton
               choices={[
                 {
@@ -130,7 +125,7 @@ const PersonViewPrototype = () => (
               ]}
             />
 
-            <table className="govuk-table">
+            <table className="govuk-table lbh-table">
               <thead className="govuk-table__head">
                 <tr>
                   <th scope="col" className="govuk-table__header">
@@ -150,84 +145,106 @@ const PersonViewPrototype = () => (
               <tbody className="govuk-table__body">
                 <tr className="govuk-table__row">
                   <td className="govuk-table__cell">30 Oct 2020 </td>
-                  <td className="govuk-table__cell">Correspondance</td>
-                  <td className="govuk-table__cell">By Firstname Surname</td>
+                  <td className="govuk-table__cell">
+                    <a className="govuk-link" href="#">
+                      Correspondance
+                    </a>
+                    <p className="lbh-body-xs govuk-!-margin-top-2">
+                      A short description of the note...
+                    </p>
+                  </td>
+                  <td className="govuk-table__cell">Firstname Surname</td>
                 </tr>
                 <tr className="govuk-table__row">
-                  <td className="govuk-table__cell">30 Oct 2020 </td>
-                  <td className="govuk-table__cell">Correspondance</td>
-                  <td className="govuk-table__cell">By Firstname Surname</td>
+                  <td className="govuk-table__cell">17 Sept 2020 </td>
+                  <td className="govuk-table__cell">
+                    <a className="govuk-link" href="#">
+                      Case note
+                    </a>
+                    <p className="lbh-body-xs govuk-!-margin-top-2">
+                      A short description of the note...
+                    </p>
+                  </td>
+                  <td className="govuk-table__cell">Firstname Surname</td>
                 </tr>
                 <tr className="govuk-table__row">
-                  <td className="govuk-table__cell">30 Oct 2020 </td>
-                  <td className="govuk-table__cell">Correspondance</td>
-                  <td className="govuk-table__cell">By Firstname Surname</td>
-                </tr>
-                <tr className="govuk-table__row">
-                  <td className="govuk-table__cell">30 Oct 2020 </td>
-                  <td className="govuk-table__cell">Correspondance</td>
-                  <td className="govuk-table__cell">By Firstname Surname</td>
-                </tr>
-                <tr className="govuk-table__row">
-                  <td className="govuk-table__cell">30 Oct 2020 </td>
-                  <td className="govuk-table__cell">Correspondance</td>
-                  <td className="govuk-table__cell">By Firstname Surname</td>
-                </tr>
-                <tr className="govuk-table__row">
-                  <td className="govuk-table__cell">30 Oct 2020 </td>
-                  <td className="govuk-table__cell">Correspondance</td>
-                  <td className="govuk-table__cell">By Firstname Surname</td>
+                  <td className="govuk-table__cell">23 Jun 2020 </td>
+                  <td className="govuk-table__cell">
+                    <a className="govuk-link" href="#">
+                      Review of care and support
+                    </a>
+                    <p className="lbh-body-xs govuk-!-margin-top-2">
+                      A short description of the note...
+                    </p>
+                  </td>
+                  <td className="govuk-table__cell">Firstname Surname</td>
                 </tr>
               </tbody>
             </table>
+            <nav className="lbh-pagination">
+              <ul className="lbh-pagination ">
+                <li className="lbh-pagination__item">
+                  <a
+                    className="lbh-pagination__link lbh-pagination__link--current"
+                    href="#"
+                    aria-current="true"
+                    aria-label="Page 1, current page"
+                  >
+                    1
+                  </a>
+                </li>
+                <li className="lbh-pagination__item">
+                  <a
+                    className="lbh-pagination__link"
+                    href="#"
+                    aria-label="Page 2"
+                  >
+                    2
+                  </a>
+                </li>
+                <li className="lbh-pagination__item">
+                  <a
+                    className="lbh-pagination__link"
+                    href="#"
+                    aria-label="Page 3"
+                  >
+                    3
+                  </a>
+                </li>
+                <li className="lbh-pagination__item">
+                  <a
+                    className="lbh-pagination__link"
+                    href="#"
+                    aria-label="Page 4"
+                  >
+                    4
+                  </a>
+                </li>
+                <li className="lbh-pagination__item">
+                  <a
+                    className="lbh-pagination__link"
+                    href="#"
+                    aria-label="Page 5"
+                  >
+                    5
+                  </a>
+                </li>
+                <li className="lbh-pagination__item">
+                  <a
+                    className="lbh-pagination__link"
+                    href="#"
+                    aria-label="Next page"
+                  >
+                    Next{" "}
+                    <span aria-hidden="true" role="presentation">
+                      &raquo;
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </section>
-        <nav className="lbh-pagination">
-          <ul className="lbh-pagination ">
-            <li className="lbh-pagination__item">
-              <a
-                className="lbh-pagination__link lbh-pagination__link--current"
-                href="#"
-                aria-current="true"
-                aria-label="Page 1, current page"
-              >
-                1
-              </a>
-            </li>
-            <li className="lbh-pagination__item">
-              <a className="lbh-pagination__link" href="#" aria-label="Page 2">
-                2
-              </a>
-            </li>
-            <li className="lbh-pagination__item">
-              <a className="lbh-pagination__link" href="#" aria-label="Page 3">
-                3
-              </a>
-            </li>
-            <li className="lbh-pagination__item">
-              <a className="lbh-pagination__link" href="#" aria-label="Page 4">
-                4
-              </a>
-            </li>
-            <li className="lbh-pagination__item">
-              <a className="lbh-pagination__link" href="#" aria-label="Page 5">
-                5
-              </a>
-            </li>
-            <li className="lbh-pagination__item">
-              <a
-                className="lbh-pagination__link"
-                href="#"
-                aria-label="Next page"
-              >
-                Next{" "}
-                <span aria-hidden="true" role="presentation">
-                  &raquo;
-                </span>
-              </a>
-            </li>
-          </ul>
-        </nav>
       </div>
       <div className="govuk-grid-column-one-third">
         <section className="lbh-collapsible" data-module="lbh-collapsible">
