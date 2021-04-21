@@ -19,7 +19,7 @@ const PersonViewPrototype = () => (
               Personal details
             </h2>
             <svg width="17" height="10" viewBox="0 0 17 10">
-              <path d="M2 1.5L8.5 7.5L15 1.5" stroke-width="3" />
+              <path d="M2 1.5L8.5 7.5L15 1.5" strokeWidth="3" />
             </svg>
           </button>
           <div
@@ -65,7 +65,7 @@ const PersonViewPrototype = () => (
               Relationships (5)
             </h2>
             <svg width="17" height="10" viewBox="0 0 17 10">
-              <path d="M2 1.5L8.5 7.5L15 1.5" stroke-width="3" />
+              <path d="M2 1.5L8.5 7.5L15 1.5" strokeWidth="3" />
             </svg>
           </button>
           <div
@@ -87,18 +87,20 @@ const PersonViewPrototype = () => (
               Case history (14)
             </h2>
             <svg width="17" height="10" viewBox="0 0 17 10">
-              <path d="M2 1.5L8.5 7.5L15 1.5" stroke-width="3" />
+              <path d="M2 1.5L8.5 7.5L15 1.5" strokeWidth="3" />
             </svg>
           </button>
           <div
             className="lbh-collapsible__content"
             data-behavior="lbh-collapsible-content"
           >
-            <details class="govuk-details" data-module="govuk-details">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">Filter and sort</span>
+            <details className="govuk-details" data-module="govuk-details">
+              <summary className="govuk-details__summary">
+                <span className="govuk-details__summary-text">
+                  Filter and sort
+                </span>
               </summary>
-              <div class="govuk-details__text">filter coming soon.</div>
+              <div className="govuk-details__text">filter coming soon.</div>
             </details>
             {/* <button
                 className="govuk-button lbh-button govuk-grid-column-one-third"
@@ -130,51 +132,51 @@ const PersonViewPrototype = () => (
               ]}
             />
 
-            <table class="govuk-table">
-              <thead class="govuk-table__head">
-                <th scope="col" class="govuk-table__header">
+            <table className="govuk-table">
+              <thead className="govuk-table__head">
+                <th scope="col" className="govuk-table__header">
                   {" "}
                   Created on
                 </th>
-                <th scope="col" class="govuk-table__header">
+                <th scope="col" className="govuk-table__header">
                   {" "}
                   Type and title
                 </th>
-                <th scope="col" class="govuk-table__header">
+                <th scope="col" className="govuk-table__header">
                   {" "}
                   Created by
                 </th>
               </thead>
-              <tbody class="govuk-table__body">
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell">30 Oct 2020 </td>
-                  <td class="govuk-table__cell">Correspondance</td>
-                  <td class="govuk-table__cell">By Firstname Surname</td>
+              <tbody className="govuk-table__body">
+                <tr className="govuk-table__row">
+                  <td className="govuk-table__cell">30 Oct 2020 </td>
+                  <td className="govuk-table__cell">Correspondance</td>
+                  <td className="govuk-table__cell">By Firstname Surname</td>
                 </tr>
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell">30 Oct 2020 </td>
-                  <td class="govuk-table__cell">Correspondance</td>
-                  <td class="govuk-table__cell">By Firstname Surname</td>
+                <tr className="govuk-table__row">
+                  <td className="govuk-table__cell">30 Oct 2020 </td>
+                  <td className="govuk-table__cell">Correspondance</td>
+                  <td className="govuk-table__cell">By Firstname Surname</td>
                 </tr>
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell">30 Oct 2020 </td>
-                  <td class="govuk-table__cell">Correspondance</td>
-                  <td class="govuk-table__cell">By Firstname Surname</td>
+                <tr className="govuk-table__row">
+                  <td className="govuk-table__cell">30 Oct 2020 </td>
+                  <td className="govuk-table__cell">Correspondance</td>
+                  <td className="govuk-table__cell">By Firstname Surname</td>
                 </tr>
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell">30 Oct 2020 </td>
-                  <td class="govuk-table__cell">Correspondance</td>
-                  <td class="govuk-table__cell">By Firstname Surname</td>
+                <tr className="govuk-table__row">
+                  <td className="govuk-table__cell">30 Oct 2020 </td>
+                  <td className="govuk-table__cell">Correspondance</td>
+                  <td className="govuk-table__cell">By Firstname Surname</td>
                 </tr>
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell">30 Oct 2020 </td>
-                  <td class="govuk-table__cell">Correspondance</td>
-                  <td class="govuk-table__cell">By Firstname Surname</td>
+                <tr className="govuk-table__row">
+                  <td className="govuk-table__cell">30 Oct 2020 </td>
+                  <td className="govuk-table__cell">Correspondance</td>
+                  <td className="govuk-table__cell">By Firstname Surname</td>
                 </tr>
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell">30 Oct 2020 </td>
-                  <td class="govuk-table__cell">Correspondance</td>
-                  <td class="govuk-table__cell">By Firstname Surname</td>
+                <tr className="govuk-table__row">
+                  <td className="govuk-table__cell">30 Oct 2020 </td>
+                  <td className="govuk-table__cell">Correspondance</td>
+                  <td className="govuk-table__cell">By Firstname Surname</td>
                 </tr>
               </tbody>
             </table>
@@ -243,11 +245,11 @@ const PersonViewPrototype = () => (
         </nav>
       </div>
       <div className="govuk-grid-column-one-third">
-        <div class="govuk-button-group">
-          <a class="govuk-link" href="#">
+        <div className="govuk-button-group">
+          <a className="govuk-link" href="#">
             Open all
           </a>
-          <a class="govuk-link" href="#">
+          <a className="govuk-link" href="#">
             Close all
           </a>
         </div>
@@ -261,7 +263,7 @@ const PersonViewPrototype = () => (
               Allocations
             </h2>
             <svg width="17" height="10" viewBox="0 0 17 10">
-              <path d="M2 1.5L8.5 7.5L15 1.5" stroke-width="3" />
+              <path d="M2 1.5L8.5 7.5L15 1.5" strokeWidth="3" />
             </svg>
           </button>
           <div
@@ -293,7 +295,7 @@ const PersonViewPrototype = () => (
           >
             <h2 className="lbh-heading-h2 lbh-collapsible__heading">Status</h2>
             <svg width="17" height="10" viewBox="0 0 17 10">
-              <path d="M2 1.5L8.5 7.5L15 1.5" stroke-width="3" />
+              <path d="M2 1.5L8.5 7.5L15 1.5" strokeWidth="3" />
             </svg>
           </button>
           <div

@@ -25,16 +25,10 @@ const Multibutton = ({ choices }): React.ReactElement => {
     "0"
   )
 
-  //   const selection = useCallback(
-  //     choices.find(choice => choice.href === currentValue),
-  //     [selectedHref, choices]
-  //   )
-
   const selection = choices[currentValue]
 
   return (
     <div className={s.outer}>
-      {currentValue}
       <a
         href={selection?.href}
         className={`govuk-button lbh-button ${s.button}`}
