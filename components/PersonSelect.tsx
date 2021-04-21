@@ -34,8 +34,7 @@ const Choice = ({
     </label>
 
     <p id={`${name}=${value}-hint`} className={`lbh-body-xs ${s.meta}`}>
-      {dateOfBirth && <span>{dateOfBirth}</span>}
-      {address && <span>{address}</span>}
+      {dateOfBirth} · {address}
     </p>
   </div>
 )
