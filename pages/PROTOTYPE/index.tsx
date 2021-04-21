@@ -1,10 +1,15 @@
+import Multibutton from "../../components/Multibutton"
+
 const PersonViewPrototype = () => (
   <div>
     <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">Namey McName</h1>
 
     <div className="govuk-grid-row">
       <div className="govuk-grid-column-two-thirds">
-        <section className="lbh-collapsible govuk-!-margin-top-8" data-module="lbh-collapsible">
+        <section
+          className="lbh-collapsible govuk-!-margin-top-8"
+          data-module="lbh-collapsible"
+        >
           <button
             aria-expanded="true"
             data-behavior="lbh-collapsible-toggle"
@@ -47,7 +52,10 @@ const PersonViewPrototype = () => (
             </dl>
           </div>
         </section>
-        <section className="lbh-collapsible govuk-!-margin-top-8" data-module="lbh-collapsible">
+        <section
+          className="lbh-collapsible govuk-!-margin-top-8"
+          data-module="lbh-collapsible"
+        >
           <button
             aria-expanded="false"
             data-behavior="lbh-collapsible-toggle"
@@ -66,7 +74,10 @@ const PersonViewPrototype = () => (
             hidden
           ></div>
         </section>
-        <section className="lbh-collapsible govuk-!-margin-top-8" data-module="lbh-collapsible">
+        <section
+          className="lbh-collapsible govuk-!-margin-top-8"
+          data-module="lbh-collapsible"
+        >
           <button
             aria-expanded="true"
             data-behavior="lbh-collapsible-toggle"
@@ -83,41 +94,90 @@ const PersonViewPrototype = () => (
             className="lbh-collapsible__content"
             data-behavior="lbh-collapsible-content"
           >
-              <div class="govuk-button-group">
-                <details class="govuk-details govuk-grid-column-two-thirds" data-module="govuk-details">
-                  <summary class="govuk-details__summary">
-                    <span class="govuk-details__summary-text">
-                      Filter and sort
-                    </span>
-                  </summary>
-                  <div class="govuk-details__text">
-                    filter coming soon.
-                  </div>
-                </details>
-               <button
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">Filter and sort</span>
+              </summary>
+              <div class="govuk-details__text">filter coming soon.</div>
+            </details>
+            {/* <button
                 className="govuk-button lbh-button govuk-grid-column-one-third"
                 data-module="govuk-button"
               >
                 New note
-              </button>
-              </div>
-              <table class="govuk-table">
-                <thead class="govuk-table__head">
-                <th scope="col" class="govuk-table__header"> Created on
+              </button> */}
+
+            <Multibutton
+              choices={[
+                {
+                  href: "/case-notes/2",
+                  title: "Add a case note",
+                  description:
+                    "Record visits and correspondance with this person.",
+                },
+                {
+                  href: "#0",
+                  title: "Start an assessment",
+                  description:
+                    "Begin a statutory social care needs assessment for this person.",
+                },
+                {
+                  href: "#1",
+                  title: "Add something else",
+                  description:
+                    "Record any other important details about this person.",
+                },
+              ]}
+            />
+
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <th scope="col" class="govuk-table__header">
+                  {" "}
+                  Created on
                 </th>
-                <th scope="col" class="govuk-table__header"> Type and title
+                <th scope="col" class="govuk-table__header">
+                  {" "}
+                  Type and title
                 </th>
-                <th scope="col" class="govuk-table__header"> Created by
+                <th scope="col" class="govuk-table__header">
+                  {" "}
+                  Created by
                 </th>
-                </thead>
-                <tbody class="govuk-table__body">
-                  <tr class="govuk-table__row">
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
                   <td class="govuk-table__cell">30 Oct 2020 </td>
                   <td class="govuk-table__cell">Correspondance</td>
                   <td class="govuk-table__cell">By Firstname Surname</td>
-                  </tr>
-                </tbody>
-              </table>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">30 Oct 2020 </td>
+                  <td class="govuk-table__cell">Correspondance</td>
+                  <td class="govuk-table__cell">By Firstname Surname</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">30 Oct 2020 </td>
+                  <td class="govuk-table__cell">Correspondance</td>
+                  <td class="govuk-table__cell">By Firstname Surname</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">30 Oct 2020 </td>
+                  <td class="govuk-table__cell">Correspondance</td>
+                  <td class="govuk-table__cell">By Firstname Surname</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">30 Oct 2020 </td>
+                  <td class="govuk-table__cell">Correspondance</td>
+                  <td class="govuk-table__cell">By Firstname Surname</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">30 Oct 2020 </td>
+                  <td class="govuk-table__cell">Correspondance</td>
+                  <td class="govuk-table__cell">By Firstname Surname</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </section>
         <nav className="lbh-pagination">
@@ -183,10 +243,14 @@ const PersonViewPrototype = () => (
         </nav>
       </div>
       <div className="govuk-grid-column-one-third">
-      <div class="govuk-button-group">
-        <a class="govuk-link" href="#">Open all</a>
-        <a class="govuk-link" href="#">Close all</a>
-      </div>
+        <div class="govuk-button-group">
+          <a class="govuk-link" href="#">
+            Open all
+          </a>
+          <a class="govuk-link" href="#">
+            Close all
+          </a>
+        </div>
         <section className="lbh-collapsible" data-module="lbh-collapsible">
           <button
             aria-expanded="true"
@@ -218,7 +282,10 @@ const PersonViewPrototype = () => (
             </button>
           </div>
         </section>
-        <section className="lbh-collapsible govuk-!-margin-top-8" data-module="lbh-collapsible">
+        <section
+          className="lbh-collapsible govuk-!-margin-top-8"
+          data-module="lbh-collapsible"
+        >
           <button
             aria-expanded="false"
             data-behavior="lbh-collapsible-toggle"

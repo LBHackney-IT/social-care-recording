@@ -1,0 +1,100 @@
+@import "lbh-frontend/lbh/base";
+
+.outer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  @include govuk-font($size: 16);
+
+  * {
+    margin-top: 0;
+  }
+}
+
+.button {
+  margin-top: 0;
+  border-radius: 10px 0px 0px 10px;
+
+  svg {
+    margin-right: 10px;
+  }
+
+  &:focus svg rect {
+    fill: lbh-colour("lbh-text");
+  }
+  &:active svg rect,
+  &:focus:hover svg rect {
+    fill: lbh-colour("lbh-white");
+  }
+}
+
+.listbox {
+  border: none;
+  border-left: 1px solid lbh-colour("lbh-secondary-inner-shadow");
+  border-radius: 0px 10px 10px 0px;
+  margin-top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  &:focus svg path {
+    stroke: lbh-colour("lbh-text");
+  }
+  &:active svg path,
+  &:focus:hover svg path {
+    stroke: lbh-colour("lbh-white");
+  }
+}
+
+.popover {
+  border-radius: 5px;
+  border: 1px solid lbh-colour("lbh-border");
+  @include govuk-font($size: 16);
+  padding: 0;
+  overflow: hidden;
+  background: lbh-colour("lbh-grey-4");
+
+  width: inherit;
+  max-width: 250px;
+
+  &:focus-within {
+    box-shadow: none;
+  }
+
+  [data-reach-listbox-option] {
+    white-space: inherit;
+    &[data-current-nav] {
+      background: lbh-colour("lbh-white");
+    }
+  }
+}
+
+.option {
+  position: relative;
+  padding: 10px;
+  padding-left: 35px;
+  border-bottom: 1px solid lbh-colour("lbh-border");
+  cursor: pointer;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+
+  svg {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+  }
+}
+
+.title {
+  margin-top: 0;
+  font-weight: 600;
+}
+
+.description {
+  margin-top: 5px;
+  color: lbh-colour("lbh-secondary-text");
+  line-height: 1.5;
+}
