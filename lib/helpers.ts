@@ -54,6 +54,8 @@ export const generateInitialValues = (fields, person): any => {
   fields.map(field => {
     if (field.type === "checkboxes" || field.type === "repeater") {
       initialValues[field.id] = []
+    } else if (field.type === "file") {
+      initialValues[field.id] = null
     } else {
       initialValues[field.id] = (person && person[field.prefill]) || ""
     }

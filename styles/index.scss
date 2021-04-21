@@ -1,5 +1,8 @@
 @import "node_modules/lbh-frontend/lbh/all";
 
+// dialog styles
+@import "node_modules/lbh-frontend/lbh/components/lbh-dialog/dialog";
+
 // turn off frustrating smooth scroll
 html {
   scroll-behavior: initial;
@@ -40,5 +43,23 @@ html {
 
 // fix spacing of grid rows next to each other
 .govuk-grid-row + .govuk-grid-row {
+  margin-top: 0;
+}
+
+// fix file upload spaciong
+.lbh-file-upload {
+  margin-top: 0;
+}
+
+// space out form groups a little more
+.lbh-form-group + .lbh-form-group,
+.lbh-form-group + .lbh-button {
+  @include govuk-media-query($from: tablet) {
+    margin-top: 2rem;
+  }
+}
+
+// fix dialog button spacing
+.lbh-dialog__close {
   margin-top: 0;
 }

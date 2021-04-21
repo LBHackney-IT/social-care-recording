@@ -5,7 +5,9 @@ import { Form as FormType } from "../config/forms.types"
 import TextField from "./TextField"
 import RadioField from "./RadioField"
 import RepeaterField from "./RepeaterField"
+import FileUploadField from "./FileUploadField"
 import Link from "next/link"
+import Banner from "./Banner"
 
 interface Props {
   onSubmit: (values, any) => void
@@ -19,17 +21,34 @@ const CaseNoteForm = ({ onSubmit }: Props): React.ReactElement => {
         subtype: "",
         whatHappened: "",
         actions: [],
+        files: null,
       }}
       validationSchema={caseNoteSchema}
       onSubmit={onSubmit}
     >
-      {({ values, isSubmitting, touched, errors }) => (
+      {({ values, isSubmitting, touched, errors, setFieldValue, status }) => (
         <Form>
+          {status && (
+            <Banner
+              title="There was a problem saving your answers"
+              className="lbh-page-announcement--warning"
+            >
+              <p>Please refresh the page or try again later.</p>
+              <p className="lbh-body-xs">{status}</p>
+            </Banner>
+          )}
+
           <RadioField
             name="type"
             label="What kind of note is this?"
             touched={touched}
             errors={errors}
+            onChange={e => {
+              const target = e.target as HTMLInputElement
+              setFieldValue("type", target.value)
+              // reset subtype to prevent unintended values being submitted
+              setFieldValue("subtype", "")
+            }}
             choices={[
               {
                 value: "visit",
@@ -59,7 +78,7 @@ const CaseNoteForm = ({ onSubmit }: Props): React.ReactElement => {
                 },
                 {
                   value: "office-visit",
-                  label: "Email, letter or text message",
+                  label: "Office visit",
                 },
                 {
                   value: "no-reply-home-visit",
@@ -77,15 +96,29 @@ const CaseNoteForm = ({ onSubmit }: Props): React.ReactElement => {
               errors={errors}
               choices={[
                 {
-                  value: "visit",
+                  value: "phone-call",
                   label: "Phone call",
                 },
                 {
-                  value: "letter",
+                  value: "written",
                   label: "Email, letter or text message",
                 },
               ]}
             />
+          )}
+
+          {values.subtype === "written" && (
+            <div className="govuk-inset-text lbh-inset-text">
+              You don't need to copy and paste emails or text messages. The{" "}
+              <a href="#" className="lbh-link">
+                Gmail add-on
+              </a>{" "}
+              and{" "}
+              <a href="#" className="lbh-link">
+                SMS tool
+              </a>{" "}
+              automatically save to a person's story.
+            </div>
           )}
 
           <TextField
@@ -100,9 +133,19 @@ const CaseNoteForm = ({ onSubmit }: Props): React.ReactElement => {
           <RepeaterField
             label="Actions"
             name="actions"
+            hint="eg. 'Dave to contact GP'"
             touched={touched}
             errors={errors}
             itemName="action"
+          />
+
+          <FileUploadField
+            label="Add files or photos"
+            name="files"
+            touched={touched}
+            errors={errors}
+            setFieldValue={setFieldValue}
+            multiple
           />
 
           <button className="govuk-button lbh-button" disabled={isSubmitting}>
