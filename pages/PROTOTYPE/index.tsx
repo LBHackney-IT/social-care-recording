@@ -5,6 +5,7 @@ const PersonViewPrototype = () => (
     <h1 className="lbh-heading-h1 govuk-!-margin-bottom-7">Test User</h1>
 
     <Multibutton
+      label="Contact method"
       storageKey="lbh-default-contact-method"
       secondary
       choices={[
@@ -106,6 +107,7 @@ const PersonViewPrototype = () => (
               <div className="govuk-details__text">filter coming soon.</div>
             </details> */}
             <Multibutton
+              label="What do you want to record?"
               storageKey="lbh-default-record"
               choices={[
                 {

@@ -13,7 +13,8 @@ import s from "../styles/Multibutton.module.scss"
 
 interface Props {
   /** Unique key to store/retrieve the default value from localstorage */
-  storageKey?: string
+  label: string
+  storageKey: string
   secondary?: boolean
   choices: {
     href: string
@@ -24,6 +25,7 @@ interface Props {
 }
 
 const Multibutton = ({
+  label,
   storageKey,
   secondary,
   choices,
@@ -57,11 +59,12 @@ const Multibutton = ({
         {selection?.title}
       </a>
 
-      <label className="govuk-visually-hidden" id="multibutton-label">
-        What do you want to record?
-      </label>
+      <span className="govuk-visually-hidden" id="multibutton-label">
+        {label}
+      </span>
 
       <ListboxInput
+        id="multibutton"
         aria-labelledby="multibutton-label"
         value={currentValue}
         onChange={value => setCurrentValue(value)}
