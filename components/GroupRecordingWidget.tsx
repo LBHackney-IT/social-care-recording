@@ -112,12 +112,17 @@ const GroupRecordingWidget = ({ initialPerson }: Props): React.ReactElement => {
           <PersonSelect
             name="person"
             label="Matching people"
-            choices={[
+            people={[
               {
-                value: "0",
-                label: "Firstname Surname",
-                dateOfBirth: "Born 20 Sep 1990",
-                address: "123 Town St, Citythorpe, AB1 23C",
+                mosaicId: "0",
+                firstName: "Firstname",
+                lastName: "Surname",
+                dateOfBirth: "1990-04-10T00:00:00.0000000",
+                addressList: [
+                  {
+                    addressLine1: "123 Town St, Citythorpe, AB1 23C",
+                  },
+                ],
               },
             ]}
           />
@@ -126,24 +131,39 @@ const GroupRecordingWidget = ({ initialPerson }: Props): React.ReactElement => {
         <PersonSelect
           name="person"
           label="Or choose a relative"
-          choices={[
+          people={[
             {
-              value: "1",
-              label: "Bart Simpson",
-              dateOfBirth: "Born 20 Sep 1990",
-              address: "123 Town St, Citythorpe, AB1 23C",
+              mosaicId: "1",
+              firstName: "Bart",
+              lastName: "Simpson",
+              dateOfBirth: "1990-04-10T00:00:00.0000000",
+              addressList: [
+                {
+                  addressLine1: "123 Town St, Citythorpe, AB1 23C",
+                },
+              ],
             },
             {
-              value: "2",
-              label: "Lisa Simpson",
-              dateOfBirth: "Born 20 Sep 1990",
-              address: "123 Town St, Citythorpe, AB1 23C",
+              mosaicId: "2",
+              firstName: "Lisa",
+              lastName: "Simpson",
+              dateOfBirth: "1990-04-10T00:00:00.0000000",
+              addressList: [
+                {
+                  addressLine1: "123 Town St, Citythorpe, AB1 23C",
+                },
+              ],
             },
             {
-              value: "3",
-              label: "Maggie Simpson",
-              dateOfBirth: "Born 20 Sep 1990",
-              address: "123 Town St, Citythorpe, AB1 23C",
+              mosaicId: "3",
+              firstName: "Maggie",
+              lastName: "Simpson",
+              dateOfBirth: "1990-04-10T00:00:00.0000000",
+              addressList: [
+                {
+                  addressLine1: "123 Town St, Citythorpe, AB1 23C",
+                },
+              ],
             },
           ]}
         />

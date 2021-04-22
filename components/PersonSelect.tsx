@@ -1,20 +1,20 @@
 import React from "react"
 import s from "../styles/PersonSelect.module.scss"
+import { Person } from "../lib/socialCareApi.types"
+import { prettyDate } from "../lib/formatters"
 
 interface ChoiceProps {
   value: string
   name: string
   label: string
-  dateOfBirth?: string
-  address?: string
+  hint: string
 }
 
 const Choice = ({
   value,
   name,
   label,
-  dateOfBirth,
-  address,
+  hint,
 }: ChoiceProps): React.ReactElement => (
   <div className={`govuk-radios__item ${s.personResult}`}>
     <input
@@ -34,7 +34,7 @@ const Choice = ({
     </label>
 
     <p id={`${name}=${value}-hint`} className={`lbh-body-xs ${s.meta}`}>
-      {dateOfBirth} · {address}
+      {hint}
     </p>
   </div>
 )
@@ -42,23 +42,27 @@ const Choice = ({
 interface Props {
   label: string
   name: string
-  choices: {
-    value: string
-    label: string
-    dateOfBirth?: string
-    address?: string
-  }[]
+  people: Person[]
 }
 
-const PersonSelect = ({ label, name, choices }: Props): React.ReactElement => (
+const PersonSelect = ({ label, name, people }: Props): React.ReactElement => (
   <div className="govuk-form-group lbh-form-group">
     <fieldset className="govuk-fieldset" aria-describedby="example-hint">
       <legend className="govuk-label lbh-label">{label}</legend>
       <div
         className={`govuk-radios govuk-radios--small lbh-radios ${s.personList}`}
       >
-        {choices.map(choice => (
-          <Choice name={name} key={choice.value} {...choice} />
+        {people.map(person => (
+          <Choice
+            name="person"
+            label={`${person.firstName} ${person.lastName}`}
+            value={person.mosaicId}
+            key={person.mosaicId}
+            hint={`Born ${prettyDate(person.dateOfBirth)} · ${
+              person.addressList[0]?.addressLine1
+            }`}
+            {...people}
+          />
         ))}
       </div>
     </fieldset>
