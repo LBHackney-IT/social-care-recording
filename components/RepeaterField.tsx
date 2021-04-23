@@ -26,6 +26,8 @@ const RepeaterField = ({
 }: FieldProps): React.ReactElement => {
   const { values } = useFormikContext()
 
+  const repeaterValues = [].concat(values[name])
+
   return (
     <div
       className={`govuk-form-group lbh-form-group ${
@@ -54,7 +56,7 @@ const RepeaterField = ({
         <FieldArray name={name}>
           {({ insert, remove, push }) => (
             <>
-              {values[name].map((item, i) => (
+              {repeaterValues.map((item, i) => (
                 <div className={s.row} key={i}>
                   <label
                     className="govuk-visually-hidden"
@@ -88,7 +90,7 @@ const RepeaterField = ({
                   <path d="M6.94 0L5 0V12H6.94V0Z" />
                   <path d="M12 5H0V7H12V5Z" />
                 </svg>
-                {values[name].length > 0
+                {repeaterValues.length > 0
                   ? `Add another ${itemName || "item"}`
                   : `Add an ${itemName || "item"}`}
               </button>
