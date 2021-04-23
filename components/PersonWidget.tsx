@@ -42,7 +42,9 @@ const PersonWidget = ({
           <p className={`lbh-body-s ${s.paragraph}`}>
             Born {prettyDate(person.dateOfBirth)}
           </p>
-          <p className={`lbh-body-s ${s.paragraph}`}>5 known relationships</p>
+          <p className={`lbh-body-s ${s.paragraph}`}>
+            Allocated to Namey McName
+          </p>
 
           <p className={`lbh-body-s ${s.important}`}>
             <strong>1 warning</strong> <span>2 open actions</span>
@@ -68,7 +70,7 @@ const PersonWidget = ({
         <p className={`lbh-body-s ${s.paragraph}`}>
           Born {prettyDate(person.dateOfBirth)}
         </p>
-        <p className={`lbh-body-s ${s.paragraph}`}>5 known relationships</p>
+        <p className={`lbh-body-s ${s.paragraph}`}>Allocated to Namey McName</p>
 
         <p className={`lbh-body-s ${s.important}`}>
           <strong>1 warning</strong> <span>2 open actions</span>

@@ -107,7 +107,7 @@ This tool takes the standard case recording workflow and makes it more flexible,
 3. Write a script to convert a CSV into form config
 4. fix bug where changing a field type to checkbox/repeater from something else (and _maybe_ vice versa) _after_ a submission has been started caused the intitial values to become invalid (because it expects to be able to map over the values) use `Yup.ensure()`?
 
-5. add tests for `PersonSelect`, `Multibutton` and `GroupRecordingWidget`
+5. add tests for `PersonSelect`, `MultiButton` and `GroupRecordingWidget`
 
 ### Next
 
@@ -123,3 +123,11 @@ This tool takes the standard case recording workflow and makes it more flexible,
 - Integrate with Contentful for form config
 - Group recording
 - Handle file uploading
+
+### UR findings
+
+- "add a person" -> "link another person"
+- prefill from previous versions of a form, rather than just core person data
+- search by name or contact detail, not just id
+- actions need to be fleshed out
+- show allocated teams/workers in green person widget

@@ -65,11 +65,11 @@ const GroupRecordingWidget = ({ initialPerson }: Props): React.ReactElement => {
             fill="#025EA6"
           />
         </svg>
-        Add another person
+        Link another person
       </button>
 
       <Dialog
-        title="Add a person"
+        title="Link a person"
         isOpen={dialogOpen}
         onDismiss={() => setDialogOpen(false)}
       >
