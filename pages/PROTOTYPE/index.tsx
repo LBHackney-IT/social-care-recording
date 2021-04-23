@@ -1,12 +1,12 @@
-import Multibutton from "../../components/Multibutton"
+import MultiButton from "../../components/MultiButton"
 
 const PersonViewPrototype = () => (
   <>
     <h1 className="lbh-heading-h1 govuk-!-margin-bottom-7">Test User</h1>
 
-    <Multibutton
+    <MultiButton
       label="Contact method"
-      storageKey="lbh-default-contact-method"
+      name="lbh-default-contact-method"
       secondary
       choices={[
         {
@@ -98,17 +98,9 @@ const PersonViewPrototype = () => (
             className="lbh-collapsible__content govuk-!-margin-top-6"
             data-behavior="lbh-collapsible-content"
           >
-            {/* <details className="govuk-details" data-module="govuk-details">
-              <summary className="govuk-details__summary">
-                <span className="govuk-details__summary-text">
-                  Filter and sort
-                </span>
-              </summary>
-              <div className="govuk-details__text">filter coming soon.</div>
-            </details> */}
-            <Multibutton
+            <MultiButton
               label="What do you want to record?"
-              storageKey="lbh-default-record"
+              name="lbh-default-record"
               choices={[
                 {
                   href: "/case-notes/2",
