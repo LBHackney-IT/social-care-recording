@@ -131,3 +131,4 @@ This tool takes the standard case recording workflow and makes it more flexible,
 - search by name or contact detail, not just id
 - actions need to be fleshed out
 - show allocated teams/workers in green person widget
+- fix cross-browser display issue on grouped person widget
