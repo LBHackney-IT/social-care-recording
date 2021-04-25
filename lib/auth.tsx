@@ -56,8 +56,6 @@ export const getSession = ctx => {
     process.env.HACKNEY_JWT_SECRET
   )
 
-  console.log(data)
-
   return {
     user: data,
   }
