@@ -10,7 +10,8 @@
     "cypress": "cypress open",
     "db:schema:load": "prisma db push --preview-feature",
     "db:seed": "prisma db seed --preview-feature",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "transform-forms": "node jobs/transform-forms"
   },
   "keywords": [],
   "author": "",
@@ -38,10 +39,12 @@
     "@types/luxon": "^1.26.3",
     "@types/node": "^14.14.37",
     "@types/react": "^17.0.3",
+    "csvtojson": "^2.0.10",
     "cypress": "^6.8.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
     "prisma": "^2.21.1",
+    "slugify": "^1.5.0",
     "typescript": "^4.2.4"
   },
   "jest": {
