@@ -19,7 +19,7 @@ describe("GroupRecordingWidget", () => {
   it("shows one person intitially", () => {
     render(<GroupRecordingWidget initialPerson={mockPerson} />)
     expect(screen.getByText("Bart Simpson"))
-    expect(screen.getByText("Add another person"))
+    expect(screen.getByText("Link another person"))
   })
   //   it("allows people to be added and removed", () => {})
   //   it("allows widgets to be expanded and collapsed when there are more than one", () => {})
