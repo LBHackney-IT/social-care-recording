@@ -44,27 +44,6 @@ export const useSession = () => {
 
 /** Get session server-side */
 export const getSession = ctx => {
-  //
-  //
-  // MOCK RESPONSE FOR TESTING
-  return {
-    user: {
-      sub: "107136470627840875739",
-      email: "test.user@hackney.gov.uk",
-      iss: "Hackney",
-      name: "Test User",
-      groups: [
-        "development-team-production",
-        "development-team-staging",
-        "saml-aws-console-socialcare-developer",
-        "Social-Care-Admin-Dev",
-      ],
-      iat: 1619033187,
-    },
-  }
-  //
-  //
-
   const { req } = ctx
 
   const cookies = cookie.parse(req.headers.cookie ?? "")
