@@ -1,4 +1,6 @@
+import { useState } from "react"
 import { GetServerSideProps } from "next"
+import { useRouter } from "next/router"
 import Head from "next/head"
 import PersonWidget from "../../../components/PersonWidget"
 import TaskList from "../../../components/TaskList"
@@ -6,21 +8,28 @@ import Link from "next/link"
 import TaskListHeader from "../../../components/TaskListHeader"
 import { getSession } from "../../../lib/auth"
 import s from "../../../styles/Sidebar.module.scss"
+import Banner from "../../../components/Banner"
 
 const TaskListPage = ({ params, completedSteps, person, form }) => {
+  const router = useRouter()
+  const [status, setStatus] = useState(false)
+
   const handleFinish = async (): Promise<void> => {
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions/${params.id}`,
         {
           method: "POST",
+          body: JSON.stringify({
+            person,
+          }),
         }
       )
       const data = await res.json()
       if (data.error) throw data.error
-      // TODO: what happens after this?
+      router.push("/")
     } catch (e) {
-      console.error(e)
+      setStatus(e.toString())
     }
   }
 
@@ -32,6 +41,15 @@ const TaskListPage = ({ params, completedSteps, person, form }) => {
       <h1 className="lbh-heading-h1 govuk-!-margin-bottom-8">{form?.name}</h1>
       <div className={`govuk-grid-row ${s.outer}`}>
         <div className="govuk-grid-column-two-thirds">
+          {status && (
+            <Banner
+              title="There was a problem finishing the submission"
+              className="lbh-page-announcement--warning"
+            >
+              <p>Please refresh the page or try again later.</p>
+              <p className="lbh-body-xs">{status}</p>
+            </Banner>
+          )}
           <TaskListHeader
             steps={form?.steps}
             completedSteps={completedSteps}
@@ -83,13 +101,13 @@ export const getServerSideProps: GetServerSideProps = async ({
   const data = await res1.json()
 
   // redirect if submission doesn't exist
-  if (!data.id)
-    return {
-      props: {},
-      redirect: {
-        destination: "/404",
-      },
-    }
+  // if (!data.id)
+  //   return {
+  //     props: {},
+  //     redirect: {
+  //       destination: "/404",
+  //     },
+  //   }
 
   return {
     props: {

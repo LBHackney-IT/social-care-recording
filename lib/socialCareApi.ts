@@ -30,22 +30,25 @@ export const addRecordToCase = async (
   formName: string
 ) => {
   try {
-    // TODO: test aaaaaaaall of this
     const res = await fetch(`${process.env.SOCIAL_CARE_API_ENDPOINT}/cases`, {
       headers: {
         "x-api-key": process.env.SOCIAL_CARE_API_KEY,
       },
       method: "POST",
+      // TODO: what should these values be?
       body: JSON.stringify({
         formName: formName,
-        formNameOverall: formName,
+        formNameOverall: "ASC_case_note",
         firstName: person.firstName,
         lastName: person.firstName,
         workerEmail: worker,
         dateOfBirth: person.dateOfBirth,
-        personId: person.mosaicId,
+        personId: Number(person.mosaicId),
         contextFlag: person.ageContext,
-        caseFormData: JSON.stringify(data),
+        caseFormData: JSON.stringify({
+          case_note_title: formName,
+          case_note_description: JSON.stringify(data),
+        }),
       }),
     })
     return await res.json()

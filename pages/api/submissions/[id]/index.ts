@@ -8,6 +8,8 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
   let { id } = req.query
 
   if (req.method === "POST") {
+    let { person } = JSON.parse(req.body)
+
     const submission = await prisma.submission.update({
       where: {
         id: id.toString(),
@@ -16,8 +18,12 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
         submittedAt: new Date(),
       },
     })
-    // TODO: send the submission via the api
-    // addRecordToCase({}, {}, req.session.user.email, submission.formId)
+    addRecordToCase(
+      submission.answers,
+      person,
+      req.session.user.email,
+      submission.formId
+    )
     res.json(submission)
   } else {
     //   1. grab submission

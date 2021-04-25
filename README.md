@@ -126,7 +126,7 @@ This tool takes the standard case recording workflow and makes it more flexible,
 
 ### UR findings
 
-- "add a person" -> "link another person"
+- ~~"add a person" -> "link another person"~~ (DONE)
 - prefill from previous versions of a form, rather than just core person data
 - search by name or contact detail, not just id
 - actions need to be fleshed out
