@@ -18,7 +18,7 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
         submittedAt: new Date(),
       },
     })
-    addRecordToCase(
+    await addRecordToCase(
       submission.answers,
       person,
       req.session.user.email,

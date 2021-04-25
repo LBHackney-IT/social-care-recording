@@ -1,5 +1,6 @@
 import s from "../styles/TaskList.module.scss"
 import { Step } from "../config/forms.types"
+import { useState } from "react"
 
 interface Props {
   steps: Step[]
@@ -12,6 +13,8 @@ const TaskListHeader = ({
   completedSteps,
   onFinish,
 }: Props): React.ReactElement => {
+  const [submitting, setSubmitting] = useState(false)
+
   if (completedSteps?.length < steps.length)
     return (
       <>
@@ -30,7 +33,14 @@ const TaskListHeader = ({
         You can now submit for review.
       </p>
 
-      <button onClick={onFinish} className="govuk-button lbh-button">
+      <button
+        onClick={() => {
+          setSubmitting(true)
+          onFinish()
+        }}
+        className="govuk-button lbh-button"
+        disabled={submitting}
+      >
         Finish and send
       </button>
     </>

@@ -101,13 +101,13 @@ This tool takes the standard case recording workflow and makes it more flexible,
 - ~~Refactor APIs to use a common helper to handle 401s and 500s~~ (DONE)
 - ~~ Add repeater field~~ (DONE)
 - ~~Implement specific form for case notes~~ (DONE)
+- ~~**Submit** to the case viewer api~~ (DONE)
 
-1. **Submit** to the case viewer api
-2. Hitting the "continue" button on a step should return to the task list page if the form submitted successfully
-3. Write a script to convert a CSV into form config
-4. fix bug where changing a field type to checkbox/repeater from something else (and _maybe_ vice versa) _after_ a submission has been started caused the intitial values to become invalid (because it expects to be able to map over the values)
-5. add autosave support to case notes
-6. add tests for `GroupRecordingWidget`
+1. Hitting the "continue" button on a step should return to the task list page if the form submitted successfully
+2. Write a script to convert a CSV into form config
+3. fix bug where changing a field type to checkbox/repeater from something else (and _maybe_ vice versa) _after_ a submission has been started caused the intitial values to become invalid (because it expects to be able to map over the values)
+4. add autosave support to case notes
+5. add tests for `GroupRecordingWidget`
 
 ### Next
 
