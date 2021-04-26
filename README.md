@@ -99,7 +99,7 @@ This tool takes the standard case recording workflow and makes it more flexible,
 - ~~Improve autosave so it doesn't submit after initial form mount~~ (DONE)
 - ~~Refactor forms to use formik status messages~~ (DONE)
 - ~~Refactor APIs to use a common helper to handle 401s and 500s~~ (DONE)
-- ~~ Add repeater field~~ (DONE)
+- ~~Add repeater field~~ (DONE)
 - ~~Implement specific form for case notes~~ (DONE)
 - ~~**Submit** to the case viewer api~~ (DONE)
 
