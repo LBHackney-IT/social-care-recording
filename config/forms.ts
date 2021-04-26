@@ -461,7 +461,7 @@ const formData: Form[] = [
           {
             id: "option-to-'add-another-key-contact'",
             question: "[option to 'Add another key contact' ?]",
-            type: "-",
+            type: "text",
             required: false,
             hint: "",
             error: "",
