@@ -6,7 +6,15 @@ export interface Choice {
 export interface Field {
   id: string
   question: string
-  type: "text" | "textarea" | "radios" | "checkboxes" | "select" | "repeater"
+  type:
+    | "text"
+    | "textarea"
+    | "radios"
+    | "checkboxes"
+    | "select"
+    | "repeater"
+    | "repeaterGroup"
+    | "combobox"
   // | "file"
   /** Required value is always ignored on fields with a condition */
   required: boolean
@@ -22,6 +30,8 @@ export interface Field {
     id: string
     value: string | boolean
   }
+  /** For repeater groups only */
+  subFields?: Field[]
 }
 
 export interface Step {

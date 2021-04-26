@@ -4,6 +4,7 @@ import CheckboxField from "./CheckboxField"
 import SelectField from "./SelectField"
 import RepeaterField from "./RepeaterField"
 import FileUploadField from "./FileUploadField"
+import ComboboxField from "./ComboboxField"
 
 const FlexibleField = ({
   values,
@@ -63,6 +64,18 @@ const FlexibleField = ({
   if (field.type === "checkboxes")
     return (
       <CheckboxField
+        name={field.id}
+        label={field.question}
+        touched={touched}
+        choices={field.choices}
+        errors={errors}
+        {...field}
+      />
+    )
+
+  if (field.type === "combobox")
+    return (
+      <ComboboxField
         name={field.id}
         label={field.question}
         touched={touched}
