@@ -1,0 +1,21 @@
+@import "lbh-frontend/lbh/base";
+
+.meter {
+  width: 40px;
+  margin-top: 0;
+  margin-right: 15px;
+  border-radius: 2px;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  overflow: hidden;
+
+  background: lbh-colour("lbh-grey-3");
+
+  &::-moz-meter-bar,
+  &::-webkit-meter-bar {
+    background: none;
+    background-color: lbh-colour("lbh-primary-button");
+  }
+}

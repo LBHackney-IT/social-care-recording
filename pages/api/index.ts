@@ -16,7 +16,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   res.json({
     forms,
-    unfinishedSubmissions,
+    unfinishedSubmissions: unfinishedSubmissions.map(submission => ({
+      ...submission,
+      form: forms.find(form => form.id === submission.formId),
+    })),
   })
 }
 

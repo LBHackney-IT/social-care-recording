@@ -4,12 +4,14 @@ import { useRouter } from "next/router"
 import Link from "next/link"
 import { Submission } from "@prisma/client"
 import { Form } from "../config/forms.types"
-import SubmissionsTable from "../components/SubmissionsTable"
+import SubmissionsTable, {
+  SubmissionWithForm,
+} from "../components/SubmissionsTable"
 import { getSession } from "../lib/auth"
 
 interface Props {
   forms: Form[]
-  unfinishedSubmissions: Submission[]
+  unfinishedSubmissions: SubmissionWithForm[]
 }
 
 const Start = ({ forms, unfinishedSubmissions }: Props) => {
@@ -33,18 +35,14 @@ const Start = ({ forms, unfinishedSubmissions }: Props) => {
   }
 
   return (
-    <div className="govuk-grid-row">
+    <div>
       <h1 className="govuk-visually-hidden">Submissions</h1>
 
-      <div className="govuk-grid-column-one-half">
-        <h2 className="lbh-heading-h3">Start a new submission</h2>
-        {forms && <StartForm onSubmit={handleSubmit} forms={forms} />}
-      </div>
+      <h2 className="lbh-heading-h3">Resume a submission</h2>
+      <SubmissionsTable unfinishedSubmissions={unfinishedSubmissions} />
 
-      <div className="govuk-grid-column-one-half">
-        <h2 className="lbh-heading-h3">Resume a submission</h2>
-        <SubmissionsTable unfinishedSubmissions={unfinishedSubmissions} />
-      </div>
+      <h2 className="lbh-heading-h3">Start a new submission</h2>
+      {forms && <StartForm onSubmit={handleSubmit} forms={forms} />}
     </div>
   )
 }
