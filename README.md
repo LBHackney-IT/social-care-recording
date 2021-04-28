@@ -114,6 +114,7 @@ And more speculatively:
 2. fix bug where changing a field type to checkbox/repeater from something else (and _maybe_ vice versa) _after_ a submission has been started caused the intitial values to become invalid (because it expects to be able to map over the values)
 3. add autosave support to case notes
 4. add tests for `GroupRecordingWidget`
+5. Add a "repeater group" field for capturing a repeatable group of fields (eg. name, phone number, role for a number of people).
 
 ### Next
 
