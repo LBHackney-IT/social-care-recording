@@ -3,6 +3,7 @@ import RadioField from "./RadioField"
 import CheckboxField from "./CheckboxField"
 import SelectField from "./SelectField"
 import RepeaterField from "./RepeaterField"
+import RepeaterGroupField from "./RepeaterGroupField"
 import FileUploadField from "./FileUploadField"
 
 const FlexibleField = ({
@@ -24,6 +25,18 @@ const FlexibleField = ({
   //       {...field}
   //     />
   //   )
+
+  if (field.type === "repeaterGroup")
+    return (
+      <RepeaterGroupField
+        name={field.id}
+        subfields={field.subfields}
+        label={field.question}
+        touched={touched}
+        errors={errors}
+        {...field}
+      />
+    )
 
   if (field.type === "textarea")
     return (

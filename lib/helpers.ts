@@ -52,7 +52,9 @@ export const debounce = (func: () => any, delay: number): (() => any) => {
 export const generateInitialValues = (fields, person): any => {
   const initialValues = {}
   fields.map(field => {
-    if (field.type === "checkboxes" || field.type === "repeater") {
+    if (field.type === "repeaterGroup") {
+      initialValues[field.id] = [generateInitialValues(field.subfields, person)]
+    } else if (field.type === "checkboxes" || field.type === "repeater") {
       initialValues[field.id] = []
     } else if (field.type === "file") {
       initialValues[field.id] = null
