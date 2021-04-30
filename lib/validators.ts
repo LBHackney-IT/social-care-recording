@@ -1,4 +1,5 @@
 import * as Yup from "yup"
+import { Field } from "../config/forms.types"
 
 export const startSchema = Yup.object().shape({
   socialCareId: Yup.number()
@@ -19,7 +20,7 @@ export const caseNoteSchema = Yup.object().shape({
   files: Yup.array().of(Yup.mixed()).nullable(),
 })
 
-export const generateFlexibleSchema = (fields): any => {
+export const generateFlexibleSchema = (fields: Field[]): any => {
   const shape = {}
 
   fields.map(field => {
@@ -42,7 +43,9 @@ export const generateFlexibleSchema = (fields): any => {
       } else if (field.type === "repeater" || field.type === "repeaterGroup") {
         shape[field.id] = shape[field.id].min(
           1,
-          field.error || "Please add at least one item"
+          field.error ||
+            `Please add at least one ${field.itemName}` ||
+            "Please add at least one item"
         )
       } else {
         shape[field.id] = shape[field.id].required(
