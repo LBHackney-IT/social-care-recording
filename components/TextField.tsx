@@ -38,21 +38,14 @@ const Field = ({
       </span>
     )}
 
-    <ErrorMessage
-      name={name}
-      className="govuk-error-message lbh-error-message"
-    />
-    {/* 
-    {getIn(errors, name)}
-
-    {getIn(touched, name) ? "true" : "false"} */}
-
-    {/* {getIn(touched, name) && getIn(errors, name) && (
-      <p className="govuk-error-message lbh-error-message" role="alert">
-        <span className="govuk-visually-hidden">Error:</span>{" "}
-        {getIn(errors, name)}
-      </p>
-    )} */}
+    <ErrorMessage name={name}>
+      {msg => (
+        <p className="govuk-error-message lbh-error-message" role="alert">
+          <span className="govuk-visually-hidden">Error:</span>
+          {msg}
+        </p>
+      )}
+    </ErrorMessage>
 
     <RawField
       name={name}
