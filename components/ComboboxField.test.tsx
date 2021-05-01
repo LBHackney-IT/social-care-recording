@@ -80,21 +80,25 @@ describe("ComboboxField", () => {
         initialValues={{
           foo: "",
         }}
+        initialTouched={{
+          foo: true,
+        }}
+        initialErrors={{
+          foo: "Example error",
+        }}
       >
-        <Form>
-          <ComboboxField
-            touched={{
-              foo: true,
-            }}
-            errors={{
-              foo: "Example error",
-            }}
-            name="foo"
-            label="Label text"
-            hint="Hint text"
-            choices={choices}
-          />
-        </Form>
+        {({ touched, errors }) => (
+          <Form>
+            <ComboboxField
+              touched={touched}
+              errors={errors}
+              name="foo"
+              label="Label text"
+              hint="Hint text"
+              choices={choices}
+            />
+          </Form>
+        )}
       </Formik>
     )
     expect(screen.getByText("Example error"))

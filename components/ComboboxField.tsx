@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { useFormikContext } from "formik"
+import React, { useState } from "react"
+import { useFormikContext, getIn, ErrorMessage } from "formik"
 import Downshift from "downshift"
 import s from "../styles/ComboboxField.module.scss"
 
@@ -62,7 +62,9 @@ const Field = ({
       }) => (
         <div
           className={`govuk-form-group lbh-form-group ${
-            touched[name] && errors[name] && "govuk-form-group--error"
+            getIn(touched, name) &&
+            getIn(errors, name) &&
+            "govuk-form-group--error"
           }`}
         >
           <label className="govuk-label lbh-label" {...getLabelProps()}>
@@ -75,20 +77,22 @@ const Field = ({
             </span>
           )}
 
-          {touched[name] && errors[name] && (
-            <p className="govuk-error-message lbh-error-message" role="alert">
-              <span className="govuk-visually-hidden">Error:</span>{" "}
-              {errors[name]}
-            </p>
-          )}
+          <ErrorMessage name={name}>
+            {msg => (
+              <p className="govuk-error-message lbh-error-message" role="alert">
+                <span className="govuk-visually-hidden">Error:</span>
+                {msg}
+              </p>
+            )}
+          </ErrorMessage>
 
           <div
-            {...getRootProps({}, { suppressRefError: true })}
+            {...getRootProps(undefined, { suppressRefError: true })}
             className={s.combobox}
           >
             <input
               {...getInputProps()}
-              className={`govuk-input lbh-input ${s.input}`}
+              className={`govuk-input lbh-input ${s.input} ${className}`}
               aria-describedby={hint ? `${name}-hint` : undefined}
             />
             <button
@@ -113,11 +117,11 @@ const Field = ({
                       !inputValue ||
                       item.toLowerCase().includes(inputValue.toLowerCase())
                   )
-                  .map((item, index) => (
+                  .map((item, i) => (
                     <li
                       {...getItemProps({
                         key: item,
-                        index,
+                        index: i,
                         item,
                       })}
                       className={s.option}

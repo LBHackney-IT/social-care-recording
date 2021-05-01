@@ -40,6 +40,10 @@
   z-index: 2;
   max-height: 300px;
   overflow-y: auto;
+
+  &:empty {
+    border: none;
+  }
 }
 
 .option {
