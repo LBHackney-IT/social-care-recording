@@ -43,9 +43,7 @@ export const generateFlexibleSchema = (fields: Field[]): any => {
       } else if (field.type === "repeater" || field.type === "repeaterGroup") {
         shape[field.id] = shape[field.id].min(
           1,
-          field.error ||
-            `Please add at least one ${field.itemName}` ||
-            "Please add at least one item"
+          field.error || `Please add at least one ${field.itemName || "item"}`
         )
       } else {
         shape[field.id] = shape[field.id].required(
