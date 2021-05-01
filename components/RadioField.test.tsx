@@ -83,21 +83,23 @@ describe("RadioField", () => {
         initialValues={{
           foo: "",
         }}
+        initialErrors={{
+          foo: "Example error",
+        }}
+        initialTouched={{
+          foo: true,
+        }}
       >
-        <Form>
+        {({ errors, touched }) => (
           <RadioField
-            touched={{
-              foo: true,
-            }}
-            errors={{
-              foo: "Example error",
-            }}
+            touched={touched}
+            errors={errors}
             name="foo"
             label="Label text"
             hint="Hint text"
             choices={choices}
           />
-        </Form>
+        )}
       </Formik>
     )
     expect(screen.getByText("Example error"))
@@ -105,15 +107,22 @@ describe("RadioField", () => {
 
   it("calls a custom change handler", () => {
     render(
-      <RadioField
-        touched={{}}
-        errors={{}}
-        name="foo"
-        label="Label text"
-        hint="Hint text"
-        choices={choices}
-        onChange={mockHandler}
-      />
+      <Formik
+        onSubmit={null}
+        initialValues={{
+          foo: false,
+        }}
+      >
+        <RadioField
+          touched={{}}
+          errors={{}}
+          name="foo"
+          label="Label text"
+          hint="Hint text"
+          choices={choices}
+          onChange={mockHandler}
+        />
+      </Formik>
     )
 
     fireEvent.click(screen.getByText("Foo option"))

@@ -2,6 +2,7 @@ import s from "../styles/FileUploadField.module.scss"
 import { useState, useCallback } from "react"
 import formData from "../config/forms"
 import PreviewPanel from "./PreviewPanel"
+import { getIn } from "formik"
 
 interface FieldProps {
   touched
@@ -55,7 +56,7 @@ const Field = ({
   return (
     <div
       className={`govuk-form-group lbh-form-group ${
-        touched[name] && errors[name] && "govuk-form-group--error"
+        getIn(touched, name) && getIn(errors, name) && "govuk-form-group--error"
       }`}
     >
       <label htmlFor={name} className="govuk-label lbh-label">

@@ -16,7 +16,7 @@ export interface Field {
     | "repeaterGroup"
   // | "file"
   /** Required value is always ignored on fields with a condition */
-  required: boolean
+  required?: boolean
   hint?: string
   error?: string
   choices?: Choice[]

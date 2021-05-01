@@ -7,7 +7,7 @@ describe("TextField", () => {
     render(
       <Formik onSubmit={null} initialValues={{}}>
         <FlexibleFields
-          field={{ type: "text" }}
+          field={{ id: "foo", type: "text" }}
           values={{}}
           touched={{}}
           errors={{}}
@@ -23,13 +23,14 @@ describe("TextField", () => {
       <Formik onSubmit={null} initialValues={{}}>
         <FlexibleFields
           field={{
+            id: "foo",
             type: "text",
             condition: {
-              id: "foo",
+              id: "bar",
               value: "yes",
             },
           }}
-          values={{ foo: "yes" }}
+          values={{ bar: "yes" }}
           touched={{}}
           errors={{}}
         />
@@ -44,13 +45,14 @@ describe("TextField", () => {
       <Formik onSubmit={null} initialValues={{}}>
         <FlexibleFields
           field={{
+            id: "foo",
             type: "text",
             condition: {
-              id: "foo",
+              id: "bar",
               value: "yes",
             },
           }}
-          values={{ foo: "no" }}
+          values={{ bar: "" }}
           touched={{}}
           errors={{}}
         />
@@ -65,6 +67,7 @@ describe("TextField", () => {
       <Formik onSubmit={null} initialValues={{}}>
         <FlexibleFields
           field={{
+            id: "foo",
             type: "whatever",
             label: "Test label",
           }}

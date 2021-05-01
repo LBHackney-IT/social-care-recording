@@ -2,13 +2,14 @@ import { FieldArray, useFormikContext } from "formik"
 import { Field } from "../config/forms.types"
 import s from "../styles/Repeater.module.scss"
 import FlexibleField from "./FlexibleFields"
+import { generateInitialValues } from "../lib/helpers"
 
 interface Props {
   name: string
-  itemName: string
+  itemName?: string
   subfields: Field[]
   label
-  hint
+  hint?
 }
 
 const RepeaterGroupField = ({
@@ -24,6 +25,7 @@ const RepeaterGroupField = ({
 
   return (
     <div
+      // see https://formik.org/docs/api/fieldarray#fieldarray-validation-gotchas
       className={`govuk-form-group lbh-form-group ${
         touched[name] &&
         errors[name] &&
@@ -31,17 +33,11 @@ const RepeaterGroupField = ({
         "govuk-form-group--error"
       }`}
     >
-      <p>Initial values: {JSON.stringify(initialValues)}</p>
-
-      <p>Errors: {JSON.stringify(errors)}</p>
-
-      <p>Touched: {JSON.stringify(touched)}</p>
-
       <fieldset
         className="govuk-fieldset"
         aria-describedby={hint && `${name}-hint`}
       >
-        <legend className="lbh-heading-h2">{label}</legend>
+        <legend className="govuk-label lbh-label">{label}</legend>
 
         {hint && (
           <span id={`${name}-hint`} className="govuk-hint lbh-hint">
@@ -49,12 +45,10 @@ const RepeaterGroupField = ({
           </span>
         )}
 
-        {touched[name] && errors[name] && (
+        {touched[name] && errors[name] && typeof errors[name] === "string" && (
           <p className="govuk-error-message lbh-error-message" role="alert">
-            <span className="govuk-visually-hidden">Error:</span>{" "}
-            {Array.isArray(errors[name])
-              ? JSON.stringify(errors[name][0])
-              : errors[name]}
+            <span className="govuk-visually-hidden">Error:</span>
+            {errors[name]}
           </p>
         )}
 
@@ -62,25 +56,15 @@ const RepeaterGroupField = ({
           {({ insert, remove, push }) => (
             <>
               {repeaterValues.map((item, i) => (
-                <div key={i}>
-                  <h3 className="lbh-heading-h3">
-                    {itemName.replace(/^\w/, c => c.toUpperCase()) || "Item"}{" "}
-                    {i + 1}
-                  </h3>
+                <div key={i} className={s.repeaterGroup}>
                   {subfields.map(subfield => (
                     <FlexibleField
                       values={values}
                       field={{
                         ...subfield,
-                        name: `${name}[${i}].${subfield.id}`,
+                        name: `${name}.${i}.${subfield.id}`,
                       }}
-                      touched={{
-                        [name]: [
-                          {
-                            [subfield.id]: true,
-                          },
-                        ],
-                      }}
+                      touched={touched}
                       errors={errors}
                       key={subfield.id}
                     />
@@ -88,17 +72,28 @@ const RepeaterGroupField = ({
 
                   <button
                     type="button"
-                    className="lbh-link"
                     onClick={() => remove(i)}
+                    className={s.close}
                   >
-                    Remove
+                    <span className="govuk-visually-hidden">Close</span>
+
+                    <svg width="18" height="18" viewBox="0 0 13 13" fill="none">
+                      <path
+                        d="M-0.0501709 1.36379L1.36404 -0.050415L12.6778 11.2633L11.2635 12.6775L-0.0501709 1.36379Z"
+                        fill="#0B0C0C"
+                      />
+                      <path
+                        d="M11.2635 -0.050293L12.6778 1.36392L1.36404 12.6776L-0.0501709 11.2634L11.2635 -0.050293Z"
+                        fill="#0B0C0C"
+                      />
+                    </svg>
                   </button>
                 </div>
               ))}
 
               <button
                 type="button"
-                onClick={() => push("")}
+                onClick={() => push(generateInitialValues(subfields, null))}
                 className={`govuk-button lbh-button lbh-button--add ${s.addAnother}`}
               >
                 <svg width="12" height="12" viewBox="0 0 12 12">
@@ -107,7 +102,7 @@ const RepeaterGroupField = ({
                 </svg>
                 {repeaterValues.length > 0
                   ? `Add another ${itemName || "item"}`
-                  : `Add an ${itemName || "item"}`}
+                  : `Add ${itemName || "item"}`}
               </button>
             </>
           )}
