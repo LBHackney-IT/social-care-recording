@@ -31,7 +31,7 @@ describe("RepeaterField", () => {
 
     expect(screen.getByText("Hint text"))
 
-    expect(screen.getByText("Add an item"))
+    expect(screen.getByText("Add item"))
   })
 
   it("renders initial values correctly", () => {
@@ -70,23 +70,23 @@ describe("RepeaterField", () => {
       <Formik
         onSubmit={null}
         initialValues={{
-          foo: ["one", "two", "three"],
+          foo: [],
+        }}
+        initialErrors={{
+          foo: "Example error",
+        }}
+        initialTouched={{
+          foo: true,
         }}
       >
         {({ touched, errors }) => (
-          <Form>
-            <RepeaterField
-              touched={{
-                foo: true,
-              }}
-              errors={{
-                foo: "Example error",
-              }}
-              name="foo"
-              label="Label text"
-              hint="Hint text"
-            />
-          </Form>
+          <RepeaterField
+            touched={touched}
+            errors={errors}
+            name="foo"
+            label="Label text"
+            hint="Hint text"
+          />
         )}
       </Formik>
     )
@@ -98,21 +98,21 @@ describe("RepeaterField", () => {
         initialValues={{
           foo: ["one", "two", "three"],
         }}
+        initialErrors={{
+          foo: ["Example error 2"],
+        }}
+        initialTouched={{
+          foo: true,
+        }}
       >
         {({ touched, errors }) => (
-          <Form>
-            <RepeaterField
-              touched={{
-                foo: true,
-              }}
-              errors={{
-                foo: ["Example error 2"],
-              }}
-              name="foo"
-              label="Label text"
-              hint="Hint text"
-            />
-          </Form>
+          <RepeaterField
+            touched={touched}
+            errors={errors}
+            name="foo"
+            label="Label text"
+            hint="Hint text"
+          />
         )}
       </Formik>
     )

@@ -17,7 +17,7 @@ export interface Field {
     | "combobox"
   // | "file"
   /** Required value is always ignored on fields with a condition */
-  required: boolean
+  required?: boolean
   hint?: string
   error?: string
   choices?: Choice[]
@@ -30,8 +30,9 @@ export interface Field {
     id: string
     value: string | boolean
   }
-  /** For repeater groups only */
-  subFields?: Field[]
+  subfields?: Field[]
+  /** Singular item name for more descriptive buttons and legends  */
+  itemName?: string
 }
 
 export interface Step {

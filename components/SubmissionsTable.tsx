@@ -1,9 +1,15 @@
 import Link from "next/link"
 import { Submission } from "@prisma/client"
 import { prettyDate } from "../lib/formatters"
+import s from "../styles/SubmissionsTable.module.scss"
+import { Form } from "../config/forms.types"
+
+export interface SubmissionWithForm extends Submission {
+  form: Form
+}
 
 interface Props {
-  unfinishedSubmissions: Submission[]
+  unfinishedSubmissions: SubmissionWithForm[]
 }
 
 const SubmissionsTable = ({ unfinishedSubmissions }: Props) => {
@@ -20,25 +26,42 @@ const SubmissionsTable = ({ unfinishedSubmissions }: Props) => {
           <th scope="col" className="govuk-table__header">
             Form
           </th>
+
           <th scope="col" className="govuk-table__header">
             Started
+          </th>
+          <th scope="col" className="govuk-table__header">
+            By
+          </th>
+          <th scope="col" className="govuk-table__header">
+            Contributors
           </th>
         </tr>
       </thead>
       <tbody className="govuk-table__body">
         {unfinishedSubmissions.map(submission => (
           <tr className="govuk-table__row" key={submission.id}>
-            <td className="govuk-table__cell">
+            <td className="govuk-table__cell lbh-body-s">
+              {submission.socialCareId}
+            </td>
+            <td className="govuk-table__cell lbh-body-s">
+              <meter
+                className={s.meter}
+                value={submission.completedSteps.length}
+                max={submission.form.steps.length}
+              />
               <Link href={`/submissions/${submission.id}`}>
-                <a className="lbh-link">{submission.socialCareId}</a>
+                <a className="lbh-link">{submission.form.name}</a>
               </Link>
             </td>
             <td className="govuk-table__cell lbh-body-s">
-              {submission.formId}
+              {prettyDate((submission.createdAt as unknown) as string)}
             </td>
             <td className="govuk-table__cell lbh-body-s">
-              {prettyDate((submission.createdAt as unknown) as string)} by{" "}
               {submission.createdBy}
+            </td>
+            <td className="govuk-table__cell lbh-body-xs">
+              {submission.editedBy.filter(el => el !== submission.createdBy)}
             </td>
           </tr>
         ))}
