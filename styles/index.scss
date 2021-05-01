@@ -63,3 +63,9 @@ html {
 .lbh-dialog__close {
   margin-top: 0;
 }
+
+// fix appearence of labels where there is a background colour
+.govuk-radios__label:before,
+.govuk-checkboxes__label:before {
+  background: lbh-colour("lbh-white");
+}

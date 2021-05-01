@@ -1,4 +1,5 @@
 import * as Yup from "yup"
+import { Field } from "../config/forms.types"
 
 export const startSchema = Yup.object().shape({
   socialCareId: Yup.number()
@@ -19,11 +20,14 @@ export const caseNoteSchema = Yup.object().shape({
   files: Yup.array().of(Yup.mixed()).nullable(),
 })
 
-export const generateFlexibleSchema = (fields): any => {
+export const generateFlexibleSchema = (fields: Field[]): any => {
   const shape = {}
 
   fields.map(field => {
-    if (field.type === "checkboxes" || field.type === "repeater") {
+    if (field.type === "repeaterGroup") {
+      // recursively generate a schema for subfields of a repeater geoup
+      shape[field.id] = Yup.array().of(generateFlexibleSchema(field.subfields))
+    } else if (field.type === "checkboxes" || field.type === "repeater") {
       shape[field.id] = Yup.array().of(Yup.string())
     } else {
       shape[field.id] = Yup.string()
@@ -36,10 +40,10 @@ export const generateFlexibleSchema = (fields): any => {
           1,
           field.error || "Please choose at least one option"
         )
-      } else if (field.type === "repeater") {
+      } else if (field.type === "repeater" || field.type === "repeaterGroup") {
         shape[field.id] = shape[field.id].min(
           1,
-          field.error || "Please add at least one item"
+          field.error || `Please add at least one ${field.itemName || "item"}`
         )
       } else {
         shape[field.id] = shape[field.id].required(

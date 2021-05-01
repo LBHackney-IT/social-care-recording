@@ -77,21 +77,23 @@ describe("SelectField", () => {
         initialValues={{
           foo: "",
         }}
+        initialErrors={{
+          foo: "Example error",
+        }}
+        initialTouched={{
+          foo: true,
+        }}
       >
-        <Form>
+        {({ touched, errors }) => (
           <SelectField
-            touched={{
-              foo: true,
-            }}
-            errors={{
-              foo: "Example error",
-            }}
+            touched={touched}
+            errors={errors}
             name="foo"
             label="Label text"
             hint="Hint text"
             choices={choices}
           />
-        </Form>
+        )}
       </Formik>
     )
     expect(screen.getByText("Example error"))

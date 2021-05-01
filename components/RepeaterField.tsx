@@ -1,4 +1,10 @@
-import { Field as RawField, FieldArray, useFormikContext } from "formik"
+import {
+  Field as RawField,
+  FieldArray,
+  useFormikContext,
+  getIn,
+  ErrorMessage,
+} from "formik"
 import s from "../styles/Repeater.module.scss"
 
 interface FieldProps {
@@ -26,12 +32,12 @@ const RepeaterField = ({
 }: FieldProps): React.ReactElement => {
   const { values } = useFormikContext()
 
-  const repeaterValues = [].concat(values[name])
+  const repeaterValues = [].concat(getIn(values, name))
 
   return (
     <div
       className={`govuk-form-group lbh-form-group ${
-        touched[name] && errors[name] && "govuk-form-group--error"
+        getIn(touched, name) && getIn(errors, name) && "govuk-form-group--error"
       }`}
     >
       <fieldset
@@ -46,12 +52,14 @@ const RepeaterField = ({
           </span>
         )}
 
-        {touched[name] && errors[name] && (
-          <p className="govuk-error-message lbh-error-message" role="alert">
-            <span className="govuk-visually-hidden">Error:</span>{" "}
-            {Array.isArray(errors[name]) ? errors[name][0] : errors[name]}
-          </p>
-        )}
+        <ErrorMessage name={name}>
+          {msg => (
+            <p className="govuk-error-message lbh-error-message" role="alert">
+              <span className="govuk-visually-hidden">Error:</span>
+              {Array.isArray(msg) ? msg[0] : msg}
+            </p>
+          )}
+        </ErrorMessage>
 
         <FieldArray name={name}>
           {({ insert, remove, push }) => (
@@ -92,7 +100,7 @@ const RepeaterField = ({
                 </svg>
                 {repeaterValues.length > 0
                   ? `Add another ${itemName || "item"}`
-                  : `Add an ${itemName || "item"}`}
+                  : `Add ${itemName || "item"}`}
               </button>
             </>
           )}

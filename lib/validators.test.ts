@@ -25,28 +25,34 @@ describe("generateFlexibleSchema", () => {
   it("handles different field types", async () => {
     const schema = generateFlexibleSchema([
       {
+        question: "foo",
         id: "one",
         type: "text",
       },
       {
+        question: "foo",
         id: "two",
         type: "textarea",
       },
       {
+        question: "foo",
         id: "three",
         type: "checkboxes",
       },
       {
+        question: "foo",
         id: "four",
         type: "repeater",
       },
       {
+        question: "foo",
         id: "five",
         type: "select",
       },
       {
+        question: "foo",
         id: "six",
-        type: "radio",
+        type: "radios",
       },
     ])
 
@@ -66,6 +72,7 @@ describe("generateFlexibleSchema", () => {
     const schema = generateFlexibleSchema([
       {
         id: "one",
+        question: "foo",
         type: "text",
         required: true,
       },
@@ -80,6 +87,7 @@ describe("generateFlexibleSchema", () => {
     const schema2 = generateFlexibleSchema([
       {
         id: "one",
+        question: "foo",
         type: "checkboxes",
         required: true,
       },
@@ -96,6 +104,7 @@ describe("generateFlexibleSchema", () => {
     const schema = generateFlexibleSchema([
       {
         id: "one",
+        question: "foo",
         type: "text",
         required: true,
         error: "Example error message",
@@ -107,5 +116,40 @@ describe("generateFlexibleSchema", () => {
         one: "",
       })
     ).rejects.toThrowError("Example error message")
+  })
+
+  it("can be used recursively for repeater groups", async () => {
+    const schema = generateFlexibleSchema([
+      {
+        question: "foo",
+        id: "foo",
+        type: "repeaterGroup",
+        required: true,
+        subfields: [
+          {
+            id: "bar",
+            question: "bar",
+            type: "text",
+            required: true,
+          },
+        ],
+      },
+    ])
+
+    await expect(
+      schema.validate({
+        foo: [],
+      })
+    ).rejects.toThrowError("Please add at least one item")
+
+    await expect(
+      schema.validate({
+        foo: [
+          {
+            bar: "",
+          },
+        ],
+      })
+    ).rejects.toThrowError("This question is required")
   })
 })
