@@ -113,8 +113,17 @@ describe("generateInitialValues", () => {
           id: "four",
           type: "file",
         },
+        {
+          id: "five",
+          type: "select",
+          choices: [
+            {
+              value: "blah",
+            },
+          ],
+        },
       ],
-      {}
+      null
     )
 
     expect(result).toMatchObject({
@@ -122,6 +131,7 @@ describe("generateInitialValues", () => {
       two: [],
       three: [],
       four: null,
+      five: "blah",
     })
   })
 
@@ -143,6 +153,32 @@ describe("generateInitialValues", () => {
     expect(result).toMatchObject({
       foo: "example value",
       bar: "",
+    })
+  })
+
+  it("can be used recursively for repeater groups", () => {
+    const result = generateInitialValues(
+      [
+        {
+          id: "foo",
+          type: "repeaterGroup",
+          subfields: [
+            {
+              id: "one",
+              type: "text",
+            },
+          ],
+        },
+      ],
+      null
+    )
+
+    expect(result).toMatchObject({
+      foo: [
+        {
+          one: "",
+        },
+      ],
     })
   })
 })

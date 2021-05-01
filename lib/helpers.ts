@@ -58,6 +58,9 @@ export const generateInitialValues = (fields, person): any => {
       initialValues[field.id] = []
     } else if (field.type === "file") {
       initialValues[field.id] = null
+    } else if (field.type === "select") {
+      initialValues[field.id] =
+        (person && person[field.prefill]) || field.choices[0].value
     } else {
       initialValues[field.id] = (person && person[field.prefill]) || ""
     }
