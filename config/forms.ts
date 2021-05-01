@@ -377,7 +377,7 @@ const formData: Form[] = [
           {
             id: "primary-address-tenure-type",
             question: "Primary address tenure type",
-            type: "select",
+            type: "combobox",
             required: false,
             hint: "",
             error: "",
