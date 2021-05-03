@@ -4,6 +4,8 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 
 const mockPush = jest.fn()
 
+const mockFinish = jest.fn()
+
 const useRouter = jest.spyOn(require("next/router"), "useRouter")
 
 useRouter.mockImplementation(() => ({
@@ -32,6 +34,7 @@ describe("StepForm", () => {
           onSubmit={(values, { setStatus }) =>
             setStatus("Example status message")
           }
+          onFinish={() => true}
         />
       </AutosaveProvider>
     )
@@ -48,6 +51,7 @@ describe("StepForm", () => {
           onSubmit={(values, { setStatus }) =>
             setStatus("Example status message")
           }
+          onFinish={() => true}
         />
       </AutosaveProvider>
     )
@@ -71,6 +75,7 @@ describe("StepForm", () => {
           person={{}}
           fields={mockFields as any}
           onSubmit={() => true}
+          onFinish={() => true}
         />
       </AutosaveProvider>
     )
@@ -83,6 +88,29 @@ describe("StepForm", () => {
     await waitFor(() => {
       expect(mockPush).toBeCalledTimes(1)
       expect(mockPush).toBeCalledWith(`/submissions/foo`)
+    })
+  })
+
+  it("also triggers the finish event if it's the only step", async () => {
+    render(
+      <AutosaveProvider>
+        <StepForm
+          person={{}}
+          fields={mockFields as any}
+          onSubmit={() => true}
+          onFinish={mockFinish}
+          singleStep={true}
+        />
+      </AutosaveProvider>
+    )
+
+    fireEvent.change(screen.getByLabelText("Test question"), {
+      target: { value: "test value" },
+    })
+    fireEvent.click(screen.getByText("Save and finish"))
+
+    await waitFor(() => {
+      expect(mockFinish).toBeCalledTimes(1)
     })
   })
 })

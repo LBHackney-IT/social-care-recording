@@ -13,7 +13,7 @@ import s from "../../../../styles/Sidebar.module.scss"
 import Banner from "../../../../components/Banner"
 import { getSession } from "../../../../lib/auth"
 
-const Step = ({ params, stepAnswers, person, step }) => {
+const Step = ({ params, stepAnswers, person, step, form }) => {
   const router = useRouter()
 
   const handleSubmit = async (values, { setStatus }): Promise<void> => {
@@ -27,6 +27,25 @@ const Step = ({ params, stepAnswers, person, step }) => {
       )
       const data = await res.json()
       if (data.error) throw data.error
+    } catch (e) {
+      setStatus(e.toString())
+    }
+  }
+
+  const handleFinish = async (values, { setStatus }): Promise<void> => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions/${params.id}`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            person,
+          }),
+        }
+      )
+      const data = await res.json()
+      if (data.error) throw data.error
+      router.push("/")
     } catch (e) {
       setStatus(e.toString())
     }
@@ -66,15 +85,10 @@ const Step = ({ params, stepAnswers, person, step }) => {
                 initialValues={stepAnswers}
                 fields={step.fields}
                 onSubmit={handleSubmit}
+                onFinish={handleFinish}
+                singleStep={form.steps.length === 1}
               />
             )}
-            <p className="lbh-body">
-              <Link href={`/submissions/${params.id}`}>
-                <a className="lbh-link lbh-link--no-visited-state">
-                  Back to list
-                </a>
-              </Link>
-            </p>
           </div>
           <div className="govuk-grid-column-one-third">
             <div className={s.sticky}>
@@ -92,7 +106,7 @@ const Step = ({ params, stepAnswers, person, step }) => {
 Step.Postheader = ({ params }): React.ReactElement => (
   <div className="lbh-container">
     <Link href={`/submissions/${params.id}`}>
-      <a className="govuk-back-link lbh-back-link">Back to list</a>
+      <a className="govuk-back-link lbh-back-link">Go back</a>
     </Link>
   </div>
 )

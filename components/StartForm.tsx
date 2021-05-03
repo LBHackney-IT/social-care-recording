@@ -59,18 +59,6 @@ const StartForm = ({ forms, onSubmit }: Props): React.ReactElement => {
           <button className="govuk-button lbh-button" disabled={isSubmitting}>
             Continue
           </button>
-
-          {values.socialCareId && (
-            <p className="lbh-body">
-              Or,{" "}
-              <Link href={`/case-notes/${values.socialCareId}`}>
-                <a className="lbh-link lbh-link--no-visited-state">
-                  add a case note
-                </a>
-              </Link>
-              .
-            </p>
-          )}
         </Form>
       )}
     </Formik>

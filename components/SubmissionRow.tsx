@@ -22,6 +22,10 @@ const SubmissionRow = ({
   setExpanded,
 }: RowProps): React.ReactElement => {
   const editors = submission.editedBy.filter(el => el !== submission.createdBy)
+
+  const completed =
+    submission.completedSteps.length === submission.form.steps.length
+
   return (
     <>
       <tr className={`govuk-table__row ${s.row}`}>
@@ -32,7 +36,13 @@ const SubmissionRow = ({
           value={submission.completedSteps.length}
           max={submission.form.steps.length}
         /> */}
-          <Link href={`/submissions/${submission.id}`}>
+          <Link
+            href={
+              submission.form.steps.length > 1
+                ? `/submissions/${submission.id}`
+                : `/submissions/${submission.id}/steps/${submission?.form?.steps[0]?.id}`
+            }
+          >
             <a className="lbh-link lbh-link--no-visited-state">
               {submission.form.name}
             </a>
@@ -85,19 +95,27 @@ const SubmissionRow = ({
                 <dt className="lbh-body-s">Last edited</dt>
               </div>
 
-              <div>
-                <dd>
-                  {submission.completedSteps?.length || "0"} of{" "}
-                  {submission.form.steps.length} sections (
-                  {Math.round(
-                    (submission.completedSteps?.length /
-                      submission.form.steps.length) *
-                      100
-                  )}
-                  %)
-                </dd>
-                <dt className="lbh-body-s">Progress</dt>
-              </div>
+              {submission.form.steps.length > 1 && (
+                <div>
+                  <dd>
+                    {completed ? (
+                      "Ready to send"
+                    ) : (
+                      <>
+                        {submission.completedSteps?.length || "0"} of{" "}
+                        {submission.form.steps.length} sections (
+                        {Math.round(
+                          (submission.completedSteps?.length /
+                            submission.form.steps.length) *
+                            100
+                        )}
+                        %)
+                      </>
+                    )}
+                  </dd>
+                  <dt className="lbh-body-s">Progress</dt>
+                </div>
+              )}
 
               {editors.length > 0 && (
                 <div>
