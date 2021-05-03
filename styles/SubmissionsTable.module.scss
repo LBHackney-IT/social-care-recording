@@ -19,3 +19,49 @@
     background-color: lbh-colour("lbh-primary-button");
   }
 }
+
+.row {
+  position: relative;
+
+  a {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.expanderButton {
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+}
+
+.cell {
+  background: lbh-colour("lbh-grey-4");
+  padding: 1.5rem;
+}
+
+.dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  // margin-bottom: 1rem;
+
+  div {
+    margin-top: 0;
+  }
+
+  dt {
+    margin-top: 5px;
+  }
+
+  dd {
+    margin-top: 0rem;
+  }
+}

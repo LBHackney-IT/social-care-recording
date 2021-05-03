@@ -110,13 +110,13 @@ And more speculatively:
 - ~~Write a script to convert a CSV into form config~~
 - ~~Replace "unfinished submissions" table with something more general-purpose~~ (DONE)
 - ~~Add a "repeater group" field for capturing a repeatable group of fields (eg. name, phone number, role for a number of people)~~ (DONE)
+- ~~clean up and improve home page layout~~ (DONE)
+- ~~submissions can be discarded~~ (DONE)
 
 1. hitting the "continue" button on a step should return to the task list page if the form submitted successfully
 2. fix bug where changing a field type to checkbox/repeater from something else (and _maybe_ vice versa) _after_ a submission has been started caused the intitial values to become invalid (because it expects to be able to map over the values)
 3. add autosave support to case notes (perhaps by making case notes function a bit more like other forms, backed by a row on the submissions table?)
 4. refactor CSV -> JSON conversion job to support currently ignored cells
-5. clean up and improve home page layout
-
 
 ### Next
 

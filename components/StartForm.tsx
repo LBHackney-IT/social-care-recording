@@ -57,7 +57,7 @@ const StartForm = ({ forms, onSubmit }: Props): React.ReactElement => {
           />
 
           <button className="govuk-button lbh-button" disabled={isSubmitting}>
-            Start
+            Continue
           </button>
 
           {values.socialCareId && (

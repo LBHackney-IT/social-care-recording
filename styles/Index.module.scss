@@ -1,0 +1,16 @@
+@import "lbh-frontend/lbh/base";
+
+.row {
+  @include govuk-media-query($from: desktop) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+}
+
+.box {
+  margin-top: 0;
+  border: 1px solid lbh-colour("lbh-grey-3");
+  background: lbh-colour("lbh-grey-4");
+  padding: 25px;
+}

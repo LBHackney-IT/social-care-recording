@@ -8,6 +8,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const unfinishedSubmissions = await prisma.submission.findMany({
     where: {
       submittedAt: null,
+      discardedAt: null,
     },
     orderBy: {
       updatedAt: "desc",

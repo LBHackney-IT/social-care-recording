@@ -48,7 +48,7 @@ describe("StartForm", () => {
     fireEvent.change(screen.getByLabelText("Social care ID"), {
       target: { value: 123 },
     })
-    fireEvent.click(screen.getByText("Start"))
+    fireEvent.click(screen.getByText("Continue"))
 
     await waitFor(() => {
       expect(screen.getByRole("alert"))
