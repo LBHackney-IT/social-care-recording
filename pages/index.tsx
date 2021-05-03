@@ -54,18 +54,14 @@ const IndexPage = ({ user, unfinishedSubmissions }: Props) => {
     <div>
       <h1 className="govuk-visually-hidden">Submissions</h1>
 
-      <div className={s.row}>
-        <div className={s.box}>
-          <h2 className="lbh-heading-h3">Record something new</h2>
-          <p className="lbh-body govuk-!-margin-top-3">
-            Add something new against a person's case.
-          </p>
-          <Link href="/new">
-            <a className="govuk-button lbh-button govuk-!-margin-top-5">
-              Start
-            </a>
-          </Link>
-        </div>
+      <div className={s.box}>
+        <h2 className="lbh-heading-h3">Record something new</h2>
+        <p className="lbh-body govuk-!-margin-top-3">
+          Add something new against a person's case.
+        </p>
+        <Link href="/new">
+          <a className="govuk-button lbh-button govuk-!-margin-top-5">Start</a>
+        </Link>
       </div>
 
       <h2 className="lbh-heading-h3 govuk-!-margin-top-8">

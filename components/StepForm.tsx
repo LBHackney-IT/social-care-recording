@@ -15,7 +15,9 @@ interface Props {
   fields: Field[]
   person: Person
   initialValues?: InitialValue[]
+  onFinish: (values, any) => void
   onSubmit: (values, any) => void
+  singleStep?: boolean
 }
 
 const StepForm = ({
@@ -23,6 +25,8 @@ const StepForm = ({
   fields,
   person,
   onSubmit,
+  onFinish,
+  singleStep,
 }: Props): React.ReactElement => {
   const router = useRouter()
 
@@ -35,8 +39,10 @@ const StepForm = ({
       {({
         values,
         isSubmitting,
+        setSubmitting,
         touched,
         errors,
+        setStatus,
         status,
         submitForm,
         isValid,
@@ -70,11 +76,16 @@ const StepForm = ({
               disabled={isSubmitting}
               onClick={async () => {
                 await submitForm()
-                if (isValid && !isSubmitting)
-                  router.push(`/submissions/${router.query.id}`)
+                if (singleStep) {
+                  setSubmitting(true)
+                  onFinish(values, { setStatus })
+                } else {
+                  if (isValid && !isSubmitting)
+                    router.push(`/submissions/${router.query.id}`)
+                }
               }}
             >
-              Save changes
+              {singleStep ? "Save and finish" : "Save changes"}
             </button>
           </Form>
         </>

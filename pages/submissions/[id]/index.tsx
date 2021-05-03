@@ -71,7 +71,7 @@ const TaskListPage = ({ params, completedSteps, person, form }) => {
 TaskListPage.Postheader = ({ params }): React.ReactElement => (
   <div className="lbh-container">
     <Link href={`/`}>
-      <a className="govuk-back-link lbh-back-link">Back to home</a>
+      <a className="govuk-back-link lbh-back-link">Go back</a>
     </Link>
   </div>
 )
@@ -109,6 +109,15 @@ export const getServerSideProps: GetServerSideProps = async ({
   //       destination: "/404",
   //     },
   //   }
+
+  // go straight to the first step if it exists
+  if (data.form.steps.length === 1)
+    return {
+      props: {},
+      redirect: {
+        destination: `/`,
+      },
+    }
 
   return {
     props: {
