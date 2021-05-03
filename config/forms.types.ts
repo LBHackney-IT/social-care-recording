@@ -39,7 +39,7 @@ export interface Step {
   id: string
   name: string
   theme?: string
-  fields: Field[]
+  fields?: Field[]
 }
 
 export interface Form {

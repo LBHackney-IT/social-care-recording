@@ -2,6 +2,16 @@ import { Form } from "./forms.types"
 
 const formData: Form[] = [
   {
+    id: "case-note",
+    name: "Case note",
+    steps: [
+      {
+        id: "case-note",
+        name: "New case note",
+      },
+    ],
+  },
+  {
     id: "assessment",
     name: "Social care assessment",
     steps: [
