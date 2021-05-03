@@ -1,5 +1,5 @@
 import prisma from "../../../../lib/prisma"
-import { NextApiRequest, NextApiResponse } from "next"
+import { NextApiResponse } from "next"
 import forms from "../../../../config/forms"
 import { getPersonById, addRecordToCase } from "../../../../lib/socialCareApi"
 import { apiHandler, ApiRequestWithSession } from "../../../../lib/apiHelpers"

@@ -26,7 +26,6 @@ const RepeaterField = ({
   label,
   hint,
   className,
-  required,
   itemName,
   ...props
 }: FieldProps): React.ReactElement => {
@@ -62,7 +61,7 @@ const RepeaterField = ({
         </ErrorMessage>
 
         <FieldArray name={name}>
-          {({ insert, remove, push }) => (
+          {({ remove, push }) => (
             <>
               {repeaterValues.map((item, i) => (
                 <div className={s.row} key={i}>
@@ -76,7 +75,8 @@ const RepeaterField = ({
                   <RawField
                     name={`${name}.${i}`}
                     id={`${name}.${i}`}
-                    className="govuk-input lbh-input"
+                    className={`govuk-input lbh-input ${className}`}
+                    {...props}
                   />
 
                   <button

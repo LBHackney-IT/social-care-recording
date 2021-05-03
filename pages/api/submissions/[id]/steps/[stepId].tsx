@@ -1,6 +1,5 @@
 import prisma from "../../../../../lib/prisma"
-import { getSession } from "../../../../../lib/auth"
-import { NextApiRequest, NextApiResponse } from "next"
+import { NextApiResponse } from "next"
 import forms from "../../../../../config/forms"
 import { getPersonById } from "../../../../../lib/socialCareApi"
 import { pushUnique } from "../../../../../lib/helpers"
@@ -32,7 +31,7 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
   if (req.method === "PATCH") {
     const values = JSON.parse(req.body)
 
-    const result = await generateFlexibleSchema(step.fields).validate(values)
+    await generateFlexibleSchema(step.fields).validate(values)
 
     const updatedAnswers = submission.answers || {}
     updatedAnswers[stepId.toString()] = values

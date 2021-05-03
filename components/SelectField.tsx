@@ -22,7 +22,6 @@ const Field = ({
   label,
   hint,
   className,
-  required,
   choices,
   ...props
 }: FieldProps): React.ReactElement => (

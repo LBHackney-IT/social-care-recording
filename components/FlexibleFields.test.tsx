@@ -1,6 +1,6 @@
 import FlexibleFields from "./FlexibleFields"
-import { Formik, Form, Field } from "formik"
-import { fireEvent, render, screen } from "@testing-library/react"
+import { Formik } from "formik"
+import { render, screen } from "@testing-library/react"
 
 describe("TextField", () => {
   it("returns a normal field", () => {

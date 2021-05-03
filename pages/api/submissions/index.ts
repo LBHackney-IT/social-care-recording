@@ -1,5 +1,5 @@
 import prisma from "../../../lib/prisma"
-import { NextApiRequest, NextApiResponse } from "next"
+import { NextApiResponse } from "next"
 import { startSchema } from "../../../lib/validators"
 import { apiHandler, ApiRequestWithSession } from "../../../lib/apiHelpers"
 

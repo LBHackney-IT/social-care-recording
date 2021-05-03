@@ -73,7 +73,7 @@ describe("debounce", () => {
   jest.useFakeTimers()
 
   let func: jest.Mock
-  let debouncedFunc: Function
+  let debouncedFunc
 
   beforeEach(() => {
     func = jest.fn()

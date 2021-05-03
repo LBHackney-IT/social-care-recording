@@ -1,8 +1,6 @@
 import { useState } from "react"
 import { Submission } from "@prisma/client"
-import s from "../styles/SubmissionsTable.module.scss"
 import { Form } from "../config/forms.types"
-import { useSession } from "../lib/auth"
 import SubmissionRow from "./SubmissionRow"
 
 export interface SubmissionWithForm extends Submission {

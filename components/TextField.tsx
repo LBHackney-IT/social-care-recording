@@ -19,7 +19,6 @@ const Field = ({
   name,
   label,
   hint,
-  required,
   className,
   ...props
 }: FieldProps): React.ReactElement => (

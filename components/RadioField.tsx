@@ -24,7 +24,6 @@ const Field = ({
   hint,
   className,
   choices,
-  required,
   onChange,
   ...props
 }: FieldProps): React.ReactElement => (

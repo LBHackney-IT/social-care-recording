@@ -1,9 +1,6 @@
 import { useState } from "react"
 import { GetServerSideProps } from "next"
 import Link from "next/link"
-import { Submission } from "@prisma/client"
-import { Form } from "../config/forms.types"
-import RadioField from "../components/RadioField"
 import s from "../styles/Index.module.scss"
 
 import SubmissionsTable, {
@@ -43,7 +40,10 @@ const FilterRadio = ({
   </div>
 )
 
-const IndexPage = ({ user, unfinishedSubmissions }: Props) => {
+const IndexPage = ({
+  user,
+  unfinishedSubmissions,
+}: Props): React.ReactElement => {
   const [justMine, setJustMine] = useState<boolean>(false)
 
   const results = justMine
@@ -57,7 +57,7 @@ const IndexPage = ({ user, unfinishedSubmissions }: Props) => {
       <div className={s.box}>
         <h2 className="lbh-heading-h3">Record something new</h2>
         <p className="lbh-body govuk-!-margin-top-3">
-          Add something new against a person's case.
+          Add something new against a person&apos;s case.
         </p>
         <Link href="/new">
           <a className="govuk-button lbh-button govuk-!-margin-top-5">Start</a>
@@ -89,7 +89,7 @@ const IndexPage = ({ user, unfinishedSubmissions }: Props) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const session = getSession({ req })
   if (!session) {
     return {

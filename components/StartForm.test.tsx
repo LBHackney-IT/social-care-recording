@@ -17,7 +17,7 @@ describe("StartForm", () => {
             steps: [],
           },
         ]}
-        onSubmit={() => {}}
+        onSubmit={() => true}
       />
     )
     expect(screen.getByLabelText("Social care ID"))

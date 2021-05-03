@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react"
 import cookie from "cookie"
 import jsonwebtoken from "jsonwebtoken"
-import { useRouter } from "next/router"
 
 const SessionContext = createContext(null)
 
@@ -22,7 +21,7 @@ export const Provider = ({
 }
 
 /** Hook to use session client-side */
-export const useSession = () => {
+export const useSession = (): [any, boolean] => {
   const { data, setData, loading, setLoading } = useContext(SessionContext)
 
   useEffect(() => {
@@ -62,14 +61,14 @@ export const getSession = ctx => {
 }
 
 /** Go to sign in page */
-export const signIn = () => {
+export const signIn = (): void => {
   const redirect =
     process.env.NEXT_PUBLIC_API_ENDPOINT || "http://dev.hackney.gov.uk:3000"
   window.location.href = `https://auth.hackney.gov.uk/auth?redirect_uri=${redirect}`
 }
 
 /** Clear cookie and sign out */
-export const signOut = async () => {
+export const signOut = async (): Promise<void> => {
   await fetch("/api/auth/sign-out")
   window.location.href = "/sign-in"
 }
@@ -87,4 +86,5 @@ export const signOut = async () => {
 // }
 
 /** Utility to check if user is in named group */
-export const hasGroup = (group, session) => session?.groups?.includes(group)
+export const hasGroup = (group: string, session): boolean =>
+  session?.groups?.includes(group)

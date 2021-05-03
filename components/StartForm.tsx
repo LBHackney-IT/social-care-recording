@@ -1,12 +1,11 @@
 import { useCallback } from "react"
-import { Formik, Form, Field } from "formik"
+import { Formik, Form } from "formik"
 import { startSchema } from "../lib/validators"
 import { Form as FormType } from "../config/forms.types"
 import TextField from "./TextField"
 import SelectField from "./SelectField"
 import { formsToChoices } from "../lib/helpers"
 import Banner from "./Banner"
-import Link from "next/link"
 
 interface Props {
   forms: FormType[]
@@ -27,7 +26,7 @@ const StartForm = ({ forms, onSubmit }: Props): React.ReactElement => {
       validationSchema={startSchema}
       onSubmit={onSubmit}
     >
-      {({ values, isSubmitting, touched, errors, status }) => (
+      {({ isSubmitting, touched, errors, status }) => (
         <Form>
           {status && (
             <Banner

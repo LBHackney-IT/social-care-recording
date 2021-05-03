@@ -1,5 +1,5 @@
 import TaskList from "./TaskList"
-import { render, screen, within } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { useRouter } from "next/router"
 
 jest.mock("next/router")
