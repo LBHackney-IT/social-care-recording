@@ -69,3 +69,8 @@ html {
 .govuk-checkboxes__label:before {
   background: lbh-colour("lbh-white");
 }
+
+// fix z index of dialog
+[data-reach-dialog-overlay] {
+  z-index: 3;
+}
