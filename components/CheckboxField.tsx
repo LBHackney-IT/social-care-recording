@@ -23,7 +23,6 @@ const Field = ({
   hint,
   className,
   choices,
-  ...props
 }: FieldProps): React.ReactElement => (
   <div
     className={`govuk-form-group lbh-form-group ${
@@ -60,7 +59,6 @@ const Field = ({
               value={choice.value}
               id={`${name}-${choice.value}`}
               className="govuk-checkboxes__input"
-              {...props}
             />
 
             <label

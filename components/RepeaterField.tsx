@@ -27,7 +27,6 @@ const RepeaterField = ({
   hint,
   className,
   itemName,
-  ...props
 }: FieldProps): React.ReactElement => {
   const { values } = useFormikContext()
 
@@ -76,7 +75,6 @@ const RepeaterField = ({
                     name={`${name}.${i}`}
                     id={`${name}.${i}`}
                     className={`govuk-input lbh-input ${className}`}
-                    {...props}
                   />
 
                   <button

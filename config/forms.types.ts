@@ -15,7 +15,7 @@ export interface Field {
     | "repeater"
     | "repeaterGroup"
     | "combobox"
-  // | "file"
+    | "file"
   /** Required value is always ignored on fields with a condition */
   required?: boolean
   hint?: string

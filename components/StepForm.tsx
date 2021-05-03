@@ -34,10 +34,12 @@ const StepForm = ({
       initialValues={initialValues || generateInitialValues(fields, person)}
       validationSchema={generateFlexibleSchema(fields)}
       onSubmit={onSubmit}
+      validateOnMount={true}
     >
       {({
         values,
         isSubmitting,
+        isValidating,
         setSubmitting,
         touched,
         errors,
@@ -45,49 +47,48 @@ const StepForm = ({
         status,
         submitForm,
         isValid,
+        validateForm,
       }) => (
-        <>
-          <Form>
-            {status && (
-              <Banner
-                title="There was a problem saving your answers"
-                className="lbh-page-announcement--warning"
-              >
-                <p>Please refresh the page or try again later.</p>
-                <p className="lbh-body-xs">{status}</p>
-              </Banner>
-            )}
-
-            {fields.map(field => (
-              <FlexibleField
-                key={field.id}
-                field={field}
-                touched={touched}
-                errors={errors}
-                values={values}
-              />
-            ))}
-
-            <AutosaveTrigger />
-
-            <button
-              className="govuk-button lbh-button"
-              disabled={isSubmitting}
-              onClick={async () => {
-                await submitForm()
-                if (singleStep) {
-                  setSubmitting(true)
-                  onFinish(values, { setStatus })
-                } else {
-                  if (isValid && !isSubmitting)
-                    router.push(`/submissions/${router.query.id}`)
-                }
-              }}
+        <Form>
+          {status && (
+            <Banner
+              title="There was a problem saving your answers"
+              className="lbh-page-announcement--warning"
             >
-              {singleStep ? "Save and finish" : "Save changes"}
-            </button>
-          </Form>
-        </>
+              <p>Please refresh the page or try again later.</p>
+              <p className="lbh-body-xs">{status}</p>
+            </Banner>
+          )}
+
+          {fields.map(field => (
+            <FlexibleField
+              key={field.id}
+              field={field}
+              touched={touched}
+              errors={errors}
+              values={values}
+            />
+          ))}
+
+          <AutosaveTrigger />
+
+          <button
+            className="govuk-button lbh-button"
+            disabled={isSubmitting}
+            onClick={async () => {
+              await submitForm()
+              if (singleStep) {
+                setSubmitting(true)
+                onFinish(values, { setStatus })
+              } else {
+                if (isValid && !isSubmitting)
+                  router.push(`/submissions/${router.query.id}`)
+              }
+            }}
+          >
+            {singleStep ? "Save and finish" : "Save changes"}
+          </button>
+        </Form>
       )}
     </Formik>
   )

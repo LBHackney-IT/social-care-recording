@@ -26,7 +26,6 @@ const Field = ({
   hint,
   className,
   multiple,
-  ...props
 }: FieldProps): React.ReactElement => {
   const [files, setFiles] = useState([])
 
@@ -81,7 +80,6 @@ const Field = ({
         id={name}
         className={`govuk-file-upload lbh-file-upload ${className}`}
         aria-describedby={hint && `${name}-hint`}
-        {...props}
       />
 
       <aside className={s.previewArea}>{thumbs}</aside>

@@ -62,7 +62,7 @@ const RepeaterGroupField = ({
                       values={values}
                       field={{
                         ...subfield,
-                        name: `${name}.${i}.${subfield.id}`,
+                        id: `${name}.${i}.${subfield.id}`,
                       }}
                       touched={touched}
                       errors={errors}
