@@ -21,9 +21,8 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
   })
 
   // 2. grab this particular step from the form
-  const step = forms
-    .find(form => form.id === submission.formId)
-    .steps.find(step => step.id === stepId)
+  const form = forms.find(form => form.id === submission.formId)
+  const step = form.steps.find(step => step.id === stepId)
 
   if (!step)
     res.status(404).json({
@@ -33,7 +32,7 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
   if (req.method === "PATCH") {
     let values = JSON.parse(req.body)
 
-    await generateFlexibleSchema(step.fields).validate(values)
+    let result = await generateFlexibleSchema(step.fields).validate(values)
 
     let updatedAnswers = submission.answers || {}
     updatedAnswers[stepId.toString()] = values
@@ -63,6 +62,7 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
       ...submission,
       // include the answers for this step
       stepAnswers: submission.answers[stepId.toString()],
+      form,
       step,
       person,
     })
