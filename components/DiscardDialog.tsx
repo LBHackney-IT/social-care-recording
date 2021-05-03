@@ -1,6 +1,7 @@
 import Dialog from "./Dialog"
 import { useState } from "react"
 import Banner from "../components/Banner"
+import s from "../styles/DiscardDialog.module.scss"
 
 interface Props {
   submissionId: string
@@ -28,7 +29,10 @@ const DiscardDialog = ({ submissionId }: Props): React.ReactElement => {
 
   return (
     <>
-      <button onClick={() => setOpen(true)} className="lbh-link">
+      <button
+        onClick={() => setOpen(true)}
+        className={`lbh-link  ${s.discardLink}`}
+      >
         Discard
       </button>
       <Dialog
