@@ -112,11 +112,11 @@ And more speculatively:
 - ~~Add a "repeater group" field for capturing a repeatable group of fields (eg. name, phone number, role for a number of people)~~ (DONE)
 - ~~clean up and improve home page layout~~ (DONE)
 - ~~submissions can be discarded~~ (DONE)
+- ~~hitting the "continue" button on a step should return to the task list page if the form submitted successfully~~ (DONE)
 
-1. hitting the "continue" button on a step should return to the task list page if the form submitted successfully
-2. fix bug where changing a field type to checkbox/repeater from something else (and _maybe_ vice versa) _after_ a submission has been started caused the intitial values to become invalid (because it expects to be able to map over the values)
-3. add autosave support to case notes (perhaps by making case notes function a bit more like other forms, backed by a row on the submissions table?)
-4. refactor CSV -> JSON conversion job to support currently ignored cells
+1. fix bug where changing a field type to checkbox/repeater from something else (and _maybe_ vice versa) _after_ a submission has been started caused the intitial values to become invalid (because it expects to be able to map over the values)
+1. add autosave support to case notes (perhaps by making case notes function a bit more like other forms, backed by a row on the submissions table?)
+1. refactor CSV -> JSON conversion job to support currently ignored cells
 
 ### Next
 
@@ -131,7 +131,7 @@ And more speculatively:
 - Handle file uploading (add support in `generateFlexibleSchema`, figure out how to handle in autosave, etc)
 - Handle group recording (add tests for `GroupRecordingWidget`, etc)
 
-### UR findings
+### Ideas from UR findings
 
 - ~~"add a person" -> "link another person"~~ (DONE)
 - prefill from previous versions of a form, rather than just core person data

@@ -7,6 +7,7 @@ import { Person } from "../lib/socialCareApi.types"
 import Link from "next/link"
 import Banner from "./Banner"
 import { generateInitialValues } from "../lib/helpers"
+import { useRouter } from "next/router"
 
 type InitialValue = string | string[]
 
@@ -23,13 +24,23 @@ const StepForm = ({
   person,
   onSubmit,
 }: Props): React.ReactElement => {
+  const router = useRouter()
+
   return (
     <Formik
       initialValues={initialValues || generateInitialValues(fields, person)}
       validationSchema={generateFlexibleSchema(fields)}
       onSubmit={onSubmit}
     >
-      {({ values, isSubmitting, touched, errors, status }) => (
+      {({
+        values,
+        isSubmitting,
+        touched,
+        errors,
+        status,
+        submitForm,
+        isValid,
+      }) => (
         <>
           <Form>
             {status && (
@@ -54,7 +65,15 @@ const StepForm = ({
 
             <AutosaveTrigger />
 
-            <button className="govuk-button lbh-button" disabled={isSubmitting}>
+            <button
+              className="govuk-button lbh-button"
+              disabled={isSubmitting}
+              onClick={async () => {
+                await submitForm()
+                if (isValid && !isSubmitting)
+                  router.push(`/submissions/${router.query.id}`)
+              }}
+            >
               Save changes
             </button>
           </Form>
