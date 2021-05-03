@@ -25,6 +25,16 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
       submission.formId
     )
     res.json(submission)
+  } else if (req.method === "DELETE") {
+    await prisma.submission.update({
+      where: {
+        id: id.toString(),
+      },
+      data: {
+        discardedAt: new Date(),
+      },
+    })
+    res.send(200)
   } else {
     //   1. grab submission
     const submission = await prisma.submission.findUnique({
