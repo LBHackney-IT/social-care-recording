@@ -109,13 +109,15 @@ const Step = ({
   )
 }
 
-Step.Postheader = ({ params }): React.ReactElement => (
+const Postheader = ({ params }): React.ReactElement => (
   <div className="lbh-container">
     <Link href={`/submissions/${params.id}`}>
       <a className="govuk-back-link lbh-back-link">Go back</a>
     </Link>
   </div>
 )
+
+Step.Postheader = Postheader
 
 export const getServerSideProps: GetServerSideProps = async ({
   params,

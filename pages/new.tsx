@@ -40,13 +40,15 @@ const StartPage = ({ forms }: Props): React.ReactElement => {
   )
 }
 
-StartPage.Postheader = ({ params }): React.ReactElement => (
+const Postheader = ({ params }): React.ReactElement => (
   <div className="lbh-container">
     <Link href={`/`}>
       <a className="govuk-back-link lbh-back-link">Go back</a>
     </Link>
   </div>
 )
+
+StartPage.Postheader = Postheader
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   if (!getSession({ req })) {
