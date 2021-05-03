@@ -27,8 +27,6 @@ const Step = ({ params, stepAnswers, person, step }) => {
       )
       const data = await res.json()
       if (data.error) throw data.error
-      // TODO: how can we redirect back to the task list if the user clicks the button and the section is complete, but not on autosave?
-      // router.push(`/submissions/${params.id}`)
     } catch (e) {
       setStatus(e.toString())
     }
@@ -80,8 +78,9 @@ const Step = ({ params, stepAnswers, person, step }) => {
           </div>
           <div className="govuk-grid-column-one-third">
             <div className={s.sticky}>
-              <PersonWidget person={person} />
               <AutosaveIndicator />
+              <p className="lbh-body">This submission is about:</p>
+              <PersonWidget person={person} />
             </div>
           </div>
         </div>

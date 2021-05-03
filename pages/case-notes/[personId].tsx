@@ -28,6 +28,7 @@ const NewCaseNotePage = ({ params, person }) => {
         </div>
         <div className="govuk-grid-column-one-third">
           <div className={s.sticky}>
+            <p className="lbh-body">This note is about:</p>
             {/* <PersonWidget person={person} /> */}
             <GroupRecordingWidget initialPerson={person} />
           </div>

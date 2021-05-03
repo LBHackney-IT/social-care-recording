@@ -59,6 +59,7 @@ const TaskListPage = ({ params, completedSteps, person, form }) => {
         </div>
         <div className="govuk-grid-column-one-third">
           <div className={s.sticky}>
+            <p className="lbh-body">This submission is about:</p>
             <PersonWidget person={person} />
           </div>
         </div>
