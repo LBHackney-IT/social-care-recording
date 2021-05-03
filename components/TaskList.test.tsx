@@ -25,7 +25,7 @@ const form = {
 
 describe("TaskList", () => {
   it("renders correctly", () => {
-    ;(useRouter as jest.Mock).mockReturnValueOnce({
+    (useRouter as jest.Mock).mockReturnValueOnce({
       query: {
         id: 1,
       },
@@ -42,7 +42,7 @@ describe("TaskList", () => {
   })
 
   it("shows correct to do/done status", () => {
-    ;(useRouter as jest.Mock).mockReturnValueOnce({
+    (useRouter as jest.Mock).mockReturnValueOnce({
       query: {
         id: 1,
       },

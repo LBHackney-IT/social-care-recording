@@ -11,7 +11,7 @@
     "db:schema:load": "prisma db push --preview-feature",
     "db:seed": "prisma db seed --preview-feature",
     "typecheck": "tsc",
-    "lint": "eslint ./ --ext js,jsx,ts,tsx",
+    "lint": "eslint ./ --ext js,jsx,ts,tsx --fix",
     "transform-forms": "node jobs/transform-forms"
   },
   "keywords": [],

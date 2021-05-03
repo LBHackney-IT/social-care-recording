@@ -4,7 +4,7 @@ import { useState } from "react"
 
 interface Props {
   steps: Step[]
-  completedSteps: String[]
+  completedSteps: string[]
   onFinish: () => void
 }
 

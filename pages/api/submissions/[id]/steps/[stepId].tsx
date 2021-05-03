@@ -11,7 +11,7 @@ import {
 } from "../../../../../lib/apiHelpers"
 
 const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
-  let { id, stepId } = req.query
+  const { id, stepId } = req.query
 
   // 1. grab submission
   const submission = await prisma.submission.findUnique({
@@ -30,11 +30,11 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
     })
 
   if (req.method === "PATCH") {
-    let values = JSON.parse(req.body)
+    const values = JSON.parse(req.body)
 
-    let result = await generateFlexibleSchema(step.fields).validate(values)
+    const result = await generateFlexibleSchema(step.fields).validate(values)
 
-    let updatedAnswers = submission.answers || {}
+    const updatedAnswers = submission.answers || {}
     updatedAnswers[stepId.toString()] = values
 
     const updatedSubmission = await prisma.submission.update({

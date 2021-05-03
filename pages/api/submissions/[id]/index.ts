@@ -5,10 +5,10 @@ import { getPersonById, addRecordToCase } from "../../../../lib/socialCareApi"
 import { apiHandler, ApiRequestWithSession } from "../../../../lib/apiHelpers"
 
 const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
-  let { id } = req.query
+  const { id } = req.query
 
   if (req.method === "POST") {
-    let { person } = JSON.parse(req.body)
+    const { person } = JSON.parse(req.body)
 
     const submission = await prisma.submission.update({
       where: {

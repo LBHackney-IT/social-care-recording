@@ -63,7 +63,7 @@ export const getSession = ctx => {
 
 /** Go to sign in page */
 export const signIn = () => {
-  let redirect =
+  const redirect =
     process.env.NEXT_PUBLIC_API_ENDPOINT || "http://dev.hackney.gov.uk:3000"
   window.location.href = `https://auth.hackney.gov.uk/auth?redirect_uri=${redirect}`
 }

@@ -31,9 +31,9 @@ const Field = ({
 }: FieldProps): React.ReactElement => {
   const { values, setFieldValue } = useFormikContext()
 
-  let items = choices.map(choice => choice.label)
+  const items = choices.map(choice => choice.label)
 
-  let initial =
+  const initial =
     choices?.find(choice => choice.value === values[name])?.label || ""
 
   return (
