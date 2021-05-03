@@ -62,7 +62,6 @@ describe("StepForm", () => {
     fireEvent.click(screen.getByText("Save changes"))
 
     await waitFor(() => {
-      expect(screen.getByRole("alert"))
       expect(screen.getByText("Example status message"))
       expect(mockPush).toBeCalledTimes(0)
     })

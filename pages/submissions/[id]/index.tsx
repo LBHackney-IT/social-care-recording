@@ -10,7 +10,12 @@ import { getSession } from "../../../lib/auth"
 import s from "../../../styles/Sidebar.module.scss"
 import Banner from "../../../components/Banner"
 
-const TaskListPage = ({ params, completedSteps, person, form }) => {
+const TaskListPage = ({
+  params,
+  completedSteps,
+  person,
+  form,
+}): React.ReactElement => {
   const router = useRouter()
   const [status, setStatus] = useState(false)
 
@@ -68,7 +73,7 @@ const TaskListPage = ({ params, completedSteps, person, form }) => {
   )
 }
 
-TaskListPage.Postheader = ({ params }): React.ReactElement => (
+const Postheader = ({ params }): React.ReactElement => (
   <div className="lbh-container">
     <Link href={`/`}>
       <a className="govuk-back-link lbh-back-link">Go back</a>
@@ -76,10 +81,11 @@ TaskListPage.Postheader = ({ params }): React.ReactElement => (
   </div>
 )
 
+TaskListPage.Postheader = Postheader
+
 export const getServerSideProps: GetServerSideProps = async ({
   params,
   req,
-  res,
 }) => {
   if (!getSession({ req })) {
     return {

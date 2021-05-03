@@ -7,7 +7,7 @@ import { useRouter } from "next/router"
 
 interface Props {
   form: Form
-  completedSteps: String[]
+  completedSteps: string[]
 }
 
 const TaskList = ({ form, completedSteps }: Props): React.ReactElement => {

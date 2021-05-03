@@ -24,9 +24,7 @@ const Field = ({
   hint,
   className,
   choices,
-  required,
   onChange,
-  ...props
 }: FieldProps): React.ReactElement => (
   <div
     className={`govuk-form-group lbh-form-group ${
@@ -67,7 +65,6 @@ const Field = ({
                 id={`${name}-${choice.value}`}
                 className="govuk-radios__input"
                 onChange={onChange}
-                {...props}
               />
             ) : (
               <RawField

@@ -28,7 +28,7 @@ export const addRecordToCase = async (
   person: Person,
   worker: string,
   formName: string
-) => {
+): Promise<void> => {
   const res = await fetch(`${process.env.SOCIAL_CARE_API_ENDPOINT}/cases`, {
     headers: {
       "x-api-key": process.env.SOCIAL_CARE_API_KEY,

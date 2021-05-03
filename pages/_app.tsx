@@ -1,7 +1,6 @@
 import { AppProps } from "next/app"
-import { NextComponentType, NextPageContext } from "next"
+import { NextComponentType } from "next"
 import Head from "next/head"
-import Link from "next/link"
 import { Provider } from "../lib/auth"
 import Layout from "../components/Layout"
 import "../styles/index.scss"
@@ -12,7 +11,10 @@ interface ExtendedAppProps extends AppProps {
   }
 }
 
-const App = ({ Component, pageProps }: ExtendedAppProps) => {
+const App = ({
+  Component,
+  pageProps,
+}: ExtendedAppProps): React.ReactElement => {
   return (
     <Provider>
       <Head>

@@ -2,8 +2,8 @@ import { useState } from "react"
 
 const useLocalStorage = (
   key: string,
-  initialValue: any
-): [any, (any) => void] => {
+  initialValue: string
+): [string, (string) => void] => {
   const [storedValue, setStoredValue] = useState(() => {
     try {
       const item = window.localStorage.getItem(key)

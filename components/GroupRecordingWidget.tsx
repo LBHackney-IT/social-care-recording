@@ -23,7 +23,7 @@ const GroupRecordingWidget = ({ initialPerson }: Props): React.ReactElement => {
     setQuery("")
   }
 
-  const handleRemove = index => {
+  const handleRemove = () => {
     const newArray = people.slice()
     newArray.pop()
     setPeople(newArray)

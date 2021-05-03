@@ -2,18 +2,14 @@ import { GetServerSideProps } from "next"
 import StartForm from "../components/StartForm"
 import { useRouter } from "next/router"
 import Link from "next/link"
-import { Submission } from "@prisma/client"
 import { Form } from "../config/forms.types"
-import SubmissionsTable, {
-  SubmissionWithForm,
-} from "../components/SubmissionsTable"
 import { getSession } from "../lib/auth"
 
 interface Props {
   forms: Form[]
 }
 
-const StartPage = ({ forms }: Props) => {
+const StartPage = ({ forms }: Props): React.ReactElement => {
   const router = useRouter()
 
   const handleSubmit = async (values, { setStatus }) => {
@@ -44,7 +40,7 @@ const StartPage = ({ forms }: Props) => {
   )
 }
 
-StartPage.Postheader = ({ params }): React.ReactElement => (
+const Postheader = ({ params }): React.ReactElement => (
   <div className="lbh-container">
     <Link href={`/`}>
       <a className="govuk-back-link lbh-back-link">Go back</a>
@@ -52,7 +48,9 @@ StartPage.Postheader = ({ params }): React.ReactElement => (
   </div>
 )
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+StartPage.Postheader = Postheader
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   if (!getSession({ req })) {
     return {
       props: {},

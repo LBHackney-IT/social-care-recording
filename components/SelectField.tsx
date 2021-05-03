@@ -22,9 +22,7 @@ const Field = ({
   label,
   hint,
   className,
-  required,
   choices,
-  ...props
 }: FieldProps): React.ReactElement => (
   <div
     className={`govuk-form-group lbh-form-group ${
@@ -56,7 +54,6 @@ const Field = ({
       id={name}
       aria-describedby={hint ? `${name}-hint` : false}
       className={`govuk-select lbh-select ${className}`}
-      {...props}
     >
       {choices.map(choice => (
         <option value={choice.value} key={choice.value}>

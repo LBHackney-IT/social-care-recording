@@ -1,5 +1,5 @@
 import PersonSelect from "./PersonSelect"
-import { fireEvent, render, screen } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 
 describe("PersonSelect", () => {
   it("correctly formats a person's details", () => {

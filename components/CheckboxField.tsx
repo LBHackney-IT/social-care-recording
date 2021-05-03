@@ -22,9 +22,7 @@ const Field = ({
   label,
   hint,
   className,
-  required,
   choices,
-  ...props
 }: FieldProps): React.ReactElement => (
   <div
     className={`govuk-form-group lbh-form-group ${
@@ -52,9 +50,9 @@ const Field = ({
         )}
       </ErrorMessage>
 
-      {choices.map(choice => (
-        <div className="govuk-checkboxes lbh-checkboxes" key={choice.value}>
-          <div className="govuk-checkboxes__item">
+      <div className={`govuk-checkboxes lbh-checkboxes ${className}`}>
+        {choices.map(choice => (
+          <div className="govuk-checkboxes__item" key={choice.value}>
             <RawField
               type="checkbox"
               name={name}
@@ -70,8 +68,8 @@ const Field = ({
               {choice.label}
             </label>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </fieldset>
   </div>
 )

@@ -45,7 +45,7 @@ interface Props {
   people: Person[]
 }
 
-const PersonSelect = ({ label, name, people }: Props): React.ReactElement => (
+const PersonSelect = ({ label, people }: Props): React.ReactElement => (
   <div className="govuk-form-group lbh-form-group">
     <fieldset className="govuk-fieldset" aria-describedby="example-hint">
       <legend className="govuk-label lbh-label">{label}</legend>

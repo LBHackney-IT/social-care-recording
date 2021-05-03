@@ -1,5 +1,5 @@
 import GroupRecordingWidget from "./GroupRecordingWidget"
-import { fireEvent, render, screen } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 
 // TODO: once the group recording widget is production ready, write its tests
 

@@ -13,7 +13,13 @@ import s from "../../../../styles/Sidebar.module.scss"
 import Banner from "../../../../components/Banner"
 import { getSession } from "../../../../lib/auth"
 
-const Step = ({ params, stepAnswers, person, step, form }) => {
+const Step = ({
+  params,
+  stepAnswers,
+  person,
+  step,
+  form,
+}): React.ReactElement => {
   const router = useRouter()
 
   const handleSubmit = async (values, { setStatus }): Promise<void> => {
@@ -103,7 +109,7 @@ const Step = ({ params, stepAnswers, person, step, form }) => {
   )
 }
 
-Step.Postheader = ({ params }): React.ReactElement => (
+const Postheader = ({ params }): React.ReactElement => (
   <div className="lbh-container">
     <Link href={`/submissions/${params.id}`}>
       <a className="govuk-back-link lbh-back-link">Go back</a>
@@ -111,10 +117,11 @@ Step.Postheader = ({ params }): React.ReactElement => (
   </div>
 )
 
+Step.Postheader = Postheader
+
 export const getServerSideProps: GetServerSideProps = async ({
   params,
   req,
-  res,
 }) => {
   if (!getSession({ req })) {
     return {

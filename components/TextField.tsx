@@ -19,9 +19,8 @@ const Field = ({
   name,
   label,
   hint,
-  required,
   className,
-  ...props
+  as,
 }: FieldProps): React.ReactElement => (
   <div
     className={`govuk-form-group lbh-form-group ${
@@ -51,12 +50,11 @@ const Field = ({
       name={name}
       id={name}
       className={`${
-        props.as === "textarea"
+        as === "textarea"
           ? "govuk-textarea lbh-textarea"
           : "govuk-input lbh-input"
       } ${className}`}
       aria-describedby={hint && `${name}-hint`}
-      {...props}
     />
   </div>
 )

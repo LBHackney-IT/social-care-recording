@@ -36,7 +36,9 @@ describe("useWarnUnsavedChanges", () => {
     try {
       render(<MockComponent unsavedChanges={true} />)
       routeChangeStart()
-    } catch (e) {}
+    } catch (e) {
+      null
+    }
     expect(window.confirm).toBeCalled()
   })
 })

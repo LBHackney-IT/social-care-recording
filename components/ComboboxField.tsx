@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { useFormikContext, getIn, ErrorMessage } from "formik"
 import Downshift from "downshift"
 import s from "../styles/ComboboxField.module.scss"
@@ -25,15 +25,13 @@ const Field = ({
   label,
   hint,
   className,
-  required,
   choices,
-  ...props
 }: FieldProps): React.ReactElement => {
   const { values, setFieldValue } = useFormikContext()
 
-  let items = choices.map(choice => choice.label)
+  const items = choices.map(choice => choice.label)
 
-  let initial =
+  const initial =
     choices?.find(choice => choice.value === values[name])?.label || ""
 
   return (
@@ -56,8 +54,6 @@ const Field = ({
         getToggleButtonProps,
         isOpen,
         inputValue,
-        highlightedIndex,
-        selectedItem,
         getRootProps,
       }) => (
         <div
@@ -124,6 +120,7 @@ const Field = ({
                         index: i,
                         item,
                       })}
+                      key={i}
                       className={s.option}
                     >
                       {item}

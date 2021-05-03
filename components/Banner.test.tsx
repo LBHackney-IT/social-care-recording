@@ -1,5 +1,4 @@
 import Banner from "./Banner"
-import { Formik, Form } from "formik"
 import { render, screen } from "@testing-library/react"
 
 describe("Banner", () => {

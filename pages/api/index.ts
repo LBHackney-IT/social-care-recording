@@ -1,5 +1,4 @@
 import forms from "../../config/forms"
-import { getSession } from "../../lib/auth"
 import { NextApiRequest, NextApiResponse } from "next"
 import prisma from "../../lib/prisma"
 import { apiHandler } from "../../lib/apiHelpers"

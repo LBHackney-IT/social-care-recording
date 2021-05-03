@@ -42,7 +42,7 @@ describe("apiHandler", () => {
   })
 
   it("catches errors", async () => {
-    await apiHandler((mockReq, mockRes) => {
+    await apiHandler(() => {
       throw "example error"
     })(mockReq as any, mockRes as any)
 

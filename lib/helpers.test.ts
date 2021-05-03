@@ -73,7 +73,7 @@ describe("debounce", () => {
   jest.useFakeTimers()
 
   let func: jest.Mock
-  let debouncedFunc: Function
+  let debouncedFunc
 
   beforeEach(() => {
     func = jest.fn()
@@ -99,26 +99,32 @@ describe("generateInitialValues", () => {
       [
         {
           id: "one",
+          question: "",
           type: "text",
         },
         {
           id: "two",
+          question: "",
           type: "checkboxes",
         },
         {
           id: "three",
+          question: "",
           type: "repeater",
         },
         {
           id: "four",
+          question: "",
           type: "file",
         },
         {
           id: "five",
+          question: "",
           type: "select",
           choices: [
             {
               value: "blah",
+              label: "",
             },
           ],
         },
@@ -140,14 +146,18 @@ describe("generateInitialValues", () => {
       [
         {
           id: "foo",
+          question: "",
+          type: "text",
           prefill: "one",
         },
         {
           id: "bar",
+          question: "",
+          type: "text",
           prefill: "two",
         },
       ],
-      { one: "example value" }
+      { one: "example value" } as any
     )
 
     expect(result).toMatchObject({
@@ -161,10 +171,12 @@ describe("generateInitialValues", () => {
       [
         {
           id: "foo",
+          question: "",
           type: "repeaterGroup",
           subfields: [
             {
               id: "one",
+              question: "",
               type: "text",
             },
           ],

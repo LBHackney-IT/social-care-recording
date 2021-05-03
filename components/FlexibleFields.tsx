@@ -4,14 +4,21 @@ import CheckboxField from "./CheckboxField"
 import SelectField from "./SelectField"
 import RepeaterField from "./RepeaterField"
 import RepeaterGroupField from "./RepeaterGroupField"
-import FileUploadField from "./FileUploadField"
+// import FileUploadField from "./FileUploadField"
 import ComboboxField from "./ComboboxField"
+import { FormikValues } from "formik"
+import { Field } from "../config/forms.types"
 
 const FlexibleField = ({
   values,
   field,
   touched,
   errors,
+}: {
+  values: FormikValues
+  field: Field
+  touched
+  errors
 }): React.ReactElement => {
   if (field.condition && values[field.condition.id] !== field.condition.value)
     return null
@@ -33,8 +40,6 @@ const FlexibleField = ({
         name={field.id}
         subfields={field.subfields}
         label={field.question}
-        touched={touched}
-        errors={errors}
         {...field}
       />
     )

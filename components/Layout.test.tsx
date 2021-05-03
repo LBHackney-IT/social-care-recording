@@ -6,7 +6,7 @@ jest.mock("../lib/auth")
 
 describe("Layout", () => {
   it("renders correctly", () => {
-    ;(useSession as jest.Mock).mockReturnValueOnce([false, false])
+    (useSession as jest.Mock).mockReturnValueOnce([false, false])
 
     render(
       <Layout postheader={<h2>Test postheader content</h2>}>

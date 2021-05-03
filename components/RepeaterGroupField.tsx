@@ -19,7 +19,7 @@ const RepeaterGroupField = ({
   hint,
   label,
 }: Props): React.ReactElement => {
-  const { initialValues, values, touched, errors } = useFormikContext()
+  const { values, touched, errors } = useFormikContext()
 
   const repeaterValues = [].concat(values[name])
 
@@ -53,7 +53,7 @@ const RepeaterGroupField = ({
         )}
 
         <FieldArray name={name}>
-          {({ insert, remove, push }) => (
+          {({ remove, push }) => (
             <>
               {repeaterValues.map((item, i) => (
                 <div key={i} className={s.repeaterGroup}>
@@ -62,7 +62,7 @@ const RepeaterGroupField = ({
                       values={values}
                       field={{
                         ...subfield,
-                        name: `${name}.${i}.${subfield.id}`,
+                        id: `${name}.${i}.${subfield.id}`,
                       }}
                       touched={touched}
                       errors={errors}

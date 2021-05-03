@@ -1,6 +1,6 @@
 import Head from "next/head"
 
-const NotFound = () => (
+const NotFound = (): React.ReactElement => (
   <>
     <Head>
       <title>Page not found | Social care | Hackney Council</title>

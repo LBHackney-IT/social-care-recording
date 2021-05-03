@@ -1,4 +1,3 @@
-import { useState } from "react"
 import Link from "next/link"
 import { Submission } from "@prisma/client"
 import { prettyDate, prettyDateAndTime } from "../lib/formatters"

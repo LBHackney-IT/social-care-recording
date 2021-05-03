@@ -1,4 +1,5 @@
-import { Form, Step } from "../config/forms.types"
+import { Form, Step, Field } from "../config/forms.types"
+import { Person } from "./socialCareApi.types"
 
 export interface Theme {
   name: string
@@ -49,7 +50,7 @@ export const debounce = (func: () => any, delay: number): (() => any) => {
 }
 
 /** Generate flexible initial values for a flexible schema */
-export const generateInitialValues = (fields, person): any => {
+export const generateInitialValues = (fields: Field[], person: Person): any => {
   const initialValues = {}
   fields.map(field => {
     if (field.type === "repeaterGroup") {
