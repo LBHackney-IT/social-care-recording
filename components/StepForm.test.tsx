@@ -39,7 +39,7 @@ describe("StepForm", () => {
       </AutosaveProvider>
     )
     expect(screen.getByLabelText("Test question"))
-    expect(screen.getByText("Save changes"))
+    expect(screen.getByText("Save and continue"))
   })
 
   it("shows an error if submission fails", async () => {
@@ -59,7 +59,7 @@ describe("StepForm", () => {
     fireEvent.change(screen.getByLabelText("Test question"), {
       target: { value: "test value" },
     })
-    fireEvent.click(screen.getByText("Save changes"))
+    fireEvent.click(screen.getByText("Save and continue"))
 
     await waitFor(() => {
       expect(screen.getByText("Example status message"))
@@ -82,7 +82,7 @@ describe("StepForm", () => {
     fireEvent.change(screen.getByLabelText("Test question"), {
       target: { value: "test value" },
     })
-    fireEvent.click(screen.getByText("Save changes"))
+    fireEvent.click(screen.getByText("Save and continue"))
 
     await waitFor(() => {
       expect(mockPush).toBeCalledTimes(1)
