@@ -64,7 +64,7 @@ const TaskListPage = ({
         </div>
         <div className="govuk-grid-column-one-third">
           <div className={s.sticky}>
-            <p className="lbh-body">This submission is about:</p>
+            <p className="lbh-body">This is for:</p>
             <PersonWidget person={person} />
           </div>
         </div>
