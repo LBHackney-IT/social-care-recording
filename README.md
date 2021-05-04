@@ -8,6 +8,8 @@ Next-gen case recording for social care in Hackney.
 
 It's a Next.js app that depends heavily on the [social care case viewer API](https://github.com/LBHackney-IT/social-care-case-viewer-api).
 
+It can be thought of as a kind of flexible form builder that integrates well with social care concepts.
+
 It has a small PostgreSQL database and internal API to keep track of unfinished form submissions and, eventually, revision history.
 
 It also makes use of:
