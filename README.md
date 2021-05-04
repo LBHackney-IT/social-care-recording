@@ -124,6 +124,7 @@ And more speculatively:
 1. **BUG:** fix bug where changing a field type to checkbox/repeater from something else (and _maybe_ vice versa) _after_ a submission has been started caused the intitial values to become invalid (because it expects to be able to map over the values)
 2. refactor CSV -> JSON conversion job to support currently ignored cells
 3. Improve appearence of unfinished submissions table on mobile screens
+4. **BUG:** hitting save while there are unsaved changes shouldn't trigger the "unsaved changes" confirm dialog.
 
 ### Next
 
