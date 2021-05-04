@@ -22,6 +22,8 @@
 
 .row {
   position: relative;
+  // force chrome to respect position: relative on table row
+  transform: scale(1);
 
   a {
     position: relative;
