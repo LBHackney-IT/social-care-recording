@@ -121,7 +121,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     return {
       props: {},
       redirect: {
-        destination: `/`,
+        destination: `/submissions/${data.id}/steps/${data.form.steps[0].id}`,
       },
     }
 

@@ -109,9 +109,9 @@ const Step = ({
   )
 }
 
-const Postheader = ({ params }): React.ReactElement => (
+const Postheader = ({ params, form }): React.ReactElement => (
   <div className="lbh-container">
-    <Link href={`/submissions/${params.id}`}>
+    <Link href={form.steps.length === 1 ? `/` : `/submissions/${params.id}`}>
       <a className="govuk-back-link lbh-back-link">Go back</a>
     </Link>
   </div>
