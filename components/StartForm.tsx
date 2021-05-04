@@ -6,6 +6,7 @@ import TextField from "./TextField"
 import SelectField from "./SelectField"
 import { formsToChoices } from "../lib/helpers"
 import Banner from "./Banner"
+import { useRouter } from "next/router"
 
 interface Props {
   forms: FormType[]
@@ -15,12 +16,14 @@ interface Props {
 const StartForm = ({ forms, onSubmit }: Props): React.ReactElement => {
   const formsToChoicesCallback = useCallback(formsToChoices, [forms])
 
+  const { query } = useRouter()
+
   const choices = formsToChoicesCallback(forms)
 
   return (
     <Formik
       initialValues={{
-        socialCareId: "",
+        socialCareId: query.social_care_id || "",
         formId: choices[0].value,
       }}
       validationSchema={startSchema}
@@ -38,14 +41,16 @@ const StartForm = ({ forms, onSubmit }: Props): React.ReactElement => {
             </Banner>
           )}
 
-          <TextField
-            name="socialCareId"
-            label="Social care ID"
-            hint="For example, 12345678"
-            touched={touched}
-            errors={errors}
-            className="govuk-input--width-10"
-          />
+          {!query.social_care_id && (
+            <TextField
+              name="socialCareId"
+              label="Social care ID"
+              hint="For example, 12345678"
+              touched={touched}
+              errors={errors}
+              className="govuk-input--width-10"
+            />
+          )}
 
           <SelectField
             name="formId"
