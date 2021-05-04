@@ -1,6 +1,6 @@
 # Social care recording
 
-Next-gen case recording for social care in Hackney.
+Next-gen case recording for social care in Hackney, with autosave, completion of steps in any order and flexible, configurable forms.
 
 ## 🧱 How it's built
 
