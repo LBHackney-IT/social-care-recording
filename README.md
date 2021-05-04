@@ -63,6 +63,8 @@ Cypress end-to-end tests can be run with `npm run cypress`, provided a local ser
 
 Check types with `npm run typecheck`.
 
+Run eslint with `npm run lint`.
+
 ## 🧬 Configuration
 
 It needs a few configuration variables to work.
