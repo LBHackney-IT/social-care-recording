@@ -14,8 +14,6 @@ interface Props {
 const SubmissionsTable = ({ results }: Props): React.ReactElement => {
   const [expanded, setExpanded] = useState<string | boolean>(false)
 
-  if (!(results?.length > 0)) return <p className="lbh-body">Nothing to show</p>
-
   return (
     <table className="govuk-table lbh-table govuk-!-margin-top-4">
       <thead className="govuk-table__head">

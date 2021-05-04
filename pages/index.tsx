@@ -68,23 +68,29 @@ const IndexPage = ({
         Unfinished submissions
       </h2>
 
-      <fieldset className="govuk-radios govuk-radios--inline lbh-radios">
-        <legend className="govuk-fieldset__legend govuk-visually-hidden">
-          Show
-        </legend>
-        <FilterRadio
-          label="All"
-          checked={!justMine}
-          onChange={() => setJustMine(false)}
-        />
-        <FilterRadio
-          label="Just mine"
-          checked={justMine}
-          onChange={() => setJustMine(true)}
-        />
-      </fieldset>
+      {results?.length > 1 ? (
+        <>
+          <fieldset className="govuk-radios govuk-radios--inline lbh-radios">
+            <legend className="govuk-fieldset__legend govuk-visually-hidden">
+              Show
+            </legend>
+            <FilterRadio
+              label="All"
+              checked={!justMine}
+              onChange={() => setJustMine(false)}
+            />
+            <FilterRadio
+              label="Just mine"
+              checked={justMine}
+              onChange={() => setJustMine(true)}
+            />
+          </fieldset>
 
-      <SubmissionsTable results={results} />
+          <SubmissionsTable results={results} />
+        </>
+      ) : (
+        <p className="lbh-body">There are no unfinished submissions.</p>
+      )}
     </div>
   )
 }
