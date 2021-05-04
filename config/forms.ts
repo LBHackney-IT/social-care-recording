@@ -340,7 +340,7 @@ const formData: Form[] = [
   },
   {
     id: "example",
-    name: "Case note",
+    name: "Another example",
     steps: [
       {
         id: "bar",

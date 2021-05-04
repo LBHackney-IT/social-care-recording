@@ -21,6 +21,7 @@ const Field = ({
   hint,
   className,
   as,
+  rows,
 }: FieldProps): React.ReactElement => (
   <div
     className={`govuk-form-group lbh-form-group ${
@@ -55,6 +56,8 @@ const Field = ({
           : "govuk-input lbh-input"
       } ${className}`}
       aria-describedby={hint && `${name}-hint`}
+      as={as}
+      rows={rows}
     />
   </div>
 )
