@@ -77,16 +77,19 @@ const StepForm = ({
             disabled={isSubmitting}
             onClick={async () => {
               await submitForm()
-              if (singleStep) {
-                setSubmitting(true)
-                onFinish(values, { setStatus })
-              } else {
-                if (isValid && !isSubmitting)
-                  router.push(`/submissions/${router.query.id}`)
+              // next, finish the submission if it's the only step, or return to the task list
+              if (isValid) {
+                if (singleStep) {
+                  setSubmitting(true)
+                  onFinish(values, { setStatus })
+                } else {
+                  if (!isSubmitting)
+                    router.push(`/submissions/${router.query.id}`)
+                }
               }
             }}
           >
-            {singleStep ? "Save and finish" : "Save changes"}
+            {singleStep ? "Save and finish" : "Save and continue"}
           </button>
         </Form>
       )}
