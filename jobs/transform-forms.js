@@ -11,13 +11,15 @@ const run = async () => {
     // remove example row from data
     rows.shift()
 
-    const forms = rows.map(row => ({
-      id: slugify(qRow["Question"]),
-      question: qRow["Question"],
-      type: qRow["Input type"],
-      required: qRow["Required?"] === "true",
-      hint: qRow["Hints"],
-      error: qRow["Custom error message"],
+    // 1. get an array of every field
+    const allFields = rows.map(row => ({
+      id: slugify(row["Question"]),
+      question: row["Question"],
+      type: row["Input type"],
+      required: row["Required?"] === "true",
+      hint: row["Hints"],
+      error: row["Custom error message"],
+      prefill: row["Prefill from"],
       choices: qRow["Options"]
         .split(",")
         .filter(el => el)
@@ -25,6 +27,10 @@ const run = async () => {
           value: slugify(choice),
           label: choice,
         })),
+      condition: {
+        id: row["Shows up based on this question"],
+        value: row["Shows up if question in column H has has value"],
+      },
     }))
 
     fs.writeFileSync("./jobs/data.json", JSON.stringify(forms))
