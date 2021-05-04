@@ -120,6 +120,19 @@ const formData: Form[] = [
         theme: "About you",
         fields: [
           {
+            id: "name",
+            question: "Name",
+            type: "text",
+            required: true,
+          },
+
+          {
+            id: "date",
+            question: "Date",
+            type: "date",
+            required: true,
+          },
+          {
             id: "repeater-example",
             question: "Example repeater question",
             type: "repeater",
@@ -141,6 +154,14 @@ const formData: Form[] = [
                 hint: "",
                 error: "",
                 choices: [],
+              },
+
+              {
+                id: "date",
+                question: "Date",
+                type: "date",
+                required: true,
+                className: "govuk-input--width-10",
               },
               {
                 id: "name2",

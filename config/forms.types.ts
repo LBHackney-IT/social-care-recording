@@ -9,6 +9,7 @@ export interface Field {
   type:
     | "text"
     | "textarea"
+    | "date"
     | "radios"
     | "checkboxes"
     | "select"

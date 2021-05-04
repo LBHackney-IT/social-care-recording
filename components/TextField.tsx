@@ -17,6 +17,7 @@ const Field = ({
   touched,
   errors,
   name,
+  type,
   label,
   hint,
   className,
@@ -50,6 +51,7 @@ const Field = ({
     <RawField
       name={name}
       id={name}
+      type={type}
       className={`${
         as === "textarea"
           ? "govuk-textarea lbh-textarea"

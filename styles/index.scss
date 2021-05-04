@@ -74,3 +74,8 @@ html {
 [data-reach-dialog-overlay] {
   z-index: 3;
 }
+
+// fix vertical padding on date input
+input[type="date"] {
+  padding: 0 5px;
+}
