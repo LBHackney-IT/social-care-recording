@@ -119,8 +119,11 @@ And more speculatively:
 - ~~hitting the "continue" button on a step should return to the task list page if the form submitted successfully~~ (DONE)
 - ~~1. add autosave support to case notes (perhaps by making case notes function a bit more like other forms, backed by a row on the submissions table?)~~ (DONE)
 
-1. fix bug where changing a field type to checkbox/repeater from something else (and _maybe_ vice versa) _after_ a submission has been started caused the intitial values to become invalid (because it expects to be able to map over the values)
-1. refactor CSV -> JSON conversion job to support currently ignored cells
+
+1. **BUG:** fix jumping back to home screen when you start a new case note
+2. **BUG:** fix finishing the submission regardless of whether the case note is valid
+3. **BUG:** fix bug where changing a field type to checkbox/repeater from something else (and _maybe_ vice versa) _after_ a submission has been started caused the intitial values to become invalid (because it expects to be able to map over the values)
+4. refactor CSV -> JSON conversion job to support currently ignored cells
 
 ### Next
 
