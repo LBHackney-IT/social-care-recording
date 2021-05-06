@@ -2,6 +2,8 @@
 
 Next-gen case recording for social care in Hackney, with autosave, completion of steps in any order and flexible, configurable forms.
 
+It's intended to be easily re-used by other service areas.
+
 ## 🧱 How it's built
 
 <img src="https://github.com/LBHackney-IT/social-care-recording/blob/main/public/blueprint.png?raw=true" width="450px" alt="" />
@@ -83,17 +85,17 @@ It's suitable for anywhere you'd deploy a Next.js app, including Heroku, Vercel,
 
 This tool takes the standard case recording workflow and makes it more flexible, to better fit the ways social workers actually operate:
 
-- **As a social worker**, I need to record information about a person
-- **As a social worker**, I need to see a summary of the person I'm recording information about
-- **As a social worker**, I need to record information in an order that suits the material I have available
-- **As a social worker**, I need to record information over multiple sessions without losing my work
-- **As a social worker**, I need to submit information a manager to review
+- **As a council officer**, I need to record information about a person
+- **As a council officer**, I need to see a summary of the person I'm recording information about
+- **As a council officer**, I need to record information in an order that suits the material I have available
+- **As a council officer**, I need to record information over multiple sessions without losing my work
+- **As a council officer**, I need to submit information a manager to review
 
 And more speculatively:
 
 - **As a manager**, I need to iterate and update the forms and protocols we use to collect information
-- **As a social worker**, I need to work together with my colleagues on case recording
-- **As a social worker**, I need to see who has worked on a submission and what was changed in each version
+- **As a council officer**, I need to work together with my colleagues on case recording
+- **As a council officer**, I need to see who has worked on a submission and what was changed in each version
 
 ## 🛣 Roadmap
 
