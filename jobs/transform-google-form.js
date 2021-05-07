@@ -50,7 +50,7 @@ const run = async () => {
       ...rawStep,
       fields: rawStep.fields
         .map(field => {
-          if (supportedInputTypes[field.type])
+          if (supportedInputTypes[field.type] !== undefined)
             return {
               id: slugify(field.label),
               question: field.label,
