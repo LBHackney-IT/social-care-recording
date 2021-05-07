@@ -63,7 +63,7 @@ const run = async () => {
       steps: allSteps,
     }
 
-    fs.writeFileSync("./jobs/data.json", JSON.stringify(form))
+    fs.writeFileSync("./jobs/output.json", JSON.stringify(form))
   } catch (e) {
     console.error(e)
   }

@@ -12,7 +12,8 @@
     "db:seed": "prisma db seed --preview-feature",
     "typecheck": "tsc",
     "lint": "eslint ./ --ext js,jsx,ts,tsx --fix",
-    "transform-forms": "node jobs/transform-forms"
+    "transform-csv": "node jobs/transform-csv",
+    "transform-google-form": "node jobs/transform-google-form"
   },
   "keywords": [],
   "author": "",
