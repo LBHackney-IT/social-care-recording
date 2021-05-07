@@ -4,6 +4,8 @@ Next-gen case recording for social care in Hackney, with autosave, completion of
 
 It's intended to be easily re-used by other service areas.
 
+See **[how to create and modify forms](https://github.com/LBHackney-IT/social-care-recording/wiki/How-to-create-and-modify-forms)**.
+
 ## 🧱 How it's built
 
 <img src="https://github.com/LBHackney-IT/social-care-recording/blob/main/public/blueprint.png?raw=true" width="450px" alt="" />
