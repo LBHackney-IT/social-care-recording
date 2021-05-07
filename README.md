@@ -122,9 +122,10 @@ And more speculatively:
 - ~~Add date field type~~ (DATE)
 
 1. **BUG:** fix bug where changing a field type to checkbox/repeater from something else (and _maybe_ vice versa) _after_ a submission has been started caused the intitial values to become invalid (because it expects to be able to map over the values)
-2. refactor CSV -> JSON conversion job to support currently ignored cells
-3. Improve appearence of unfinished submissions table on mobile screens
-4. **BUG:** hitting save while there are unsaved changes shouldn't trigger the "unsaved changes" confirm dialog.
+2. Improve appearence of unfinished submissions table on mobile screens
+3. **BUG:** hitting save while there are unsaved changes shouldn't trigger the "unsaved changes" confirm dialog.
+4. task list should gracefully handle forms that don't have themed steps, and show them in a plain unthemed list
+5. **BUG:** if a form is deleted mid-submission, it should handle that gracefully too, rather than throwing an error
 
 ### Next
 
