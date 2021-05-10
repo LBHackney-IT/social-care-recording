@@ -14,7 +14,7 @@ const pullOutSteps = allFields => {
       currentStep++
       newArray.push({
         id: slugify(field.label),
-        name: slugify(field.label),
+        name: field.label,
         fields: [],
       })
     } else {
