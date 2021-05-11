@@ -8,6 +8,7 @@ import {
   apiHandler,
   ApiRequestWithSession,
 } from "../../../../../lib/apiHelpers"
+import config from "../../../../../config/app"
 
 const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
   const { id, stepId } = req.query
@@ -36,15 +37,21 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
     const updatedAnswers = submission.answers || {}
     updatedAnswers[stepId.toString()] = values
 
-    // // get the last revision, if it exists
-    // const lastRevision = await prisma.revision.findFirst({
-    //   where: {
-    //     submissionId: id.toString(),
-    //   },
-    //   orderBy: {
-    //     createdAt: "desc",
-    //   },
-    // })
+    // grab most recent revision
+    const { createdAt: lastRevisionCreatedAt } =
+      await prisma.revision.findFirst({
+        where: {
+          submissionId: id.toString(),
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      })
+
+    // was the last revision earlier than the configured interval?
+    const shouldSaveRevision =
+      new Date().getTime() - lastRevisionCreatedAt.getTime() >
+      config.revisionInterval
 
     const completedSteps = pushUnique(
       submission.completedSteps,
@@ -59,14 +66,17 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
         answers: updatedAnswers,
         editedBy: pushUnique(submission.editedBy, req.session.user.email),
         completedSteps,
-        Revision: {
-          create: [
-            {
-              createdBy: req.session.user.email,
-              completedSteps,
-            },
-          ],
-        },
+        // save a revision, conditionally
+        Revision: shouldSaveRevision
+          ? {
+              create: [
+                {
+                  createdBy: req.session.user.email,
+                  completedSteps,
+                },
+              ],
+            }
+          : undefined,
       },
     })
 
