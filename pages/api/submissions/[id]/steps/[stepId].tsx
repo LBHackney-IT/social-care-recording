@@ -36,6 +36,21 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
     const updatedAnswers = submission.answers || {}
     updatedAnswers[stepId.toString()] = values
 
+    // // get the last revision, if it exists
+    // const lastRevision = await prisma.revision.findFirst({
+    //   where: {
+    //     submissionId: id.toString(),
+    //   },
+    //   orderBy: {
+    //     createdAt: "desc",
+    //   },
+    // })
+
+    const completedSteps = pushUnique(
+      submission.completedSteps,
+      stepId.toString()
+    )
+
     const updatedSubmission = await prisma.submission.update({
       where: {
         id: id.toString(),
@@ -43,10 +58,15 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
       data: {
         answers: updatedAnswers,
         editedBy: pushUnique(submission.editedBy, req.session.user.email),
-        completedSteps: pushUnique(
-          submission.completedSteps,
-          stepId.toString()
-        ),
+        completedSteps,
+        Revision: {
+          create: [
+            {
+              createdBy: req.session.user.email,
+              completedSteps,
+            },
+          ],
+        },
       },
     })
 
