@@ -8,25 +8,25 @@ generator client {
 }
 
 model Submission {
-  id             String    @id @default(cuid())
+  id             String     @id @default(cuid())
   socialCareId   Int
   formId         String
-  answers        Json      @default("{}")
+  answers        Json       @default("{}")
   completedSteps String[]
   editedBy       String[]
   createdBy      String
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
   submittedAt    DateTime?
   discardedAt    DateTime?
-  // Revision       Revision[]
+  Revision       Revision[]
 }
 
-// model Revision {
-//   id             String     @id @default(cuid())
-//   completedSteps String[]
-//   createdBy      String
-//   createdAt      DateTime   @default(now())
-//   submissionId   String
-//   submission     Submission @relation(fields: [submissionId], references: [id])
-// }
+model Revision {
+  id             String     @id @default(cuid())
+  completedSteps String[]
+  createdBy      String
+  createdAt      DateTime   @default(now())
+  submissionId   String
+  submission     Submission @relation(fields: [submissionId], references: [id])
+}
