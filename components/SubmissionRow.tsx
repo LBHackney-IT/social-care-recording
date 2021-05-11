@@ -1,11 +1,20 @@
 import Link from "next/link"
-import { Submission } from "@prisma/client"
+import { Prisma } from "@prisma/client"
 import { prettyDate, prettyDateAndTime } from "../lib/formatters"
 import s from "../styles/SubmissionsTable.module.scss"
 import { Form } from "../config/forms.types"
 import DiscardDialog from "../components/DiscardDialog"
+import RevisionTimeline from "./RevisionTimeline"
 
-export interface SubmissionWithForm extends Submission {
+const submissionWithRevision = Prisma.validator<Prisma.SubmissionArgs>()({
+  include: { Revision: true },
+})
+
+type SubmissionWithRevision = Prisma.SubmissionGetPayload<
+  typeof submissionWithRevision
+>
+
+export interface SubmissionWithForm extends SubmissionWithRevision {
   form: Form
 }
 
@@ -30,11 +39,6 @@ const SubmissionRow = ({
       <tr className={`govuk-table__row ${s.row}`}>
         <td className="govuk-table__cell">{submission.socialCareId}</td>
         <td className="govuk-table__cell">
-          {/* <meter
-          className={s.meter}
-          value={submission.completedSteps.length}
-          max={submission.form.steps.length}
-        /> */}
           <Link
             href={
               submission.form.steps.length > 1
@@ -122,6 +126,11 @@ const SubmissionRow = ({
                   <dt className="lbh-body-s">Editors</dt>
                 </div>
               )}
+
+              <RevisionTimeline
+                revisions={submission.Revision}
+                totalSteps={submission.form.steps.length}
+              />
             </dl>
 
             <DiscardDialog submissionId={submission.id} />
