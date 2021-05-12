@@ -19,7 +19,7 @@ model Submission {
   updatedAt      DateTime   @updatedAt
   submittedAt    DateTime?
   discardedAt    DateTime?
-  Revision       Revision[]
+  revisions      Revision[]
 }
 
 model Revision {

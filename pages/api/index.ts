@@ -13,7 +13,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       updatedAt: "desc",
     },
     include: {
-      Revision: {
+      revisions: {
         orderBy: {
           createdAt: "desc",
         },

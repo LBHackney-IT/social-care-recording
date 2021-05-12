@@ -7,7 +7,7 @@ import DiscardDialog from "../components/DiscardDialog"
 import RevisionTimeline from "./RevisionTimeline"
 
 const submissionWithRevision = Prisma.validator<Prisma.SubmissionArgs>()({
-  include: { Revision: true },
+  include: { revisions: true },
 })
 
 type SubmissionWithRevision = Prisma.SubmissionGetPayload<
@@ -128,7 +128,7 @@ const SubmissionRow = ({
               )}
 
               <RevisionTimeline
-                revisions={submission.Revision}
+                revisions={submission.revisions}
                 totalSteps={submission.form.steps.length}
               />
             </dl>
