@@ -10,7 +10,7 @@ const mockSubmission = {
   createdBy: "example@email.com",
   answers: {},
   editedBy: ["example@email.com", "foo@bar.com"],
-  createdAt: ("2021-04-14T10:14:00.87" as unknown) as Date,
+  createdAt: "2021-04-14T10:14:00.87" as unknown as Date,
   updatedAt: new Date(),
   discardedAt: null,
   submittedAt: null,
@@ -20,6 +20,7 @@ const mockSubmission = {
     name: "Foo form",
     steps: [],
   },
+  revisions: [],
 }
 
 describe("SubmissionRow", () => {

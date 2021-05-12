@@ -67,7 +67,7 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
         editedBy: pushUnique(submission.editedBy, req.session.user.email),
         completedSteps,
         // save a revision, conditionally
-        Revision: shouldSaveRevision
+        revisions: shouldSaveRevision
           ? {
               create: [
                 {
