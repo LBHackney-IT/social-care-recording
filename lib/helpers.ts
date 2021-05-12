@@ -1,4 +1,5 @@
-import { Form, Step } from "../config/forms.types"
+import { Form, Step, Field } from "../config/forms.types"
+import { Person } from "./socialCareApi.types"
 
 export interface Theme {
   name: string
@@ -49,13 +50,18 @@ export const debounce = (func: () => any, delay: number): (() => any) => {
 }
 
 /** Generate flexible initial values for a flexible schema */
-export const generateInitialValues = (fields, person): any => {
+export const generateInitialValues = (fields: Field[], person: Person): any => {
   const initialValues = {}
   fields.map(field => {
-    if (field.type === "checkboxes" || field.type === "repeater") {
+    if (field.type === "repeaterGroup") {
+      initialValues[field.id] = [generateInitialValues(field.subfields, person)]
+    } else if (field.type === "checkboxes" || field.type === "repeater") {
       initialValues[field.id] = []
     } else if (field.type === "file") {
       initialValues[field.id] = null
+    } else if (field.type === "select") {
+      initialValues[field.id] =
+        (person && person[field.prefill]) || field.choices[0].value
     } else {
       initialValues[field.id] = (person && person[field.prefill]) || ""
     }

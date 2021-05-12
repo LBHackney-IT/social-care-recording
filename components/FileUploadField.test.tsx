@@ -1,5 +1,5 @@
 import FileUploadField from "./FileUploadField"
-import { render, screen, fireEvent, waitFor } from "@testing-library/react"
+import { render, screen, fireEvent } from "@testing-library/react"
 
 global.URL.createObjectURL = jest.fn(() => "http://fake.url/here")
 

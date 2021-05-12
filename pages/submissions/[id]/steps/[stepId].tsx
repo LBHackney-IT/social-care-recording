@@ -13,7 +13,13 @@ import s from "../../../../styles/Sidebar.module.scss"
 import Banner from "../../../../components/Banner"
 import { getSession } from "../../../../lib/auth"
 
-const Step = ({ params, stepAnswers, person, step }) => {
+const Step = ({
+  params,
+  stepAnswers,
+  person,
+  step,
+  form,
+}): React.ReactElement => {
   const router = useRouter()
 
   const handleSubmit = async (values, { setStatus }): Promise<void> => {
@@ -27,8 +33,25 @@ const Step = ({ params, stepAnswers, person, step }) => {
       )
       const data = await res.json()
       if (data.error) throw data.error
-      // TODO: how can we redirect back to the task list if the user clicks the button and the section is complete, but not on autosave?
-      // router.push(`/submissions/${params.id}`)
+    } catch (e) {
+      setStatus(e.toString())
+    }
+  }
+
+  const handleFinish = async (values, { setStatus }): Promise<void> => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions/${params.id}`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            person,
+          }),
+        }
+      )
+      const data = await res.json()
+      if (data.error) throw data.error
+      router.push("/")
     } catch (e) {
       setStatus(e.toString())
     }
@@ -68,20 +91,16 @@ const Step = ({ params, stepAnswers, person, step }) => {
                 initialValues={stepAnswers}
                 fields={step.fields}
                 onSubmit={handleSubmit}
+                onFinish={handleFinish}
+                singleStep={form.steps.length === 1}
               />
             )}
-            <p className="lbh-body">
-              <Link href={`/submissions/${params.id}`}>
-                <a className="lbh-link lbh-link--no-visited-state">
-                  Back to list
-                </a>
-              </Link>
-            </p>
           </div>
           <div className="govuk-grid-column-one-third">
             <div className={s.sticky}>
-              <PersonWidget person={person} />
               <AutosaveIndicator />
+              <p className="lbh-body">This is for:</p>
+              <PersonWidget person={person} />
             </div>
           </div>
         </div>
@@ -90,18 +109,19 @@ const Step = ({ params, stepAnswers, person, step }) => {
   )
 }
 
-Step.Postheader = ({ params }): React.ReactElement => (
+const Postheader = ({ params, form }): React.ReactElement => (
   <div className="lbh-container">
-    <Link href={`/submissions/${params.id}`}>
-      <a className="govuk-back-link lbh-back-link">Back to list</a>
+    <Link href={form.steps.length === 1 ? `/` : `/submissions/${params.id}`}>
+      <a className="govuk-back-link lbh-back-link">Go back</a>
     </Link>
   </div>
 )
 
+Step.Postheader = Postheader
+
 export const getServerSideProps: GetServerSideProps = async ({
   params,
   req,
-  res,
 }) => {
   if (!getSession({ req })) {
     return {

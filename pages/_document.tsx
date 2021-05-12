@@ -6,7 +6,7 @@ class MyDocument extends Document {
     return { ...initialProps }
   }
 
-  render() {
+  render(): React.ReactElement {
     return (
       <Html lang="en" className="govuk-template lbh-template">
         <Head />

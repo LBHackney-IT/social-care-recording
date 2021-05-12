@@ -7,7 +7,7 @@ import { useRouter } from "next/router"
 
 interface Props {
   form: Form
-  completedSteps: String[]
+  completedSteps: string[]
 }
 
 const TaskList = ({ form, completedSteps }: Props): React.ReactElement => {
@@ -22,7 +22,8 @@ const TaskList = ({ form, completedSteps }: Props): React.ReactElement => {
       {themes.map((theme, i) => (
         <li key={theme.name}>
           <h2 className={s.section}>
-            <span className={s.sectionNumber}>{i + 1}.</span> {theme.name}
+            <span className={s.sectionNumber}>{i + 1}.</span>{" "}
+            {theme.name || "All steps"}
           </h2>
 
           <ul className={s.items}>
@@ -35,7 +36,9 @@ const TaskList = ({ form, completedSteps }: Props): React.ReactElement => {
                 </span>
 
                 {completedSteps.includes(step.id) ? (
-                  <strong className={`govuk-tag lbh-tag--green app-task-list__tag ${s.tagDone}`} >
+                  <strong
+                    className={`govuk-tag lbh-tag--green app-task-list__tag ${s.tagDone}`}
+                  >
                     Done
                   </strong>
                 ) : (

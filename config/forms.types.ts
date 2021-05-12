@@ -6,10 +6,19 @@ export interface Choice {
 export interface Field {
   id: string
   question: string
-  type: "text" | "textarea" | "radios" | "checkboxes" | "select" | "repeater"
-  // | "file"
+  type:
+    | "text"
+    | "textarea"
+    | "date"
+    | "radios"
+    | "checkboxes"
+    | "select"
+    | "repeater"
+    | "repeaterGroup"
+    | "combobox"
+    | "file"
   /** Required value is always ignored on fields with a condition */
-  required: boolean
+  required?: boolean
   hint?: string
   error?: string
   choices?: Choice[]
@@ -22,6 +31,9 @@ export interface Field {
     id: string
     value: string | boolean
   }
+  subfields?: Field[]
+  /** Singular item name for more descriptive buttons and legends  */
+  itemName?: string
 }
 
 export interface Step {

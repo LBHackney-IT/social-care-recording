@@ -28,28 +28,28 @@ export const addRecordToCase = async (
   person: Person,
   worker: string,
   formName: string
-) => {
-  try {
-    // TODO: test aaaaaaaall of this
-    const res = await fetch(`${process.env.SOCIAL_CARE_API_ENDPOINT}/cases`, {
-      headers: {
-        "x-api-key": process.env.SOCIAL_CARE_API_KEY,
-      },
-      method: "POST",
-      body: JSON.stringify({
-        formName: formName,
-        formNameOverall: formName,
-        firstName: person.firstName,
-        lastName: person.firstName,
-        workerEmail: worker,
-        dateOfBirth: person.dateOfBirth,
-        personId: person.mosaicId,
-        contextFlag: person.ageContext,
-        caseFormData: JSON.stringify(data),
+): Promise<void> => {
+  const res = await fetch(`${process.env.SOCIAL_CARE_API_ENDPOINT}/cases`, {
+    headers: {
+      "x-api-key": process.env.SOCIAL_CARE_API_KEY,
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    // TODO: what should these values be?
+    body: JSON.stringify({
+      formName: formName,
+      formNameOverall: "ASC_case_note",
+      firstName: person.firstName,
+      lastName: person.firstName,
+      workerEmail: worker,
+      dateOfBirth: person.dateOfBirth,
+      personId: Number(person.mosaicId),
+      contextFlag: person.ageContext,
+      caseFormData: JSON.stringify({
+        case_note_title: formName,
+        case_note_description: JSON.stringify(data),
       }),
-    })
-    return await res.json()
-  } catch (e) {
-    return null
-  }
+    }),
+  })
+  if (res.status !== 201) throw await res.text()
 }

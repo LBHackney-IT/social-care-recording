@@ -1,7 +1,8 @@
 import Head from "next/head"
+import React from "react"
 import { signIn } from "../lib/auth"
 
-const SignIn = () => (
+const SignIn = (): React.ReactElement => (
   <>
     <Head>
       <title>Sign in | Social care | Hackney Council</title>

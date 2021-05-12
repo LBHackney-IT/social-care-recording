@@ -20,7 +20,7 @@ describe("TaskList", () => {
   it("renders correctly when incomplete", () => {
     render(
       <TaskListHeader
-        onFinish={() => {}}
+        onFinish={() => true}
         completedSteps={["1"]}
         steps={steps}
       />
@@ -35,7 +35,7 @@ describe("TaskList", () => {
   it("renders correctly when complete", () => {
     render(
       <TaskListHeader
-        onFinish={() => {}}
+        onFinish={() => true}
         completedSteps={["1", "2"]}
         steps={steps}
       />

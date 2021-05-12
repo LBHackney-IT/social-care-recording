@@ -1,4 +1,4 @@
-import { Field as RawField } from "formik"
+import { Field as RawField, ErrorMessage, getIn } from "formik"
 
 interface FieldProps {
   touched
@@ -22,13 +22,11 @@ const Field = ({
   label,
   hint,
   className,
-  required,
   choices,
-  ...props
 }: FieldProps): React.ReactElement => (
   <div
     className={`govuk-form-group lbh-form-group ${
-      touched[name] && errors[name] && "govuk-form-group--error"
+      getIn(touched, name) && getIn(errors, name) && "govuk-form-group--error"
     }`}
   >
     <fieldset
@@ -43,15 +41,18 @@ const Field = ({
         </span>
       )}
 
-      {touched[name] && errors[name] && (
-        <p className="govuk-error-message lbh-error-message" role="alert">
-          <span className="govuk-visually-hidden">Error:</span> {errors[name]}
-        </p>
-      )}
+      <ErrorMessage name={name}>
+        {msg => (
+          <p className="govuk-error-message lbh-error-message" role="alert">
+            <span className="govuk-visually-hidden">Error:</span>
+            {msg}
+          </p>
+        )}
+      </ErrorMessage>
 
-      {choices.map(choice => (
-        <div className="govuk-checkboxes lbh-checkboxes" key={choice.value}>
-          <div className="govuk-checkboxes__item">
+      <div className={`govuk-checkboxes lbh-checkboxes ${className}`}>
+        {choices.map(choice => (
+          <div className="govuk-checkboxes__item" key={choice.value}>
             <RawField
               type="checkbox"
               name={name}
@@ -67,8 +68,8 @@ const Field = ({
               {choice.label}
             </label>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </fieldset>
   </div>
 )

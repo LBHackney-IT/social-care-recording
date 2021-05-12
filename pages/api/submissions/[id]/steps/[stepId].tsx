@@ -1,6 +1,5 @@
 import prisma from "../../../../../lib/prisma"
-import { getSession } from "../../../../../lib/auth"
-import { NextApiRequest, NextApiResponse } from "next"
+import { NextApiResponse } from "next"
 import forms from "../../../../../config/forms"
 import { getPersonById } from "../../../../../lib/socialCareApi"
 import { pushUnique } from "../../../../../lib/helpers"
@@ -11,7 +10,7 @@ import {
 } from "../../../../../lib/apiHelpers"
 
 const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
-  let { id, stepId } = req.query
+  const { id, stepId } = req.query
 
   // 1. grab submission
   const submission = await prisma.submission.findUnique({
@@ -21,9 +20,8 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
   })
 
   // 2. grab this particular step from the form
-  const step = forms
-    .find(form => form.id === submission.formId)
-    .steps.find(step => step.id === stepId)
+  const form = forms.find(form => form.id === submission.formId)
+  const step = form.steps.find(step => step.id === stepId)
 
   if (!step)
     res.status(404).json({
@@ -31,11 +29,11 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
     })
 
   if (req.method === "PATCH") {
-    let values = JSON.parse(req.body)
+    const values = JSON.parse(req.body)
 
     await generateFlexibleSchema(step.fields).validate(values)
 
-    let updatedAnswers = submission.answers || {}
+    const updatedAnswers = submission.answers || {}
     updatedAnswers[stepId.toString()] = values
 
     const updatedSubmission = await prisma.submission.update({
@@ -63,6 +61,7 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
       ...submission,
       // include the answers for this step
       stepAnswers: submission.answers[stepId.toString()],
+      form,
       step,
       person,
     })

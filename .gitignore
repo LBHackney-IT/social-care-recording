@@ -2,3 +2,7 @@ node_modules/
 .next/
 .DS_STORE
 .env
+
+
+jobs/*.csv
+jobs/*.json

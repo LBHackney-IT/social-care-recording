@@ -1,56 +1,103 @@
+import { useState } from "react"
 import { GetServerSideProps } from "next"
-import StartForm from "../components/StartForm"
-import { useRouter } from "next/router"
 import Link from "next/link"
-import { Submission } from "@prisma/client"
-import { Form } from "../config/forms.types"
-import SubmissionsTable from "../components/SubmissionsTable"
+import s from "../styles/Index.module.scss"
+
+import SubmissionsTable, {
+  SubmissionWithForm,
+} from "../components/SubmissionsTable"
 import { getSession } from "../lib/auth"
 
 interface Props {
-  forms: Form[]
-  unfinishedSubmissions: Submission[]
+  user
+  unfinishedSubmissions: SubmissionWithForm[]
 }
 
-const Start = ({ forms, unfinishedSubmissions }: Props) => {
-  const router = useRouter()
+const FilterRadio = ({
+  label,
+  checked,
+  onChange,
+}: {
+  label: string
+  checked: boolean
+  onChange: () => void
+}): React.ReactElement => (
+  <div className="govuk-radios__item">
+    <input
+      name="show"
+      className="govuk-radios__input"
+      id={`show-${label}`}
+      type="radio"
+      checked={checked}
+      onChange={onChange}
+    />
+    <label
+      className="govuk-label govuk-radios__label"
+      htmlFor={`show-${label}`}
+    >
+      {label}
+    </label>
+  </div>
+)
 
-  const handleSubmit = async (values, { setStatus }) => {
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/submissions`,
-        {
-          method: "POST",
-          body: JSON.stringify(values),
-        }
-      )
-      const data = await res.json()
-      if (data.error) throw data.error
-      router.push(`/submissions/${data.id}`)
-    } catch (e) {
-      setStatus(e.toString())
-    }
-  }
+const IndexPage = ({
+  user,
+  unfinishedSubmissions,
+}: Props): React.ReactElement => {
+  const [justMine, setJustMine] = useState<boolean>(false)
+
+  const results = justMine
+    ? unfinishedSubmissions.filter(result => result.createdBy === user.email)
+    : unfinishedSubmissions
 
   return (
-    <div className="govuk-grid-row">
+    <div>
       <h1 className="govuk-visually-hidden">Submissions</h1>
 
-      <div className="govuk-grid-column-one-half">
-        <h2 className="lbh-heading-h3">Start a new submission</h2>
-        {forms && <StartForm onSubmit={handleSubmit} forms={forms} />}
+      <div className={s.box}>
+        <h2 className="lbh-heading-h3">Record something new</h2>
+        <p className="lbh-body govuk-!-margin-top-3">
+          Add something new against a person&apos;s case.
+        </p>
+        <Link href="/new">
+          <a className="govuk-button lbh-button govuk-!-margin-top-5">Start</a>
+        </Link>
       </div>
 
-      <div className="govuk-grid-column-one-half">
-        <h2 className="lbh-heading-h3">Resume a submission</h2>
-        <SubmissionsTable unfinishedSubmissions={unfinishedSubmissions} />
-      </div>
+      <h2 className="lbh-heading-h3 govuk-!-margin-top-8">
+        Unfinished submissions
+      </h2>
+
+      {results?.length > 1 ? (
+        <>
+          <fieldset className="govuk-radios govuk-radios--inline lbh-radios">
+            <legend className="govuk-fieldset__legend govuk-visually-hidden">
+              Show
+            </legend>
+            <FilterRadio
+              label="All"
+              checked={!justMine}
+              onChange={() => setJustMine(false)}
+            />
+            <FilterRadio
+              label="Just mine"
+              checked={justMine}
+              onChange={() => setJustMine(true)}
+            />
+          </fieldset>
+
+          <SubmissionsTable results={results} />
+        </>
+      ) : (
+        <p className="lbh-body">There are no unfinished submissions.</p>
+      )}
     </div>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  if (!getSession({ req })) {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const session = getSession({ req })
+  if (!session) {
     return {
       props: {},
       redirect: {
@@ -68,8 +115,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   return {
     props: {
       ...data,
+      ...session,
     },
   }
 }
 
-export default Start
+export default IndexPage

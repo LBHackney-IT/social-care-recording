@@ -32,7 +32,7 @@ export const AutosaveTrigger = ({
 }: {
   delay?: number
 }): React.ReactElement => {
-  const { saved, setSaved, saving, setSaving } = useContext(AutosaveContext)
+  const { saved, setSaved, setSaving } = useContext(AutosaveContext)
 
   const { submitForm, validateForm, values, isSubmitting } = useFormikContext()
 
@@ -68,7 +68,7 @@ export const AutosaveTrigger = ({
   return null
 }
 
-export const AutosaveIndicator = () => {
+export const AutosaveIndicator = (): React.ReactElement => {
   const { saved, saving } = useContext(AutosaveContext)
 
   return (

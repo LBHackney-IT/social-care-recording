@@ -1,13 +1,13 @@
 import FlexibleFields from "./FlexibleFields"
-import { Formik, Form, Field } from "formik"
-import { fireEvent, render, screen } from "@testing-library/react"
+import { Formik } from "formik"
+import { render, screen } from "@testing-library/react"
 
 describe("TextField", () => {
   it("returns a normal field", () => {
     render(
       <Formik onSubmit={null} initialValues={{}}>
         <FlexibleFields
-          field={{ type: "text" }}
+          field={{ id: "foo", question: "", type: "text" }}
           values={{}}
           touched={{}}
           errors={{}}
@@ -22,14 +22,17 @@ describe("TextField", () => {
     render(
       <Formik onSubmit={null} initialValues={{}}>
         <FlexibleFields
-          field={{
-            type: "text",
-            condition: {
+          field={
+            {
               id: "foo",
-              value: "yes",
-            },
-          }}
-          values={{ foo: "yes" }}
+              type: "text",
+              condition: {
+                id: "bar",
+                value: "yes",
+              },
+            } as any
+          }
+          values={{ bar: "yes" }}
           touched={{}}
           errors={{}}
         />
@@ -43,14 +46,17 @@ describe("TextField", () => {
     render(
       <Formik onSubmit={null} initialValues={{}}>
         <FlexibleFields
-          field={{
-            type: "text",
-            condition: {
+          field={
+            {
               id: "foo",
-              value: "yes",
-            },
-          }}
-          values={{ foo: "no" }}
+              type: "text",
+              condition: {
+                id: "bar",
+                value: "yes",
+              },
+            } as any
+          }
+          values={{ bar: "" }}
           touched={{}}
           errors={{}}
         />
@@ -64,10 +70,13 @@ describe("TextField", () => {
     render(
       <Formik onSubmit={null} initialValues={{}}>
         <FlexibleFields
-          field={{
-            type: "whatever",
-            label: "Test label",
-          }}
+          field={
+            {
+              id: "foo",
+              type: "whatever",
+              label: "Test label",
+            } as any
+          }
           values={{}}
           touched={{}}
           errors={{}}

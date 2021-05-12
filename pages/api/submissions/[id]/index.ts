@@ -1,13 +1,15 @@
 import prisma from "../../../../lib/prisma"
-import { NextApiRequest, NextApiResponse } from "next"
+import { NextApiResponse } from "next"
 import forms from "../../../../config/forms"
 import { getPersonById, addRecordToCase } from "../../../../lib/socialCareApi"
 import { apiHandler, ApiRequestWithSession } from "../../../../lib/apiHelpers"
 
 const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
-  let { id } = req.query
+  const { id } = req.query
 
   if (req.method === "POST") {
+    const { person } = JSON.parse(req.body)
+
     const submission = await prisma.submission.update({
       where: {
         id: id.toString(),
@@ -16,9 +18,23 @@ const handler = async (req: ApiRequestWithSession, res: NextApiResponse) => {
         submittedAt: new Date(),
       },
     })
-    // TODO: send the submission via the api
-    // addRecordToCase({}, {}, req.session.user.email, submission.formId)
+    await addRecordToCase(
+      submission.answers,
+      person,
+      req.session.user.email,
+      submission.formId
+    )
     res.json(submission)
+  } else if (req.method === "DELETE") {
+    await prisma.submission.update({
+      where: {
+        id: id.toString(),
+      },
+      data: {
+        discardedAt: new Date(),
+      },
+    })
+    res.send(200)
   } else {
     //   1. grab submission
     const submission = await prisma.submission.findUnique({

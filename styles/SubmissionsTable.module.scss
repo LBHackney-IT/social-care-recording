@@ -1,0 +1,69 @@
+@import "lbh-frontend/lbh/base";
+
+.meter {
+  width: 40px;
+  margin-top: 0;
+  margin-right: 15px;
+  border-radius: 2px;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  overflow: hidden;
+
+  background: lbh-colour("lbh-grey-3");
+
+  &::-moz-meter-bar,
+  &::-webkit-meter-bar {
+    background: none;
+    background-color: lbh-colour("lbh-primary-button");
+  }
+}
+
+.row {
+  position: relative;
+  // force chrome to respect position: relative on table row
+  transform: scale(1);
+
+  a {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.expanderButton {
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+}
+
+.cell {
+  background: lbh-colour("lbh-grey-4");
+  padding: 1.5rem;
+}
+
+.dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  // margin-bottom: 1rem;
+
+  div {
+    margin-top: 0;
+  }
+
+  dt {
+    margin-top: 5px;
+  }
+
+  dd {
+    margin-top: 0rem;
+  }
+}

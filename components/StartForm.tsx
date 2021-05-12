@@ -1,12 +1,12 @@
 import { useCallback } from "react"
-import { Formik, Form, Field } from "formik"
+import { Formik, Form } from "formik"
 import { startSchema } from "../lib/validators"
 import { Form as FormType } from "../config/forms.types"
 import TextField from "./TextField"
 import SelectField from "./SelectField"
 import { formsToChoices } from "../lib/helpers"
 import Banner from "./Banner"
-import Link from "next/link"
+import { useRouter } from "next/router"
 
 interface Props {
   forms: FormType[]
@@ -16,18 +16,20 @@ interface Props {
 const StartForm = ({ forms, onSubmit }: Props): React.ReactElement => {
   const formsToChoicesCallback = useCallback(formsToChoices, [forms])
 
+  const { query } = useRouter()
+
   const choices = formsToChoicesCallback(forms)
 
   return (
     <Formik
       initialValues={{
-        socialCareId: "",
+        socialCareId: query.social_care_id || "",
         formId: choices[0].value,
       }}
       validationSchema={startSchema}
       onSubmit={onSubmit}
     >
-      {({ values, isSubmitting, touched, errors, status }) => (
+      {({ isSubmitting, touched, errors, status }) => (
         <Form>
           {status && (
             <Banner
@@ -39,14 +41,16 @@ const StartForm = ({ forms, onSubmit }: Props): React.ReactElement => {
             </Banner>
           )}
 
-          <TextField
-            name="socialCareId"
-            label="Social care ID"
-            hint="For example, 12345678"
-            touched={touched}
-            errors={errors}
-            className="govuk-input--width-10"
-          />
+          {!query.social_care_id && (
+            <TextField
+              name="socialCareId"
+              label="Social care ID"
+              hint="For example, 12345678"
+              touched={touched}
+              errors={errors}
+              className="govuk-input--width-10"
+            />
+          )}
 
           <SelectField
             name="formId"
@@ -57,20 +61,8 @@ const StartForm = ({ forms, onSubmit }: Props): React.ReactElement => {
           />
 
           <button className="govuk-button lbh-button" disabled={isSubmitting}>
-            Start
+            Continue
           </button>
-
-          {values.socialCareId && (
-            <p className="lbh-body">
-              Or,{" "}
-              <Link href={`/case-notes/${values.socialCareId}`}>
-                <a className="lbh-link lbh-link--no-visited-state">
-                  add a case note
-                </a>
-              </Link>
-              .
-            </p>
-          )}
         </Form>
       )}
     </Formik>

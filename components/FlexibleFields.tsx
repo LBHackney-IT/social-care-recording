@@ -3,13 +3,22 @@ import RadioField from "./RadioField"
 import CheckboxField from "./CheckboxField"
 import SelectField from "./SelectField"
 import RepeaterField from "./RepeaterField"
-import FileUploadField from "./FileUploadField"
+import RepeaterGroupField from "./RepeaterGroupField"
+// import FileUploadField from "./FileUploadField"
+import ComboboxField from "./ComboboxField"
+import { FormikValues } from "formik"
+import { Field } from "../config/forms.types"
 
 const FlexibleField = ({
   values,
   field,
   touched,
   errors,
+}: {
+  values: FormikValues
+  field: Field
+  touched
+  errors
 }): React.ReactElement => {
   if (field.condition && values[field.condition.id] !== field.condition.value)
     return null
@@ -25,6 +34,16 @@ const FlexibleField = ({
   //     />
   //   )
 
+  if (field.type === "repeaterGroup")
+    return (
+      <RepeaterGroupField
+        name={field.id}
+        subfields={field.subfields}
+        label={field.question}
+        {...field}
+      />
+    )
+
   if (field.type === "textarea")
     return (
       <TextField
@@ -34,6 +53,17 @@ const FlexibleField = ({
         errors={errors}
         as="textarea"
         rows={3}
+        {...field}
+      />
+    )
+
+  if (field.type === "date")
+    return (
+      <TextField
+        name={field.id}
+        label={field.question}
+        touched={touched}
+        errors={errors}
         {...field}
       />
     )
@@ -63,6 +93,18 @@ const FlexibleField = ({
   if (field.type === "checkboxes")
     return (
       <CheckboxField
+        name={field.id}
+        label={field.question}
+        touched={touched}
+        choices={field.choices}
+        errors={errors}
+        {...field}
+      />
+    )
+
+  if (field.type === "combobox")
+    return (
+      <ComboboxField
         name={field.id}
         label={field.question}
         touched={touched}

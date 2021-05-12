@@ -1,7 +1,7 @@
 import s from "../styles/FileUploadField.module.scss"
-import { useState, useCallback } from "react"
-import formData from "../config/forms"
+import { useState } from "react"
 import PreviewPanel from "./PreviewPanel"
+import { getIn } from "formik"
 
 interface FieldProps {
   touched
@@ -24,11 +24,8 @@ const Field = ({
   name,
   label,
   hint,
-  required,
   className,
   multiple,
-  setFieldValue,
-  ...props
 }: FieldProps): React.ReactElement => {
   const [files, setFiles] = useState([])
 
@@ -55,7 +52,7 @@ const Field = ({
   return (
     <div
       className={`govuk-form-group lbh-form-group ${
-        touched[name] && errors[name] && "govuk-form-group--error"
+        getIn(touched, name) && getIn(errors, name) && "govuk-form-group--error"
       }`}
     >
       <label htmlFor={name} className="govuk-label lbh-label">
@@ -83,7 +80,6 @@ const Field = ({
         id={name}
         className={`govuk-file-upload lbh-file-upload ${className}`}
         aria-describedby={hint && `${name}-hint`}
-        {...props}
       />
 
       <aside className={s.previewArea}>{thumbs}</aside>

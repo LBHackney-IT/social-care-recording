@@ -1,4 +1,4 @@
-import { Field as RawField } from "formik"
+import { Field as RawField, ErrorMessage, getIn } from "formik"
 
 interface FieldProps {
   touched
@@ -24,13 +24,11 @@ const Field = ({
   hint,
   className,
   choices,
-  required,
   onChange,
-  ...props
 }: FieldProps): React.ReactElement => (
   <div
     className={`govuk-form-group lbh-form-group ${
-      touched[name] && errors[name] && "govuk-form-group--error"
+      getIn(touched, name) && getIn(errors, name) && "govuk-form-group--error"
     }`}
   >
     <fieldset
@@ -45,11 +43,14 @@ const Field = ({
         </span>
       )}
 
-      {touched[name] && errors[name] && (
-        <p className="govuk-error-message lbh-error-message" role="alert">
-          <span className="govuk-visually-hidden">Error:</span> {errors[name]}
-        </p>
-      )}
+      <ErrorMessage name={name}>
+        {msg => (
+          <p className="govuk-error-message lbh-error-message" role="alert">
+            <span className="govuk-visually-hidden">Error:</span>
+            {msg}
+          </p>
+        )}
+      </ErrorMessage>
 
       <div
         className={`govuk-radios lbh-radios govuk-!-margin-top-3 ${className}`}
@@ -64,7 +65,6 @@ const Field = ({
                 id={`${name}-${choice.value}`}
                 className="govuk-radios__input"
                 onChange={onChange}
-                {...props}
               />
             ) : (
               <RawField

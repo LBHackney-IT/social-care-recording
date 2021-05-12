@@ -1,6 +1,10 @@
 # Social care recording
 
-Next-gen case recording for social care in Hackney.
+Next-gen case recording for social care in Hackney, with autosave, completion of steps in any order and flexible, configurable forms.
+
+It's intended to be easily re-used by other service areas.
+
+See **[how to create and modify forms](https://github.com/LBHackney-IT/social-care-recording/wiki/How-to-create-and-modify-forms)**.
 
 ## 🧱 How it's built
 
@@ -8,7 +12,9 @@ Next-gen case recording for social care in Hackney.
 
 It's a Next.js app that depends heavily on the [social care case viewer API](https://github.com/LBHackney-IT/social-care-case-viewer-api).
 
-It has its own PostgreSQL database and internal API to keep track of unfinished form submissions and version history.
+It can be thought of as a kind of flexible form builder that integrates well with social care concepts.
+
+It has a small PostgreSQL database and internal API to keep track of unfinished form submissions and, eventually, revision history.
 
 It also makes use of:
 
@@ -63,6 +69,8 @@ Cypress end-to-end tests can be run with `npm run cypress`, provided a local ser
 
 Check types with `npm run typecheck`.
 
+Run eslint with `npm run lint`.
+
 ## 🧬 Configuration
 
 It needs a few configuration variables to work.
@@ -79,12 +87,17 @@ It's suitable for anywhere you'd deploy a Next.js app, including Heroku, Vercel,
 
 This tool takes the standard case recording workflow and makes it more flexible, to better fit the ways social workers actually operate:
 
-- **As a social worker**, I need to record information about a person
-- **As a social worker**, I need to see a summary of the person I'm recording information about
-- **As a social worker**, I need to record information in an order that suits the material I have available
-- **As a social worker**, I need to record information over multiple sessions without losing my work
-- **As a social worker**, I need to submit information a manager to review
-- **As a manager**, I need to iterate and update the forms and protocols we use to collect information
+- **As a council officer**, I need to record information about a person
+- **As a council officer**, I need to see a summary of the person I'm recording information about
+- **As a council officer**, I need to record information in an order that suits the material I have available
+- **As a council officer**, I need to record information over multiple sessions without losing my work
+- **As a council officer**, I need to submit information a manager to review
+
+And more speculatively:
+
+- **As a manager**, I need to [iterate and update the forms](https://github.com/LBHackney-IT/social-care-recording/wiki/How-to-create-and-modify-forms) and protocols we use to collect information
+- **As a council officer**, I need to work together with my colleagues on case recording
+- **As a council officer**, I need to see who has worked on a submission and what was changed in each version
 
 ## 🛣 Roadmap
 
@@ -99,35 +112,44 @@ This tool takes the standard case recording workflow and makes it more flexible,
 - ~~Improve autosave so it doesn't submit after initial form mount~~ (DONE)
 - ~~Refactor forms to use formik status messages~~ (DONE)
 - ~~Refactor APIs to use a common helper to handle 401s and 500s~~ (DONE)
-- ~~ Add repeater field~~ (DONE)
+- ~~Add repeater field~~ (DONE)
 - ~~Implement specific form for case notes~~ (DONE)
+- ~~**Submit** to the case viewer api~~ (DONE)
+- ~~Write a script to convert a CSV into form config~~
+- ~~Replace "unfinished submissions" table with something more general-purpose~~ (DONE)
+- ~~Add a "repeater group" field for capturing a repeatable group of fields (eg. name, phone number, role for a number of people)~~ (DONE)
+- ~~clean up and improve home page layout~~ (DONE)
+- ~~submissions can be discarded~~ (DONE)
+- ~~hitting the "continue" button on a step should return to the task list page if the form submitted successfully~~ (DONE)
+- ~~1. add autosave support to case notes (perhaps by making case notes function a bit more like other forms, backed by a row on the submissions table?)~~ (DONE)
+- ~~**BUG:** fix finishing the submission regardless of whether the case note is valid~~ (DONE)
+- ~~Add date field type~~ (DATE)
+- ~~refactor CSV -> JSON conversion job to support currently ignored cells~~ (DONE)
 
-1. **Submit** to the case viewer api
-2. Hitting the "continue" button on a step should return to the task list page if the form submitted successfully
-3. Write a script to convert a CSV into form config
-4. fix bug where changing a field type to checkbox/repeater from something else (and _maybe_ vice versa) _after_ a submission has been started caused the intitial values to become invalid (because it expects to be able to map over the values)
-5. add autosave support to case notes
-6. add tests for `GroupRecordingWidget`
+1. **BUG:** fix bug where changing a field type to checkbox/repeater from something else (and _maybe_ vice versa) _after_ a submission has been started caused the intitial values to become invalid (because it expects to be able to map over the values)
+2. Improve appearence of unfinished submissions table on mobile screens
+3. **BUG:** hitting save while there are unsaved changes shouldn't trigger the "unsaved changes" confirm dialog.
+4. task list should gracefully handle forms that don't have themed steps, and show them in a plain unthemed list
+5. **BUG:** if a form is deleted mid-submission, it should handle that gracefully too, rather than throwing an error
+
 
 ### Next
 
-- Write cypress tests
+- Write cypress integration tests once we know what form flows are worth testing
 - Staging site
-- Add date field type
-- Make file upload field available in flexible schemas (add support in `generateFlexibleSchema` and figure out how to handle in autosave, etc)
 
 ### Later
 
 - Keep a proper version history for auditing
-- Replace "unfinished submissions" table with something more general-purpose
 - Integrate with Contentful for form config
-- Group recording
-- Handle file uploading
+- Handle file uploading (add support in `generateFlexibleSchema`, figure out how to handle in autosave, etc)
+- Handle group recording (add tests for `GroupRecordingWidget`, etc)
 
-### UR findings
+### Ideas from UR findings
 
-- "add a person" -> "link another person"
+- ~~"add a person" -> "link another person"~~ (DONE)
 - prefill from previous versions of a form, rather than just core person data
 - search by name or contact detail, not just id
 - actions need to be fleshed out
 - show allocated teams/workers in green person widget
+- fix cross-browser display issue on grouped person widget
