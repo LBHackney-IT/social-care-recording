@@ -13,7 +13,7 @@ const pullOutSteps = allFields => {
     if (field.type === "PAGE_BREAK") {
       currentStep++
       newArray.push({
-        id: slugify(field.label),
+        id: slugify(field.label).replace(".", ")"),
         name: field.label,
         fields: [],
       })
@@ -52,7 +52,7 @@ const run = async () => {
         .map(field => {
           if (supportedInputTypes[field.type] !== undefined)
             return {
-              id: slugify(field.label),
+              id: slugify(field.label).replace(".", ")"),
               question: field.label,
               hint: field.hint,
               type: supportedInputTypes[field.type],
