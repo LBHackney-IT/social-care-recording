@@ -13,7 +13,7 @@ describe("SubmissionsTable", () => {
             createdBy: "example@email.com",
             answers: {},
             editedBy: [],
-            createdAt: ("2021-04-14T10:14:00.87" as unknown) as Date,
+            createdAt: "2021-04-14T10:14:00.87" as unknown as Date,
             updatedAt: new Date(),
             submittedAt: null,
             discardedAt: null,
@@ -23,6 +23,7 @@ describe("SubmissionsTable", () => {
               name: "Foo form",
               steps: [],
             },
+            revisions: [],
           },
         ]}
       />

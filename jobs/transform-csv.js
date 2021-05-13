@@ -13,7 +13,7 @@ const run = async () => {
 
     // 2. get an array of every field
     const allFields = rows.map(row => ({
-      id: slugify(row["Question"]),
+      id: slugify(row["Question"]).replace(".", ")"),
       question: row["Question"],
       type: row["Input type"],
       required: row["Required?"] === "true",
@@ -25,7 +25,7 @@ const run = async () => {
         .filter(el => el)
         .map(choice => ({
           value: slugify(choice),
-          label: choice,
+          label: choice.replace(".", ")"),
         })),
       condition: {
         id: row["Shows up based on this question"],
