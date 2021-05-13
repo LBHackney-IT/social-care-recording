@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react"
 import cookie from "cookie"
 import jsonwebtoken from "jsonwebtoken"
+import { useRouter } from "next/router"
 
 const SessionContext = createContext(null)
 
@@ -21,7 +22,7 @@ export const Provider = ({
 }
 
 /** Hook to use session client-side */
-export const useSession = (): [any, boolean] => {
+export const useSession = () => {
   const { data, setData, loading, setLoading } = useContext(SessionContext)
 
   useEffect(() => {
@@ -43,6 +44,27 @@ export const useSession = (): [any, boolean] => {
 
 /** Get session server-side */
 export const getSession = ctx => {
+  //
+  //
+  // MOCK RESPONSE FOR TESTING
+  return {
+    user: {
+      sub: "107136470627840875739",
+      email: "test.user@hackney.gov.uk",
+      iss: "Hackney",
+      name: "Test User",
+      groups: [
+        "development-team-production",
+        "development-team-staging",
+        "saml-aws-console-socialcare-developer",
+        "Social-Care-Admin-Dev",
+      ],
+      iat: 1619033187,
+    },
+  }
+  //
+  //
+
   const { req } = ctx
 
   const cookies = cookie.parse(req.headers.cookie ?? "")
@@ -55,20 +77,21 @@ export const getSession = ctx => {
     process.env.HACKNEY_JWT_SECRET
   )
 
+  console.log(data)
+
   return {
     user: data,
   }
 }
 
 /** Go to sign in page */
-export const signIn = (): void => {
-  const redirect =
-    process.env.NEXT_PUBLIC_API_ENDPOINT || "http://dev.hackney.gov.uk:3000"
+export const signIn = () => {
+  let redirect = "http://dev.hackney.gov.uk:3000"
   window.location.href = `https://auth.hackney.gov.uk/auth?redirect_uri=${redirect}`
 }
 
 /** Clear cookie and sign out */
-export const signOut = async (): Promise<void> => {
+export const signOut = async () => {
   await fetch("/api/auth/sign-out")
   window.location.href = "/sign-in"
 }
@@ -86,5 +109,4 @@ export const signOut = async (): Promise<void> => {
 // }
 
 /** Utility to check if user is in named group */
-export const hasGroup = (group: string, session): boolean =>
-  session?.groups?.includes(group)
+export const hasGroup = (group, session) => session?.groups?.includes(group)
