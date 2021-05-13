@@ -1,9 +1,17 @@
 import { useState } from "react"
-import { Submission } from "@prisma/client"
+import { Prisma } from "@prisma/client"
 import { Form } from "../config/forms.types"
 import SubmissionRow from "./SubmissionRow"
 
-export interface SubmissionWithForm extends Submission {
+const submissionWithRevision = Prisma.validator<Prisma.SubmissionArgs>()({
+  include: { revisions: true },
+})
+
+type SubmissionWithRevision = Prisma.SubmissionGetPayload<
+  typeof submissionWithRevision
+>
+
+export interface SubmissionWithForm extends SubmissionWithRevision {
   form: Form
 }
 

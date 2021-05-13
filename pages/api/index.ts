@@ -12,6 +12,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     orderBy: {
       updatedAt: "desc",
     },
+    include: {
+      revisions: {
+        orderBy: {
+          createdAt: "desc",
+        },
+        take: 3,
+      },
+    },
   })
 
   res.json({
